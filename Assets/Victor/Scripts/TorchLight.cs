@@ -5,6 +5,12 @@ public class TorchLight : MonoBehaviour
 {
     [SerializeField] private InputActionReference toggleAction;
     [SerializeField] private Light torchLight;
+    [SerializeField] public GameObject Lanterna;
+
+    private void Awake()
+    {
+        Lanterna.SetActive(false);
+    }
 
     private void OnEnable()
     {
@@ -15,9 +21,9 @@ public class TorchLight : MonoBehaviour
     {
         toggleAction.action.performed -= OnToggle;
     }
-    
+
     private void OnToggle(InputAction.CallbackContext ctx)
     {
-        torchLight.enabled = !torchLight.enabled;
+        Lanterna.SetActive(!Lanterna.activeSelf);
     }
 }
