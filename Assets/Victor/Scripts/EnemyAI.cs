@@ -100,8 +100,6 @@ public class EnemyAI : MonoBehaviour
 
     void DetectPlayer()
     {
-        if (PlayerHiddenState.isHidden)
-            return;
 
         Vector3 eyePos = transform.position + Vector3.up * 1.6f;
         Vector3 dir = (player.position - eyePos).normalized;
