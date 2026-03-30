@@ -7946,6 +7946,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: modular_railing_1
       objectReference: {fileID: 0}
+    - target: {fileID: 4437175692314944612, guid: c6603abf0f85b0d41a4911d5c491c52a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
