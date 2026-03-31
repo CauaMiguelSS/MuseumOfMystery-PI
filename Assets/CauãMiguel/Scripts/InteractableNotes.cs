@@ -1,69 +1,49 @@
-using UnityEngine;
+﻿using UnityEngine;
+using TMPro;
 
 public class InteractableNote : MonoBehaviour
 {
-    [Tooltip("Assign the NoteUIManager in scene")]
-    public NoteUIManager noteUI;
+    public GameObject notePanel;
+    public TextMeshProUGUI noteTextUI;
 
-    [Tooltip("Distance check fallback (if not using trigger)")]
-    public float interactionDistance = 2f;
+    [TextArea]
+    public string noteText;
 
-    [Header("Note content")]
-    public string noteTitle = "Nota";
-    [TextArea] public string noteBody = "Aqui vai o texto da nota...";
-    public Sprite noteImage; // optional
-
-    bool playerNearby = false;
-    Transform player;
-
-    void Start()
-    {
-        if (noteUI == null) Debug.LogWarning("NoteUIManager not assigned on " + name);
-        GameObject p = GameObject.FindWithTag("Player");
-        if (p) player = p.transform;
-    }
+    private bool playerNearby = false;
 
     void Update()
     {
-        if (!playerNearby && player != null)
-        {
-            if (Vector3.Distance(player.position, transform.position) <= interactionDistance)
-                playerNearby = true;
-        }
-
         if (playerNearby && Input.GetKeyDown(KeyCode.E))
         {
-            // Toggle panel
-            if (noteUI != null)
-            {
-                if (noteUI.IsOpen)
-                    noteUI.CloseNote();
-                else
-                    noteUI.OpenNote(noteTitle, noteBody, noteImage);
-            }
+            notePanel.SetActive(true);
+            noteTextUI.text = noteText;
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            Time.timeScale = 0f; // pausa o jogo 😈
+        }
+
+        if (notePanel.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        {
+            notePanel.SetActive(false);
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
+            Time.timeScale = 1f; // volta ao normal
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
             playerNearby = true;
-            if (noteUI) noteUI.ShowPrompt(true);
-        }
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
             playerNearby = false;
-            if (noteUI)
-            {
-                noteUI.ShowPrompt(false);
-                // also close if open
-                if (noteUI.IsOpen) noteUI.CloseNote();
-            }
-        }
     }
 }

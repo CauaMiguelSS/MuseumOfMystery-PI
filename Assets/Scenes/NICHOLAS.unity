@@ -565,7 +565,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &682845451
 RectTransform:
   m_ObjectHideFlags: 0
@@ -635,7 +635,7 @@ Canvas:
   m_GameObject: {fileID: 682845450}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1221357722}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
@@ -718,6 +718,7 @@ GameObject:
   - component: {fileID: 1152211382}
   - component: {fileID: 1152211381}
   - component: {fileID: 1152211380}
+  - component: {fileID: 1152211384}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -811,62 +812,39 @@ Transform:
   m_GameObject: {fileID: 1152211379}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -45.03975, y: 0, z: 68.19751}
+  m_LocalPosition: {x: -45.03975, y: -2.2, z: 68.19751}
   m_LocalScale: {x: 26.75371, y: 0.45454, z: 64.360954}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1209033705
-GameObject:
+--- !u!54 &1152211384
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1209033707}
-  - component: {fileID: 1209033706}
-  m_Layer: 0
-  m_Name: UIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1209033706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1209033705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1243e30857a7ef04fa89d71c8ae0f968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NoteUIManager
-  notePanel: {fileID: 682845450}
-  promptObject: {fileID: 1152211379}
-  titleText: {fileID: 565141146}
-  bodyText: {fileID: 565141146}
-  noteImageUI: {fileID: 128570582}
-  lockCursorWhenOpen: 1
---- !u!4 &1209033707
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1209033705}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -66.64651, y: 0, z: 86.65831}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 1152211379}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1221357720
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,7 +863,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1221357721
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1036,11 +1014,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed67cf75652b13c498ea01710fe31519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableNote
-  noteUI: {fileID: 0}
-  interactionDistance: 2
-  noteTitle: Nota
-  noteBody: Aqui vai o texto da nota...
-  noteImage: {fileID: 0}
+  notePanel: {fileID: 682845450}
+  noteTextUI: {fileID: 124882081}
+  noteText: OLA AMIGO
 --- !u!65 &1793818210
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1060,8 +1036,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.9925842, y: 1, z: 3.9861908}
+  m_Center: {x: 0.06284714, y: 0, z: 0.14331055}
 --- !u!23 &1793818211
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1127,7 +1103,7 @@ Transform:
   m_GameObject: {fileID: 1793818208}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -42.4159, y: 1.38, z: 70.76}
+  m_LocalPosition: {x: -42.2, y: -0.38, z: 73.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1271,4 +1247,3 @@ SceneRoots:
   - {fileID: 682845451}
   - {fileID: 598540439}
   - {fileID: 1793818213}
-  - {fileID: 1209033707}
