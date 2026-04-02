@@ -1,0 +1,31 @@
+# File produced by Open Asset Import Library (http://www.assimp.sf.net)
+# (assimp v3.1.193236683)
+
+newmtl HeavyWood
+kd 0.8 0.8 0.8
+illum 1
+
+newmtl HeavyWire
+kd 0.8 0.8 0.8
+illum 1
+
+newmtl HeavyTrigger
+kd 0.8 0.8 0.8
+illum 1
+
+newmtl HeavyTip
+kd 0.8 0.8 0.8
+illum 1
+
+newmtl HeavyFootHold
+kd 0.8 0.8 0.8
+illum 1
+
+newmtl HeavyCylinder
+kd 0.8 0.8 0.8
+illum 1
+
+newmtl HeavyArm
+kd 0.8 0.8 0.8
+illum 1
+
