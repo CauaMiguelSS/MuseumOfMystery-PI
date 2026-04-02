@@ -1,31 +1,30 @@
 using UnityEngine;
-using UnityEngine.LowLevel;
 
 public class JumpscareController : MonoBehaviour
 {
     [Header("Player")]
-    public GameObject playerCamera;
-    public Rigidbody playerRigidbody;
-    public MonoBehaviour[] playerMovementScripts;
+    public Transform playerCamera;
+    public Rigidbody playerRb;
+    public MonoBehaviour[] playerScripts;
 
-    [Header("Enemies")]
+    [Header("Enemy")]
     public GameObject normalEnemy;
-    public MonoBehaviour enemyAIScript;
+    public MonoBehaviour enemyAI;
     public GameObject jumpscareEnemy;
-    public Transform lookAtPoint;
-    public float minDistanceFromPlayer = 2f;
+    public Transform lookTarget;
+    public float minDistance = 2f;
 
     [Header("UI & Audio")]
     public GameObject deathScreen;
-    public AudioSource jumpscareSound;
+    public AudioSource sound;
+    public float deathScreenDelay = 0.8f;
 
-    private bool triggered = false;
+    bool triggered;
 
     void Start()
     {
-        deathScreen.SetActive(false);
-        if (jumpscareEnemy != null)
-            jumpscareEnemy.SetActive(false);
+        SetActive(deathScreen, false);
+        SetActive(jumpscareEnemy, false);
     }
 
     public void TriggerJumpscare()
@@ -33,65 +32,72 @@ public class JumpscareController : MonoBehaviour
         if (triggered) return;
         triggered = true;
 
-        PlayerLock.IsLocked = true;
+        LockPlayer();
+        HandleEnemy();
+        PlayEffects();
 
-        if (playerRigidbody != null)
-        {
-            playerRigidbody.linearVelocity = Vector3.zero;
-            playerRigidbody.angularVelocity = Vector3.zero;
-            playerRigidbody.isKinematic = true;
-        }
-
-        foreach (var script in playerMovementScripts)
-        {
-            if (script != null)
-                script.enabled = false;
-        }
-
-        if (lookAtPoint != null)
-        {
-            Vector3 direction = (lookAtPoint.position - playerCamera.transform.position).normalized;
-            playerCamera.transform.rotation = Quaternion.LookRotation(direction);
-        }
-
-        if (normalEnemy != null)
-        {
-            normalEnemy.SendMessage("FreezeEnemy", SendMessageOptions.DontRequireReceiver);
-
-            normalEnemy.transform.LookAt(playerCamera.transform.position);
-
-            if (enemyAIScript != null)
-                enemyAIScript.enabled = false;
-
-            MaintainDistance(normalEnemy.transform, playerCamera.transform, minDistanceFromPlayer);
-        }
-
-        if (jumpscareEnemy != null)
-            jumpscareEnemy.SetActive(true);
-
-        if (jumpscareSound != null)
-            jumpscareSound.Play();
-
-        Invoke(nameof(ShowDeathScreen), 0.8f);
+        Invoke(nameof(ShowDeathScreen), deathScreenDelay);
     }
 
-    private void MaintainDistance(Transform enemy, Transform player, float minDistance)
+    void LockPlayer()
     {
-        Vector3 offset = enemy.position - player.position;
-        float currentDistance = offset.magnitude;
+        PlayerLock.IsLocked = true;
 
-        if (currentDistance < minDistance)
+        if (playerRb)
         {
-            Vector3 direction = offset.normalized;
-            enemy.position = player.position + direction * minDistance;
+            playerRb.linearVelocity = Vector3.zero;
+            playerRb.angularVelocity = Vector3.zero;
+            playerRb.isKinematic = true;
         }
+
+        foreach (var s in playerScripts)
+            if (s) s.enabled = false;
+
+        if (lookTarget)
+        {
+            Vector3 dir = (lookTarget.position - playerCamera.position).normalized;
+            playerCamera.rotation = Quaternion.LookRotation(dir);
+        }
+    }
+
+    void HandleEnemy()
+    {
+        if (!normalEnemy) return;
+
+        normalEnemy.SendMessage("FreezeEnemy", SendMessageOptions.DontRequireReceiver);
+
+        if (enemyAI) enemyAI.enabled = false;
+
+        normalEnemy.transform.LookAt(playerCamera.position);
+        KeepDistance(normalEnemy.transform);
+    }
+
+    void KeepDistance(Transform enemy)
+    {
+        Vector3 dir = (enemy.position - playerCamera.position).normalized;
+        float dist = Vector3.Distance(enemy.position, playerCamera.position);
+
+        if (dist < minDistance)
+            enemy.position = playerCamera.position + dir * minDistance;
+    }
+
+    void PlayEffects()
+    {
+        SetActive(jumpscareEnemy, true);
+
+        if (sound) sound.Play();
     }
 
     void ShowDeathScreen()
     {
-        deathScreen.SetActive(true);
+        SetActive(deathScreen, true);
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    void SetActive(GameObject obj, bool state)
+    {
+        if (obj) obj.SetActive(state);
     }
 }
