@@ -8,11 +8,10 @@ public class JumpscareController : MonoBehaviour
     public MonoBehaviour[] playerScripts;
 
     [Header("Enemy")]
-    public GameObject normalEnemy;
+    public GameObject enemy;
     public MonoBehaviour enemyAI;
-    public GameObject jumpscareEnemy;
-    public Transform lookTarget;
-    public float minDistance = 2f;
+    public float distanceFromCamera = 1.5f;
+    public Vector3 faceOffset = new Vector3(0, 1.6f, 0); // altura do rosto
 
     [Header("UI & Audio")]
     public GameObject deathScreen;
@@ -20,29 +19,52 @@ public class JumpscareController : MonoBehaviour
     public float deathScreenDelay = 0.8f;
 
     bool triggered;
+    bool lockCamera;
+
+    Transform lookTarget; // alvo fixo (rosto)
 
     void Start()
     {
-        SetActive(deathScreen, false);
-        SetActive(jumpscareEnemy, false);
+        if (deathScreen) deathScreen.SetActive(false);
     }
 
-    public void TriggerJumpscare()
+    void OnTriggerEnter(Collider other)
     {
         if (triggered) return;
+
+        if (other.CompareTag("Player"))
+        {
+            TriggerJumpscare();
+        }
+    }
+
+    void LateUpdate()
+    {
+        // LateUpdate = executa DEPOIS de todos scripts impede bug de câmera
+        if (lockCamera && lookTarget)
+        {
+            Vector3 dir = (lookTarget.position - playerCamera.position).normalized;
+            playerCamera.rotation = Quaternion.LookRotation(dir);
+        }
+    }
+
+    void TriggerJumpscare()
+    {
         triggered = true;
+        lockCamera = true;
 
         LockPlayer();
-        HandleEnemy();
-        PlayEffects();
+        FreezeEnemy();
+        PositionEnemyInFront();
+        CreateLookTarget();
+
+        if (sound) sound.Play();
 
         Invoke(nameof(ShowDeathScreen), deathScreenDelay);
     }
 
     void LockPlayer()
     {
-        PlayerLock.IsLocked = true;
-
         if (playerRb)
         {
             playerRb.linearVelocity = Vector3.zero;
@@ -51,53 +73,45 @@ public class JumpscareController : MonoBehaviour
         }
 
         foreach (var s in playerScripts)
-            if (s) s.enabled = false;
-
-        if (lookTarget)
         {
-            Vector3 dir = (lookTarget.position - playerCamera.position).normalized;
-            playerCamera.rotation = Quaternion.LookRotation(dir);
+            if (s) s.enabled = false;
         }
     }
 
-    void HandleEnemy()
+    void FreezeEnemy()
     {
-        if (!normalEnemy) return;
-
-        normalEnemy.SendMessage("FreezeEnemy", SendMessageOptions.DontRequireReceiver);
-
         if (enemyAI) enemyAI.enabled = false;
 
-        normalEnemy.transform.LookAt(playerCamera.position);
-        KeepDistance(normalEnemy.transform);
+        enemy.SendMessage("FreezeEnemy", SendMessageOptions.DontRequireReceiver);
     }
 
-    void KeepDistance(Transform enemy)
+    void PositionEnemyInFront()
     {
-        Vector3 dir = (enemy.position - playerCamera.position).normalized;
-        float dist = Vector3.Distance(enemy.position, playerCamera.position);
+        // Coloca inimigo direto na frente da câmera
+        Vector3 forward = playerCamera.forward;
+        Vector3 pos = playerCamera.position + forward * distanceFromCamera;
 
-        if (dist < minDistance)
-            enemy.position = playerCamera.position + dir * minDistance;
+        enemy.transform.position = pos;
+
+        // Faz ele olhar direto pro jogador
+        enemy.transform.LookAt(playerCamera.position);
     }
 
-    void PlayEffects()
+    void CreateLookTarget()
     {
-        SetActive(jumpscareEnemy, true);
+        // Cria um ponto no "rosto" do inimigo
+        GameObject target = new GameObject("JumpscareTarget");
 
-        if (sound) sound.Play();
+        target.transform.position = enemy.transform.position + faceOffset;
+
+        lookTarget = target.transform;
     }
 
     void ShowDeathScreen()
     {
-        SetActive(deathScreen, true);
+        if (deathScreen) deathScreen.SetActive(true);
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-    }
-
-    void SetActive(GameObject obj, bool state)
-    {
-        if (obj) obj.SetActive(state);
     }
 }
