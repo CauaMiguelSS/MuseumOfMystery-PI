@@ -16,6 +16,12 @@ public class ObjectGrabbable : MonoBehaviour
         objectRigidbody.useGravity = false;
     }
 
+    public void Drop()
+    {
+        this.objectGrabPointTransform = null;
+        objectRigidbody.useGravity = true;
+    }
+
     private void FixedUpdate()
     {
         if(objectGrabPointTransform != null)
