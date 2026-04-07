@@ -206,7 +206,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7997035900187172448, guid: d57941afac031264494cae48e55f0d45, type: 3}
   m_PrefabInstance: {fileID: 2239817317713598094}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1434537876}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 360b4589c54ca414bb0e39aa8204bdb0, type: 3}
@@ -1204,6 +1204,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1434537876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1695161802387791446, guid: d57941afac031264494cae48e55f0d45, type: 3}
+  m_PrefabInstance: {fileID: 2239817317713598094}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1468799897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,6 +1696,17 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 9226ed77c70ad2740a6dff6f5effbf98, type: 3}
+--- !u!114 &2028352053 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7458359271583201933, guid: c1d04db9f85deaa4382d99d80b29b298, type: 3}
+  m_PrefabInstance: {fileID: 3128184745507882919}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90ba6530d9bfda47abb4610956b2f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2132460845 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9226ed77c70ad2740a6dff6f5effbf98, type: 3}
@@ -1987,6 +2003,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7997035900187172448, guid: d57941afac031264494cae48e55f0d45, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 1434537876}
+    - target: {fileID: 7997035900187172448, guid: d57941afac031264494cae48e55f0d45, type: 3}
       propertyPath: sound
       value: 
       objectReference: {fileID: 1270160850}
@@ -2022,6 +2042,14 @@ PrefabInstance:
       propertyPath: jumpscareEnemy
       value: 
       objectReference: {fileID: 1561174384301369091}
+    - target: {fileID: 7997035900187172448, guid: d57941afac031264494cae48e55f0d45, type: 3}
+      propertyPath: playerScripts.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997035900187172448, guid: d57941afac031264494cae48e55f0d45, type: 3}
+      propertyPath: 'playerScripts.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2028352053}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

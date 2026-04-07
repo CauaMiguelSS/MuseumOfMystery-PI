@@ -40,7 +40,7 @@ public class JumpscareController : MonoBehaviour
 
     void LateUpdate()
     {
-        // LateUpdate = executa DEPOIS de todos scripts impede bug de câmera
+        // LateUpdate = executa DEPOIS de todos scripts impede bug de cï¿½mera
         if (lockCamera && lookTarget)
         {
             Vector3 dir = (lookTarget.position - playerCamera.position).normalized;
@@ -48,7 +48,7 @@ public class JumpscareController : MonoBehaviour
         }
     }
 
-    void TriggerJumpscare()
+    public void TriggerJumpscare()
     {
         triggered = true;
         lockCamera = true;
@@ -87,7 +87,7 @@ public class JumpscareController : MonoBehaviour
 
     void PositionEnemyInFront()
     {
-        // Coloca inimigo direto na frente da câmera
+        // Coloca inimigo direto na frente da cï¿½mera
         Vector3 forward = playerCamera.forward;
         Vector3 pos = playerCamera.position + forward * distanceFromCamera;
 

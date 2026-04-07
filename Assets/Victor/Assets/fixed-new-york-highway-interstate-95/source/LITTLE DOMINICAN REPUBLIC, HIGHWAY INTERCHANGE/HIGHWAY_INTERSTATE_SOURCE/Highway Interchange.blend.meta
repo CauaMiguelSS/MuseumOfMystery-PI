@@ -3,7 +3,37 @@ guid: 7b4e296753ca54649a21340e337533f7
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: City_Block_1
+    second: {fileID: 2100000, guid: 2c1a617fd2965f948bf5d350231f7b70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: City_Block_2
+    second: {fileID: 2100000, guid: 2ab443f9beb123c418c01d5b379810bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: City_Block_3
+    second: {fileID: 2100000, guid: 2c69ca2188ee73b4a8b7135f12a39d51, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Garage
+    second: {fileID: 2100000, guid: 2a3381ddfe71f664eae07c489680df1e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tower
+    second: {fileID: 2100000, guid: d268348b91130ab428bf7ebfb3cd87b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trees_Sheet
+    second: {fileID: 2100000, guid: d274dd8ce8f5ab042aa4b6c1d151f469, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
