@@ -3,7 +3,17 @@ guid: d2be423804238d74792b1f5fa3204c2d
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Architectural Glass
+    second: {fileID: 2100000, guid: 23bc4a7af14931942aa67be256f002a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: VitriMat
+    second: {fileID: 2100000, guid: 59936ff68a9d65b468e98a6c13b79d63, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
