@@ -4,93 +4,71 @@ using System.Collections;
 
 public class WinTrigger : MonoBehaviour
 {
-    public Image fadeImage;      // imagem preta (full screen)
-    public GameObject winUI;     // painel de vitória (objeto inteiro)
-    public Image winUIImage;     // imagem principal do painel (background)
-    public AudioSource music;    // música de fundo
-    public float fadeTime = 2f;
+    public GameObject winUI;   // painel completo (imagem + texto + botão)
+    public float fadeTime = 1.5f;
 
-    bool activated = false;
+    private Graphic[] graphics;
+    private bool activated = false;
 
     void Start()
     {
-        // fade preto começa invisível
-        Color c = fadeImage.color;
-        c.a = 0f;
-        fadeImage.color = c;
+        // pega todos elementos visuais
+        winUI.SetActive(true);
+        graphics = winUI.GetComponentsInChildren<Graphic>();
 
-        // UI começa invisível
-        if (winUIImage != null)
-        {
-            Color uiColor = winUIImage.color;
-            uiColor.a = 0f;
-            winUIImage.color = uiColor;
-        }
+        // começa invisível
+        SetAlpha(0f);
 
-        if (winUI != null)
-            winUI.SetActive(false);
+        winUI.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (!activated && other.CompareTag("Player"))
+        if (activated) return;
+
+        if (other.CompareTag("Player"))
         {
             activated = true;
-            StartCoroutine(Win());
+
+            // congela o jogo IMEDIATAMENTE
+            Time.timeScale = 0f;
+
+            // ativa UI e começa fade
+            winUI.SetActive(true);
+            StartCoroutine(FadeInUI());
         }
     }
 
-    IEnumerator Win()
+    IEnumerator FadeInUI()
     {
         float t = 0f;
-        float startVolume = music != null ? music.volume : 0f;
-        Color c = fadeImage.color;
 
-        // fade preto + diminuir música
         while (t < fadeTime)
         {
-            t += Time.deltaTime;
+            t += Time.unscaledDeltaTime; // funciona com o jogo pausado
+
             float v = t / fadeTime;
-
-            c.a = Mathf.Lerp(0f, 1f, v);
-            fadeImage.color = c;
-
-            if (music != null)
-                music.volume = Mathf.Lerp(startVolume, 0f, v);
+            SetAlpha(v);
 
             yield return null;
         }
 
-        // parar música
-        if (music != null)
-            music.Stop();
+        SetAlpha(1f);
 
-        // pausar jogo
-        Time.timeScale = 0f;
-
+        // AGORA libera o cursor (depois do fade)
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
 
-        // ativar UI
-        if (winUI != null)
-            winUI.SetActive(true);
-
-        // fade do painel (usando unscaled time)
-        if (winUIImage != null)
+    void SetAlpha(float alpha)
+    {
+        foreach (Graphic g in graphics)
         {
-            float uiT = 0f;
-            Color uiColor = winUIImage.color;
+            if (g == null) continue;
 
-            while (uiT < fadeTime)
-            {
-                uiT += Time.unscaledDeltaTime; // funciona mesmo pausado
-                float v = uiT / fadeTime;
-
-                uiColor.a = Mathf.Lerp(0f, 1f, v);
-                winUIImage.color = uiColor;
-
-                yield return null;
-            }
+            Color c = g.color;
+            c.a = alpha;
+            g.color = c;
         }
     }
 }
