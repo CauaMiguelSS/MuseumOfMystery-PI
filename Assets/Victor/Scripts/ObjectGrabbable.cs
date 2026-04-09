@@ -14,7 +14,7 @@ public class ObjectGrabbable : MonoBehaviour
 
         if (objectLight != null)
         {
-            objectLight.enabled = true;
+            objectLight.enabled = true; // luz inicial ligada
         }
     }
 
@@ -23,10 +23,11 @@ public class ObjectGrabbable : MonoBehaviour
         this.objectGrabPointTransform = objectGrabPointTransform;
         objectRigidbody.useGravity = false;
 
-
+        // Luz permanece como filha do objeto, então não precisa mexer
+        // Se quiser, pode garantir que continue ligada
         if (objectLight != null)
         {
-            objectLight.enabled = false;
+            objectLight.enabled = true;
         }
     }
 
@@ -37,7 +38,7 @@ public class ObjectGrabbable : MonoBehaviour
 
         if (objectLight != null)
         {
-            objectLight.enabled = true;
+            objectLight.enabled = true; // permanece ligada
         }
     }
 
