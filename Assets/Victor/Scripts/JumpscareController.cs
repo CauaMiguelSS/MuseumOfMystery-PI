@@ -10,18 +10,21 @@ public class JumpscareController : MonoBehaviour
     [Header("Enemy")]
     public GameObject enemy;
     public MonoBehaviour enemyAI;
+    public Transform headTarget;
     public float distanceFromCamera = 1.5f;
-    public Vector3 faceOffset = new Vector3(0, 1.6f, 0); // altura do rosto
 
     [Header("UI & Audio")]
     public GameObject deathScreen;
     public AudioSource sound;
     public float deathScreenDelay = 0.8f;
 
+    [Header("Camera")]
+    public float cameraSnapSpeed = 10f;
+
     bool triggered;
     bool lockCamera;
 
-    Transform lookTarget; // alvo fixo (rosto)
+    Transform lookTarget;
 
     void Start()
     {
@@ -40,11 +43,17 @@ public class JumpscareController : MonoBehaviour
 
     void LateUpdate()
     {
-        // LateUpdate = executa DEPOIS de todos scripts impede bug de c�mera
         if (lockCamera && lookTarget)
         {
             Vector3 dir = (lookTarget.position - playerCamera.position).normalized;
-            playerCamera.rotation = Quaternion.LookRotation(dir);
+
+            Quaternion targetRot = Quaternion.LookRotation(dir);
+
+            playerCamera.rotation = Quaternion.Slerp(
+                playerCamera.rotation,
+                targetRot,
+                Time.deltaTime * cameraSnapSpeed
+            );
         }
     }
 
@@ -56,7 +65,8 @@ public class JumpscareController : MonoBehaviour
         LockPlayer();
         FreezeEnemy();
         PositionEnemyInFront();
-        CreateLookTarget();
+
+        lookTarget = headTarget;
 
         if (sound) sound.Play();
 
@@ -87,24 +97,21 @@ public class JumpscareController : MonoBehaviour
 
     void PositionEnemyInFront()
     {
-        // Coloca inimigo direto na frente da c�mera
         Vector3 forward = playerCamera.forward;
+
         Vector3 pos = playerCamera.position + forward * distanceFromCamera;
+
+        pos.y = enemy.transform.position.y;
 
         enemy.transform.position = pos;
 
-        // Faz ele olhar direto pro jogador
-        enemy.transform.LookAt(playerCamera.position);
-    }
+        Vector3 dir = playerCamera.position - enemy.transform.position;
+        dir.y = 0f;
 
-    void CreateLookTarget()
-    {
-        // Cria um ponto no "rosto" do inimigo
-        GameObject target = new GameObject("JumpscareTarget");
-
-        target.transform.position = enemy.transform.position + faceOffset;
-
-        lookTarget = target.transform;
+        if (dir != Vector3.zero)
+        {
+            enemy.transform.rotation = Quaternion.LookRotation(dir);
+        }
     }
 
     void ShowDeathScreen()

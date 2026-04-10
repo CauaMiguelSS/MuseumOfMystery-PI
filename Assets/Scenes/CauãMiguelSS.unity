@@ -20489,6 +20489,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 998089923}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1006373999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1006374000}
+  m_Layer: 0
+  m_Name: Head Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1006374000
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006373999}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.225, y: 3.324, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7945220604701838044}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1029363650
 GameObject:
   m_ObjectHideFlags: 0
@@ -41163,6 +41194,7 @@ MonoBehaviour:
   hearingRange: 10
   patrolSpeed: 3.5
   chaseSpeed: 5.5
+  stopDistance: 1.8
   maxStepDistance: 20
   minVolume: 0.05
   maxVolume: 0.8
@@ -45655,13 +45687,14 @@ MonoBehaviour:
   playerRb: {fileID: 7458359270854433087}
   playerScripts:
   - {fileID: 7458359270854433086}
-  enemy: {fileID: 2755957882526770329}
+  enemy: {fileID: 6757690515680519295}
   enemyAI: {fileID: 172288753063546010}
+  headTarget: {fileID: 1006374000}
   distanceFromCamera: 1.5
-  faceOffset: {x: 0, y: 1.6, z: 0}
   deathScreen: {fileID: 1631450928}
   sound: {fileID: 7458359270854433088}
   deathScreenDelay: 0.8
+  cameraSnapSpeed: 10
 --- !u!4 &1366278540795939849
 Transform:
   m_ObjectHideFlags: 0
@@ -66418,6 +66451,7 @@ Transform:
   m_Children:
   - {fileID: 8367661931653821652}
   - {fileID: 2003805925}
+  - {fileID: 1006374000}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -100, z: 0}
 --- !u!4 &7950558544953731529

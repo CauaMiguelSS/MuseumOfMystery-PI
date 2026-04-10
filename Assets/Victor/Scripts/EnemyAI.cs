@@ -26,6 +26,9 @@ public class EnemyAI : MonoBehaviour
     public float patrolSpeed = 2f;
     public float chaseSpeed = 4f;
 
+    [Header("Attack")]
+    public float stopDistance = 2.2f;
+
     [Header("Footsteps")]
     public float maxStepDistance = 20f;
     public float minVolume = 0.05f;
@@ -36,7 +39,6 @@ public class EnemyAI : MonoBehaviour
     public float searchDuration = 7f;
     public float startDelay = 0f;
 
-    // Internals
     int patrolIndex;
     float waitTimer, searchTimer, startTimer;
     bool heardNoise, aiActive, jumpscareTriggered;
@@ -153,17 +155,29 @@ public class EnemyAI : MonoBehaviour
     void Chase()
     {
         agent.speed = chaseSpeed;
-        agent.SetDestination(player.position);
 
         float dist = Vector3.Distance(transform.position, player.position);
-        lastSeenPos = player.position;
 
-        if (dist < 1.5f && !jumpscareTriggered)
+        if (dist <= stopDistance)
         {
-            jumpscareTriggered = true;
-            jumpscareManager.TriggerJumpscare();
+            if (!jumpscareTriggered)
+            {
+                jumpscareTriggered = true;
+
+                agent.isStopped = true;
+                agent.velocity = Vector3.zero;
+                agent.ResetPath();
+                agent.enabled = false;
+
+                jumpscareManager.TriggerJumpscare();
+            }
             return;
         }
+
+        agent.isStopped = false;
+        agent.SetDestination(player.position);
+
+        lastSeenPos = player.position;
 
         if (dist > viewDistance * 1.3f)
             state = State.Investigate;
@@ -200,6 +214,7 @@ public class EnemyAI : MonoBehaviour
     {
         agent.isStopped = true;
         agent.ResetPath();
+        agent.enabled = false;
         enabled = false;
     }
 }
