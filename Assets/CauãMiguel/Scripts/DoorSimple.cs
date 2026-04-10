@@ -3,28 +3,30 @@ using UnityEngine;
 public class DoorSimple : MonoBehaviour
 {
     public GameObject keyObject;
+    public Animator animator;
 
     private bool playerNear = false;
     private bool unlocked = false;
+    private bool opened = false;
 
     void Update()
     {
-        if (playerNear && unlocked && Input.GetKeyDown(KeyCode.E))
+        if (playerNear && unlocked && !opened && Input.GetKeyDown(KeyCode.E))
         {
-            Destroy(gameObject);
-            Destroy(keyObject);
+            opened = true;
+
+            // toca animação
+            animator.SetTrigger("Open");
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Player perto
         if (other.CompareTag("Player"))
         {
             playerNear = true;
         }
 
-        // Chave encostou
         if (other.gameObject == keyObject)
         {
             unlocked = true;
