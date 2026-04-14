@@ -21,5 +21,6 @@ public class Buttons : MonoBehaviour
     public void ChangeScene()
     {
         SceneManager.LoadScene(nomeDaCena);
+        Time.timeScale = 1f;
     }
 }

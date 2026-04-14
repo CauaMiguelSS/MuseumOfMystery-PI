@@ -4,7 +4,7 @@ using System.Collections;
 
 public class WinTrigger : MonoBehaviour
 {
-    public GameObject winUI;   // painel completo (imagem + texto + botão)
+    public GameObject winUI;
     public float fadeTime = 1.5f;
 
     private Graphic[] graphics;
@@ -12,11 +12,9 @@ public class WinTrigger : MonoBehaviour
 
     void Start()
     {
-        // pega todos elementos visuais
         winUI.SetActive(true);
         graphics = winUI.GetComponentsInChildren<Graphic>();
 
-        // começa invisível
         SetAlpha(0f);
 
         winUI.SetActive(false);
@@ -30,10 +28,8 @@ public class WinTrigger : MonoBehaviour
         {
             activated = true;
 
-            // congela o jogo IMEDIATAMENTE
             Time.timeScale = 0f;
 
-            // ativa UI e começa fade
             winUI.SetActive(true);
             StartCoroutine(FadeInUI());
         }
@@ -45,7 +41,7 @@ public class WinTrigger : MonoBehaviour
 
         while (t < fadeTime)
         {
-            t += Time.unscaledDeltaTime; // funciona com o jogo pausado
+            t += Time.unscaledDeltaTime;
 
             float v = t / fadeTime;
             SetAlpha(v);
@@ -55,7 +51,6 @@ public class WinTrigger : MonoBehaviour
 
         SetAlpha(1f);
 
-        // AGORA libera o cursor (depois do fade)
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
