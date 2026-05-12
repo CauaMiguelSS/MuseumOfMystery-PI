@@ -38,7 +38,6 @@ public class FadeEffect : MonoBehaviour
 
         canvasGroup.alpha = 1f;
 
-        // 👇 TROCA DE CENA SÓ DEPOIS DO FADE
         SceneManager.LoadScene(sceneName);
     }
 }
