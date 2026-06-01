@@ -3721,14 +3721,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: -8328564892637880636, guid: ae0a3100a5e343d4e8430470d89628fa, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3736,6 +3728,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ae0a3100a5e343d4e8430470d89628fa, type: 3}
       propertyPath: m_Name
       value: "Canh\xE3o lore"
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -4185,14 +4185,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: -8328564892637880636, guid: ae0a3100a5e343d4e8430470d89628fa, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4200,6 +4192,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ae0a3100a5e343d4e8430470d89628fa, type: 3}
       propertyPath: m_Name
       value: Em breve 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -6732,14 +6732,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: -8328564892637880636, guid: ae0a3100a5e343d4e8430470d89628fa, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -6747,6 +6739,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ae0a3100a5e343d4e8430470d89628fa, type: 3}
       propertyPath: m_Name
       value: Em breve 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -13489,14 +13489,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: -8328564892637880636, guid: ae0a3100a5e343d4e8430470d89628fa, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -13504,6 +13496,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ae0a3100a5e343d4e8430470d89628fa, type: 3}
       propertyPath: m_Name
       value: Crossbow lore
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -19444,14 +19444,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: -8328564892637880636, guid: ae0a3100a5e343d4e8430470d89628fa, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -19459,6 +19451,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ae0a3100a5e343d4e8430470d89628fa, type: 3}
       propertyPath: m_Name
       value: Tank lore
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -39185,14 +39185,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: -8328564892637880636, guid: ae0a3100a5e343d4e8430470d89628fa, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -39200,6 +39192,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ae0a3100a5e343d4e8430470d89628fa, type: 3}
       propertyPath: m_Name
       value: Em breve
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 438dd579aa37813449733b32e4365f0f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -70390,6 +70390,8 @@ GameObject:
   - component: {fileID: 7813739389747817289}
   - component: {fileID: 1273507634775057499}
   - component: {fileID: 5411470536639107512}
+  - component: {fileID: 9127694284531745665}
+  - component: {fileID: 9127694284531745666}
   m_Layer: 0
   m_Name: key
   m_TagString: Untagged
@@ -72469,7 +72471,7 @@ Transform:
   m_GameObject: {fileID: 8495976082696083770}
   serializedVersion: 2
   m_LocalRotation: {x: -0.16931033, y: -0.17738232, z: 0.68743, w: 0.6836004}
-  m_LocalPosition: {x: 63.57, y: -15.887183, z: 29.472912}
+  m_LocalPosition: {x: 63.649, y: -15.859, z: 29.491}
   m_LocalScale: {x: 0.0011855, y: 0.0011855, z: 0.0011855}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -72478,6 +72480,37 @@ Transform:
   - {fileID: 1656815536}
   m_Father: {fileID: 1350920909}
   m_LocalEulerAnglesHint: {x: 0.71, y: -28.381, z: 90.141}
+--- !u!114 &9127694284531745665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8495976082696083770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &9127694284531745666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8495976082696083770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22099d5af0c2b194abf1ed1d20401454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interaction
+  _interactionRange: 3
 --- !u!1 &9131393347178089237
 GameObject:
   m_ObjectHideFlags: 0

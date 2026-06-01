@@ -56,4 +56,9 @@ public class Inventory : MonoBehaviour
         _batteries--;//Consome uma pilha
         GameController.Instance.OnUseBattery.Invoke();
     }
+
+    public void OnUseFlashlight(InputValue value)
+    {
+        GameController.Instance.OnUseFlashlight.Invoke();
+    }
 }
