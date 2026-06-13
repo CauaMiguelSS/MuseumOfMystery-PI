@@ -19,20 +19,20 @@ public class Interaction : MonoBehaviour
         {
             if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
-                if (_target == interactable)//Se for o mesmo objeto, não faça nada
+                if (_target == interactable)//Se for o mesmo objeto, nï¿½o faï¿½a nada
                     return;
                 _target?.HideOutline();//Desativa o ultimo objeto, caso exista
                 _target = interactable;//Sendo outro objeto, ele se torna o novo alvo
                 _target.ShowOutline();
             }
             else
-            {//Caso o raycast acerte algo que não seja interagível, ele desativa o ultimo objeto
+            {//Caso o raycast acerte algo que nï¿½o seja interagï¿½vel, ele desativa o ultimo objeto
                 _target?.HideOutline();
                 _target = null;
             }
         }
         else
-        {//Caso o player não esteja encostando em nada, ele desativa do ultimo objeto
+        {//Caso o player nï¿½o esteja encostando em nada, ele desativa do ultimo objeto
             _target?.HideOutline();
             _target = null;
         }

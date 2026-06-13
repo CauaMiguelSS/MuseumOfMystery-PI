@@ -5,14 +5,18 @@ public class OutlineDetector : MonoBehaviour
     [SerializeField] private float distance = 3f;
 
     private Outline currentOutline;
+    private RaycastHit currentHit;
+    private bool hasHit;
 
     void Update()
     {
         Ray ray = new Ray(transform.position, transform.forward);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, distance))
+        hasHit = Physics.Raycast(ray, out currentHit, distance);
+
+        if (hasHit)
         {
-            Outline outline = hit.collider.GetComponentInParent<Outline>();
+            Outline outline = currentHit.collider.GetComponentInParent<Outline>();
 
             if (outline != currentOutline)
             {
@@ -34,10 +38,10 @@ public class OutlineDetector : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && hasHit)
         {
             TVInteraction tv =
-                hit.collider.GetComponentInParent<TVInteraction>();
+                currentHit.collider.GetComponentInParent<TVInteraction>();
 
             if (tv != null)
             {

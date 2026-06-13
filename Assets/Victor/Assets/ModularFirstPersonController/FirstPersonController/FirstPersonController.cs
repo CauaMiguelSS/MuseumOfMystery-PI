@@ -57,10 +57,15 @@ public class FirstPersonController : MonoBehaviour
         originalScale = transform.localScale;
 
         playerCamera.fieldOfView = fov;
+
+        yaw = transform.eulerAngles.y;
+        LockCursor();
     }
 
     private void Update()
     {
+        LockCursor();
+
         #region Camera Look
         if (cameraCanMove)
         {
@@ -89,6 +94,12 @@ public class FirstPersonController : MonoBehaviour
         #endregion
 
         CheckGround();
+    }
+
+    private void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void FixedUpdate()
