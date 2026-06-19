@@ -3,10 +3,17 @@ using UnityEngine;
 public class OutlineDetector : MonoBehaviour
 {
     [SerializeField] private float distance = 3f;
+    [SerializeField] private GameObject interactionText;
 
     private Outline currentOutline;
     private RaycastHit currentHit;
     private bool hasHit;
+
+    void Start()
+    {
+        if (interactionText != null)
+            interactionText.SetActive(false);
+    }
 
     void Update()
     {
@@ -26,7 +33,17 @@ public class OutlineDetector : MonoBehaviour
                 currentOutline = outline;
 
                 if (currentOutline != null)
+                {
                     currentOutline.enabled = true;
+
+                    if (interactionText != null)
+                        interactionText.SetActive(true);
+                }
+                else
+                {
+                    if (interactionText != null)
+                        interactionText.SetActive(false);
+                }
             }
         }
         else
@@ -36,6 +53,9 @@ public class OutlineDetector : MonoBehaviour
                 currentOutline.enabled = false;
                 currentOutline = null;
             }
+
+            if (interactionText != null)
+                interactionText.SetActive(false);
         }
 
         if (Input.GetKeyDown(KeyCode.E) && hasHit)
