@@ -25,6 +25,13 @@ public class OutlineDetector : MonoBehaviour
         {
             Outline outline = currentHit.collider.GetComponentInParent<Outline>();
 
+            ItemPickup item = currentHit.collider.GetComponent<ItemPickup>();
+
+            if (item != null && item.isHeld)
+            {
+                outline = null;
+            }
+
             if (outline != currentOutline)
             {
                 if (currentOutline != null)
