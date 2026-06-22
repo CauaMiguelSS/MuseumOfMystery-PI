@@ -8,6 +8,9 @@ public class ItemPickup : MonoBehaviour
 
     public bool isHeld;
 
+    [Header("ID do Item")]
+    public string itemID;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();

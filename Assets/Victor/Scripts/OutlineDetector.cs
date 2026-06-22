@@ -74,6 +74,20 @@ public class OutlineDetector : MonoBehaviour
             {
                 tv.EnterTV();
             }
+
+            DoorLock lockObject =
+                currentHit.collider.GetComponentInParent<DoorLock>();
+
+            if (lockObject != null)
+            {
+                PlayerPickup player =
+                    GetComponent<PlayerPickup>();
+
+                if (player != null)
+                {
+                    lockObject.TryUnlock(player);
+                }
+            }
         }
     }
 }

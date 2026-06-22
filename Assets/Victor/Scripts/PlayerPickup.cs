@@ -63,4 +63,9 @@ public class PlayerPickup : MonoBehaviour
 
         heldItem = null;
     }
+
+    public ItemPickup GetHeldItem()
+    {
+        return heldItem;
+    }
 }

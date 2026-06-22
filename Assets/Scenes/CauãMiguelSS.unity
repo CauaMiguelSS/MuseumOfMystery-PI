@@ -48270,7 +48270,6 @@ GameObject:
   - component: {fileID: 5616412417717605920}
   - component: {fileID: 3157616020631733693}
   - component: {fileID: 639032984828328507}
-  - component: {fileID: 5616412417717605922}
   - component: {fileID: 5616412417717605923}
   - component: {fileID: 5616412417717605924}
   - component: {fileID: 5616412417717605925}
@@ -62927,21 +62926,6 @@ Transform:
   - {fileID: 1183189063867213231}
   m_Father: {fileID: 5403845431172816600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5616412417717605922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598623731084353808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d081e452ad97ac4eb3f59f2f0c8fd17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DoorSimple
-  keyObject: {fileID: 0}
-  cadeado: {fileID: 5659624642631717530}
-  animator: {fileID: 5616412417717605925}
 --- !u!65 &5616412417717605923
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63180,6 +63164,7 @@ GameObject:
   - component: {fileID: 6164296287667876687}
   - component: {fileID: 8245824396718180231}
   - component: {fileID: 8245824396718180230}
+  - component: {fileID: 8245824396718180232}
   m_Layer: 0
   m_Name: Lock and key
   m_TagString: Untagged
@@ -68760,6 +68745,7 @@ MonoBehaviour:
   col: {fileID: 0}
   outline: {fileID: 0}
   isHeld: 0
+  itemID: SafeRoomKey
 --- !u!114 &7084631775454450832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68773,7 +68759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 0
-  outlineColor: {r: 1, g: 0.6392157, b: 0, a: 1}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2.75
   precomputeOutline: 0
   bakeKeys: []
@@ -74302,6 +74288,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.14597121, y: 0.23944247, z: 0.039538346}
   m_Center: {x: -0.072985604, y: 0.11972314, z: 0.000000007135943}
+--- !u!114 &8245824396718180232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5659624642631717530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4259a6b830a3f468f77c98c97e0141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorLock
+  requiredItemID: SafeRoomKey
+  doorAnimator: {fileID: 5616412417717605925}
 --- !u!1 &8253889925043357575
 GameObject:
   m_ObjectHideFlags: 0
