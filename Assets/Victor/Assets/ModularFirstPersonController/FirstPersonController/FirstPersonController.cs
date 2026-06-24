@@ -1,11 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
+﻿using UnityEngine;
 
 public class FirstPersonController : MonoBehaviour
 {
@@ -45,8 +38,8 @@ public class FirstPersonController : MonoBehaviour
     #region Crouch
     public bool enableCrouch = true;
     public KeyCode crouchKey = KeyCode.LeftControl;
-    public float crouchHeight = .75f;
-    public float speedReduction = .5f;
+    public float crouchHeight = 0.75f;
+    public float speedReduction = 0.5f;
 
     private Vector3 originalScale;
     #endregion
@@ -54,44 +47,60 @@ public class FirstPersonController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
+        if (rb == null)
+        {
+            Debug.LogError("FirstPersonController: Rigidbody não encontrado!");
+            enabled = false;
+            return;
+        }
+
         originalScale = transform.localScale;
 
-        playerCamera.fieldOfView = fov;
+        if (playerCamera != null)
+            playerCamera.fieldOfView = fov;
 
         yaw = transform.eulerAngles.y;
+
         LockCursor();
     }
 
     private void Update()
     {
-        LockCursor();
-
-        #region Camera Look
         if (cameraCanMove)
         {
-            yaw += Input.GetAxis("Mouse X") * mouseSensitivity;
+            LockCursor();
 
-            pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+
+            yaw += mouseX;
+
+            if (invertCamera)
+                pitch += mouseY;
+            else
+                pitch -= mouseY;
+
             pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
 
-            transform.eulerAngles = new Vector3(0, yaw, 0);
-            playerCamera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
-        }
-        #endregion
+            transform.eulerAngles = new Vector3(0f, yaw, 0f);
 
-        #region Jump
-        if (enableJump && Input.GetKeyDown(jumpKey) && isGrounded)
-        {
-            Jump();
+            if (playerCamera != null)
+                playerCamera.transform.localEulerAngles = new Vector3(pitch, 0f, 0f);
         }
-        #endregion
 
-        #region Crouch
-        if (enableCrouch && Input.GetKeyDown(crouchKey))
+        if (playerCanMove)
         {
-            Crouch();
+            if (enableJump && Input.GetKeyDown(jumpKey) && isGrounded)
+            {
+                Jump();
+            }
+
+            if (enableCrouch && Input.GetKeyDown(crouchKey))
+            {
+                Crouch();
+            }
         }
-        #endregion
 
         CheckGround();
     }
@@ -104,7 +113,6 @@ public class FirstPersonController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // 🔥 TRAVA TOTAL (TV MODE FIX)
         if (!playerCanMove)
         {
             rb.linearVelocity = Vector3.zero;
@@ -113,21 +121,33 @@ public class FirstPersonController : MonoBehaviour
             return;
         }
 
-        Vector3 input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 input = new Vector3(
+            Input.GetAxis("Horizontal"),
+            0,
+            Input.GetAxis("Vertical")
+        );
 
-        // 🔥 FIX BUG WALK (parênteses corretos)
-        if ((input.x != 0 || input.z != 0) && isGrounded)
-            isWalking = true;
-        else
-            isWalking = false;
+        isWalking = (input.x != 0 || input.z != 0) && isGrounded;
 
-        Vector3 targetVelocity = transform.TransformDirection(input) * walkSpeed;
+        Vector3 targetVelocity =
+            transform.TransformDirection(input) * walkSpeed;
 
         Vector3 velocity = rb.linearVelocity;
+
         Vector3 change = targetVelocity - velocity;
 
-        change.x = Mathf.Clamp(change.x, -maxVelocityChange, maxVelocityChange);
-        change.z = Mathf.Clamp(change.z, -maxVelocityChange, maxVelocityChange);
+        change.x = Mathf.Clamp(
+            change.x,
+            -maxVelocityChange,
+            maxVelocityChange
+        );
+
+        change.z = Mathf.Clamp(
+            change.z,
+            -maxVelocityChange,
+            maxVelocityChange
+        );
+
         change.y = 0;
 
         rb.AddForce(change, ForceMode.VelocityChange);
@@ -149,7 +169,12 @@ public class FirstPersonController : MonoBehaviour
         }
         else
         {
-            transform.localScale = new Vector3(originalScale.x, crouchHeight, originalScale.z);
+            transform.localScale = new Vector3(
+                originalScale.x,
+                crouchHeight,
+                originalScale.z
+            );
+
             walkSpeed *= speedReduction;
             isCrouched = true;
         }
@@ -159,9 +184,12 @@ public class FirstPersonController : MonoBehaviour
     {
         Vector3 origin = transform.position + Vector3.down * 0.5f;
 
-        if (Physics.Raycast(origin, Vector3.down, 0.75f))
-            isGrounded = true;
-        else
-            isGrounded = false;
+        isGrounded = Physics.Raycast(origin, Vector3.down, 0.75f);
+    }
+
+    public void UnlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }

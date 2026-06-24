@@ -88,6 +88,14 @@ public class OutlineDetector : MonoBehaviour
                     lockObject.TryUnlock(player);
                 }
             }
+
+            InteractableNote note =
+                currentHit.collider.GetComponentInParent<InteractableNote>();
+
+            if (note != null)
+            {
+                note.Interact();
+            }
         }
     }
 }
