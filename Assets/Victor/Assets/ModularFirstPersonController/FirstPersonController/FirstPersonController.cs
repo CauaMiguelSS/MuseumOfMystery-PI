@@ -21,6 +21,10 @@ public class FirstPersonController : MonoBehaviour
     public bool playerCanMove = true;
     public float walkSpeed = 5f;
     public float maxVelocityChange = 10f;
+    public KeyCode sprintKey = KeyCode.LeftShift;
+    public float sprintSpeed = 8f;
+
+    private float currentSpeed;
 
     private bool isWalking;
     private bool isSprinting;
@@ -50,12 +54,12 @@ public class FirstPersonController : MonoBehaviour
 
         if (rb == null)
         {
-            Debug.LogError("FirstPersonController: Rigidbody não encontrado!");
             enabled = false;
             return;
         }
 
         originalScale = transform.localScale;
+        currentSpeed = walkSpeed;
 
         if (playerCamera != null)
             playerCamera.fieldOfView = fov;
@@ -102,6 +106,19 @@ public class FirstPersonController : MonoBehaviour
             }
         }
 
+        if (playerCanMove)
+        {
+            if (Input.GetKey(sprintKey))
+            {
+                isSprinting = true;
+                currentSpeed = sprintSpeed;
+            }
+            else
+            {
+                isSprinting = false;
+                currentSpeed = walkSpeed;
+            }
+        }
         CheckGround();
     }
 
@@ -129,8 +146,7 @@ public class FirstPersonController : MonoBehaviour
 
         isWalking = (input.x != 0 || input.z != 0) && isGrounded;
 
-        Vector3 targetVelocity =
-            transform.TransformDirection(input) * walkSpeed;
+        Vector3 targetVelocity = transform.TransformDirection(input) * currentSpeed;
 
         Vector3 velocity = rb.linearVelocity;
 
@@ -164,6 +180,7 @@ public class FirstPersonController : MonoBehaviour
         if (isCrouched)
         {
             transform.localScale = originalScale;
+            currentSpeed /= speedReduction;
             walkSpeed /= speedReduction;
             isCrouched = false;
         }
@@ -175,6 +192,7 @@ public class FirstPersonController : MonoBehaviour
                 originalScale.z
             );
 
+            currentSpeed *= speedReduction;
             walkSpeed *= speedReduction;
             isCrouched = true;
         }

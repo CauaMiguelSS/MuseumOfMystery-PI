@@ -7,6 +7,16 @@ public enum ActiveState
     OFF, ON
 }
 
+public class FlashLightStatus 
+{
+    private ActiveState _activeState;
+    private float _batteryTimer;
+
+    
+
+
+}
+
 public class Flashlight : MonoBehaviour
 {
     private ActiveState _activeState = ActiveState.ON;
