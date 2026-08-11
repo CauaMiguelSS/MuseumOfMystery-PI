@@ -3,7 +3,7 @@ using UnityEngine;
 public class ExposicaoPuzzle : MonoBehaviour
 {
     [Header("Quantidade de esculturas")]
-    [SerializeField] private int quantidadeTotal = 3;
+    [SerializeField] private int quantidadeTotal = 4;
 
     private int quantidadeCorreta = 0;
 

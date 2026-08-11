@@ -2,23 +2,27 @@ using UnityEngine;
 
 public class PlayerPickup : MonoBehaviour
 {
+    [Header("Pickup")]
     [SerializeField] private float distance = 3f;
     [SerializeField] private Transform holdPoint;
+    [SerializeField] private Camera playerCamera;
 
     private ItemPickup heldItem;
 
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            // Se já estiver segurando algo,
+            // tenta colocar no expositor.
             if (heldItem != null)
             {
                 if (TryPlaceOnExpositor())
-                {
                     return;
-                }
             }
 
+            // Se não estiver segurando nada,
+            // tenta pegar.
             if (heldItem == null)
             {
                 TryPickup();
@@ -34,21 +38,42 @@ public class PlayerPickup : MonoBehaviour
         }
     }
 
-    void TryPickup()
+    private void TryPickup()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
+        if (playerCamera == null)
+        {
+            Debug.LogError("PlayerPickup: A câmera não foi configurada!");
+            return;
+        }
+
+        Ray ray = new Ray(
+            playerCamera.transform.position,
+            playerCamera.transform.forward
+        );
 
         if (Physics.Raycast(ray, out RaycastHit hit, distance))
         {
+            Debug.Log("Raycast acertou: " + hit.collider.name);
+
             ItemPickup item = hit.collider.GetComponent<ItemPickup>();
 
             if (item == null)
+            {
+                Debug.Log("O objeto acertado não possui ItemPickup.");
                 return;
+            }
+
+            if (holdPoint == null)
+            {
+                Debug.LogError("PlayerPickup: Hold Point não foi configurado!");
+                return;
+            }
 
             heldItem = item;
             heldItem.isHeld = true;
 
             heldItem.transform.SetParent(holdPoint);
+
             heldItem.transform.localPosition = Vector3.zero;
             heldItem.transform.localRotation = Quaternion.identity;
 
@@ -57,12 +82,20 @@ public class PlayerPickup : MonoBehaviour
 
             if (heldItem.outline != null)
                 heldItem.outline.enabled = false;
+
+            Debug.Log("Pegou: " + heldItem.itemID);
         }
     }
 
-    bool TryPlaceOnExpositor()
+    private bool TryPlaceOnExpositor()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
+        if (playerCamera == null)
+            return false;
+
+        Ray ray = new Ray(
+            playerCamera.transform.position,
+            playerCamera.transform.forward
+        );
 
         if (Physics.Raycast(ray, out RaycastHit hit, distance))
         {
@@ -84,7 +117,7 @@ public class PlayerPickup : MonoBehaviour
         return false;
     }
 
-    void Drop()
+    private void Drop()
     {
         heldItem.transform.SetParent(null);
 
@@ -94,6 +127,8 @@ public class PlayerPickup : MonoBehaviour
         heldItem.col.enabled = true;
 
         heldItem = null;
+
+        Debug.Log("Item largado.");
     }
 
     public ItemPickup GetHeldItem()
