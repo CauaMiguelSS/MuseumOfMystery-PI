@@ -11,6 +11,14 @@ public class PlayerPickup : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            if (heldItem != null)
+            {
+                if (TryPlaceOnExpositor())
+                {
+                    return;
+                }
+            }
+
             if (heldItem == null)
             {
                 TryPickup();
@@ -50,6 +58,30 @@ public class PlayerPickup : MonoBehaviour
             if (heldItem.outline != null)
                 heldItem.outline.enabled = false;
         }
+    }
+
+    bool TryPlaceOnExpositor()
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, distance))
+        {
+            Expositor expositor = hit.collider.GetComponent<Expositor>();
+
+            if (expositor == null)
+                return false;
+
+            expositor.TentarColocar(heldItem);
+
+            if (!heldItem.isHeld)
+            {
+                heldItem = null;
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     void Drop()
