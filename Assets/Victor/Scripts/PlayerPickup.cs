@@ -14,9 +14,13 @@ public class PlayerPickup : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             // Se já estiver segurando algo,
-            // tenta colocar no expositor.
+            // tenta colocar no VHS Player.
             if (heldItem != null)
             {
+                if (TryInsertVHS())
+                    return;
+
+                // Se não for VHS, tenta colocar no expositor.
                 if (TryPlaceOnExpositor())
                     return;
             }
@@ -85,6 +89,37 @@ public class PlayerPickup : MonoBehaviour
 
             Debug.Log("Pegou: " + heldItem.itemID);
         }
+    }
+
+    private bool TryInsertVHS()
+    {
+        if (playerCamera == null)
+            return false;
+
+        Ray ray = new Ray(
+            playerCamera.transform.position,
+            playerCamera.transform.forward
+        );
+
+        if (Physics.Raycast(ray, out RaycastHit hit, distance))
+        {
+            VHSPlayer vhsPlayer = hit.collider.GetComponent<VHSPlayer>();
+
+            if (vhsPlayer == null)
+                return false;
+
+            if (vhsPlayer.TryInsertVHS(heldItem))
+            {
+                heldItem.isHeld = false;
+                heldItem = null;
+
+                Debug.Log("VHS colocado no aparelho.");
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private bool TryPlaceOnExpositor()

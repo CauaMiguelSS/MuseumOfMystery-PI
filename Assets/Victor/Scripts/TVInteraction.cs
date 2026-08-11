@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 
@@ -22,6 +21,10 @@ public class TVInteraction : MonoBehaviour
     [Tooltip("Objeto da lanterna. Pode ser a própria luz ou o GameObject inteiro.")]
     [SerializeField] private GameObject flashlight;
 
+    [Header("TV Light")]
+    [Tooltip("Luz que acende quando o player entra na TV.")]
+    [SerializeField] private GameObject tvLight;
+
     [Header("Settings")]
     [SerializeField] private float transitionSpeed = 2f;
 
@@ -30,6 +33,9 @@ public class TVInteraction : MonoBehaviour
 
     private bool watchingTV;
     private bool transitioning;
+
+    // Define se a TV já pode ser utilizada.
+    private bool tvAvailable = false;
 
     // Guarda se a lanterna estava ligada antes de entrar na TV
     private bool flashlightWasOn;
@@ -45,6 +51,13 @@ public class TVInteraction : MonoBehaviour
 
     public void EnterTV()
     {
+        // Impede entrar na TV antes de colocar o VHS
+        if (!tvAvailable)
+        {
+            Debug.Log("A TV ainda não está disponível. Insira uma fita VHS.");
+            return;
+        }
+
         if (watchingTV || transitioning)
             return;
 
@@ -86,6 +99,12 @@ public class TVInteraction : MonoBehaviour
             flashlight.SetActive(false);
         }
 
+        // Liga a luz da TV
+        if (tvLight != null)
+        {
+            tvLight.SetActive(true);
+        }
+
         // Desliga o outline da TV
         Outline outline = GetComponentInChildren<Outline>();
 
@@ -109,7 +128,10 @@ public class TVInteraction : MonoBehaviour
 
     private IEnumerator MoveCameraToTV()
     {
-        yield return MoveCamera(cameraPoint.position, cameraPoint.rotation);
+        yield return MoveCamera(
+            cameraPoint.position,
+            cameraPoint.rotation
+        );
 
         transitioning = false;
     }
@@ -117,7 +139,10 @@ public class TVInteraction : MonoBehaviour
     private IEnumerator ReturnToPlayer()
     {
         // Volta a câmera para a posição original
-        yield return MoveCamera(originalPos, originalRot);
+        yield return MoveCamera(
+            originalPos,
+            originalRot
+        );
 
         // Devolve o controle ao player
         playerController.playerCanMove = true;
@@ -139,12 +164,21 @@ public class TVInteraction : MonoBehaviour
             flashlight.SetActive(flashlightWasOn);
         }
 
+        // Desliga a luz da TV
+        if (tvLight != null)
+        {
+            tvLight.SetActive(false);
+        }
+
         // Agora realmente saiu da TV
         watchingTV = false;
         transitioning = false;
     }
 
-    private IEnumerator MoveCamera(Vector3 targetPos, Quaternion targetRot)
+    private IEnumerator MoveCamera(
+        Vector3 targetPos,
+        Quaternion targetRot
+    )
     {
         float t = 0f;
 
@@ -173,5 +207,17 @@ public class TVInteraction : MonoBehaviour
         // Garante que termine exatamente no ponto
         playerCamera.position = targetPos;
         playerCamera.rotation = targetRot;
+    }
+
+    // Chamado pelo VHSPlayer quando a fita é inserida
+    public void SetTVAvailable(bool available)
+    {
+        tvAvailable = available;
+
+        Debug.Log(
+            available
+                ? "TV agora está disponível."
+                : "TV agora está bloqueada."
+        );
     }
 }
