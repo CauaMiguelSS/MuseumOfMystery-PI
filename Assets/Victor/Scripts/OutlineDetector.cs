@@ -4,6 +4,7 @@ public class OutlineDetector : MonoBehaviour
 {
     [SerializeField] private float distance = 3f;
     [SerializeField] private GameObject interactionText;
+    [SerializeField] private Camera playerCamera;
 
     private Outline currentOutline;
     private RaycastHit currentHit;
@@ -17,7 +18,7 @@ public class OutlineDetector : MonoBehaviour
 
     void Update()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
+        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
 
         hasHit = Physics.Raycast(ray, out currentHit, distance);
 

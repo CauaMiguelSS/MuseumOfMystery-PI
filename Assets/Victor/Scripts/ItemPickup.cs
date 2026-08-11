@@ -15,6 +15,6 @@ public class ItemPickup : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
-        outline = GetComponent<Outline>();
+        outline = GetComponentInParent<Outline>();
     }
 }
