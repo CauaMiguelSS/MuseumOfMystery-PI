@@ -1,48 +1,33 @@
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Video;
 
 public class TV : MonoBehaviour, IInteractable
 {
-    private VideoPlayer _videoPlayer;
-    private GameObject _videoContainer;
-    private Outline _outline;
+    [SerializeField] private TVInteraction tvInteraction;
 
-    private void Start()
-    {
-        _outline = GetComponentInChildren<Outline>();
-        _outline.enabled = false;
-        _videoPlayer = GetComponent<VideoPlayer>();
-        _videoContainer = transform.GetChild(0).gameObject;
-    }
+    private Outline outline;
 
-    public void HideOutline()
+    private void Awake()
     {
-        if (_outline != null)
-        {
-            _outline.enabled = false;
-        }
+        outline = GetComponentInChildren<Outline>(true);
+
+        if (outline != null)
+            outline.enabled = false;
     }
 
     public void Interact()
     {
-        if (_videoPlayer.isPlaying)
-        {
-            _videoPlayer.Stop();
-            _videoContainer.SetActive(false);
-        }
-        else
-        {
-            _videoContainer.SetActive(true);
-            _videoPlayer.Play();
-        }
+        tvInteraction.EnterTV();
     }
 
     public void ShowOutline()
     {
-        if (_outline != null)
-        {
-            _outline.enabled = true;
-        }
+        if (outline != null)
+            outline.enabled = true;
+    }
+
+    public void HideOutline()
+    {
+        if (outline != null)
+            outline.enabled = false;
     }
 }

@@ -8,40 +8,85 @@ public class VHSPlayer : MonoBehaviour
     [SerializeField] private TVInteraction tvInteraction;
 
     [Header("Luz da TV")]
-    [Tooltip("Luz que será ligada permanentemente quando o VHS for inserido.")]
+    [Tooltip("Luz que será ligada quando o VHS for inserido.")]
     [SerializeField] private GameObject tvLight;
 
     [Header("Configuração do VHS")]
     [SerializeField] private string vhsID = "VHS";
 
     [Header("Visual")]
-    [Tooltip("Ponto onde a fita seria colocada dentro do VHS Player.")]
+    [Tooltip("Ponto onde a fita será colocada dentro do VHS Player.")]
     [SerializeField] private Transform vhsInsertPoint;
 
     private bool hasVHS;
 
+    private void Start()
+    {
+        if (tvLight != null)
+        {
+            tvLight.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning(
+                "VHSPlayer: TV Light não foi configurada no Inspector!"
+            );
+        }
+
+        if (tvInteraction != null)
+        {
+            tvInteraction.SetTVAvailable(false);
+        }
+        else
+        {
+            Debug.LogWarning(
+                "VHSPlayer: TV Interaction não foi configurado no Inspector!"
+            );
+        }
+
+        if (videoPlayer != null)
+        {
+            videoPlayer.Stop();
+        }
+        else
+        {
+            Debug.LogWarning(
+                "VHSPlayer: VideoPlayer não foi configurado no Inspector!"
+            );
+        }
+    }
+
     public bool TryInsertVHS(ItemPickup item)
     {
         if (item == null)
-            return false;
-
-        // Verifica se é a fita correta
-        if (item.itemID != vhsID)
         {
-            Debug.Log("Esse item não é uma fita VHS.");
+            Debug.LogWarning(
+                "VHSPlayer: Item recebido é nulo."
+            );
+
             return false;
         }
 
-        // Impede colocar outra fita
+        if (item.itemID != vhsID)
+        {
+            Debug.Log(
+                "Esse item não é uma fita VHS."
+            );
+
+            return false;
+        }
+
         if (hasVHS)
         {
-            Debug.Log("Já existe uma fita no VHS Player.");
+            Debug.Log(
+                "Já existe uma fita no VHS Player."
+            );
+
             return false;
         }
 
         hasVHS = true;
 
-        // Coloca a fita no ponto de inserção
         if (vhsInsertPoint != null)
         {
             item.transform.SetParent(vhsInsertPoint);
@@ -49,35 +94,45 @@ public class VHSPlayer : MonoBehaviour
             item.transform.localPosition = Vector3.zero;
             item.transform.localRotation = Quaternion.identity;
         }
+        else
+        {
+            Debug.LogWarning(
+                "VHSPlayer: VHS Insert Point não foi configurado."
+            );
+        }
 
-        // A fita desaparece
         item.gameObject.SetActive(false);
 
-        // Inicia o vídeo
         if (videoPlayer != null)
         {
             videoPlayer.Play();
-        }
-        else
-        {
-            Debug.LogWarning("VHSPlayer: VideoPlayer não foi configurado!");
+
+            Debug.Log(
+                "VHSPlayer: vídeo iniciado."
+            );
         }
 
-        // =====================================================
-        // LIGA A LUZ DA TV E NÃO DESLIGA MAIS
-        // =====================================================
         if (tvLight != null)
         {
             tvLight.SetActive(true);
+
+            Debug.Log(
+                "VHSPlayer: luz da TV ligada."
+            );
         }
 
-        // Libera a interação com a TV
         if (tvInteraction != null)
         {
             tvInteraction.SetTVAvailable(true);
+
+            Debug.Log(
+                "VHSPlayer: TV liberada para interação."
+            );
         }
 
-        Debug.Log("VHS inserido! Vídeo iniciado e luz ligada permanentemente.");
+        Debug.Log(
+            "VHS inserido! Vídeo iniciado, luz ligada e TV liberada."
+        );
 
         return true;
     }

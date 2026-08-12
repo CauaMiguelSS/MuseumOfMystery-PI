@@ -18,12 +18,8 @@ public class TVInteraction : MonoBehaviour
     [SerializeField] private GameObject handItem;
 
     [Header("Flashlight")]
-    [Tooltip("Objeto da lanterna. Pode ser a própria luz ou o GameObject inteiro.")]
+    [Tooltip("Objeto da lanterna. Pode ser a luz ou o GameObject inteiro.")]
     [SerializeField] private GameObject flashlight;
-
-    [Header("TV Light")]
-    [Tooltip("Luz que acende quando o player entra na TV.")]
-    [SerializeField] private GameObject tvLight;
 
     [Header("Settings")]
     [SerializeField] private float transitionSpeed = 2f;
@@ -34,16 +30,15 @@ public class TVInteraction : MonoBehaviour
     private bool watchingTV;
     private bool transitioning;
 
-    // Define se a TV já pode ser utilizada.
     private bool tvAvailable = false;
 
-    // Guarda se a lanterna estava ligada antes de entrar na TV
     private bool flashlightWasOn;
 
     private void Update()
     {
-        // Enquanto estiver assistindo à TV, ESC sai da tela
-        if (watchingTV && !transitioning && Input.GetKeyDown(KeyCode.Escape))
+        if (watchingTV &&
+            !transitioning &&
+            Input.GetKeyDown(KeyCode.Escape))
         {
             ExitTV();
         }
@@ -51,62 +46,67 @@ public class TVInteraction : MonoBehaviour
 
     public void EnterTV()
     {
-        // Impede entrar na TV antes de colocar o VHS
         if (!tvAvailable)
         {
-            Debug.Log("A TV ainda não está disponível. Insira uma fita VHS.");
+            Debug.Log(
+                "A TV ainda não está disponível. Insira uma fita VHS."
+            );
+
             return;
         }
 
         if (watchingTV || transitioning)
+        {
             return;
+        }
 
         watchingTV = true;
         transitioning = true;
 
-        // Salva a posição e rotação original da câmera
-        originalPos = playerCamera.position;
-        originalRot = playerCamera.rotation;
+        if (playerCamera != null)
+        {
+            originalPos = playerCamera.position;
+            originalRot = playerCamera.rotation;
+        }
 
-        // Desativa movimento e câmera do player
-        playerController.playerCanMove = false;
-        playerController.cameraCanMove = false;
+        if (playerController != null)
+        {
+            playerController.playerCanMove = false;
+            playerController.cameraCanMove = false;
+        }
+        else
+        {
+            Debug.LogWarning(
+                "TVInteraction: PlayerController não foi configurado."
+            );
+        }
 
-        // Zera a física do player
-        playerRb.linearVelocity = Vector3.zero;
-        playerRb.angularVelocity = Vector3.zero;
+        if (playerRb != null)
+        {
+            playerRb.linearVelocity = Vector3.zero;
+            playerRb.angularVelocity = Vector3.zero;
+        }
 
-        // Mantém o cursor travado
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        // Esconde o Interaction Text
         if (interactionText != null)
         {
             interactionText.SetActive(false);
         }
 
-        // Esconde o item que está na mão
         if (handItem != null)
         {
             handItem.SetActive(false);
         }
 
-        // Salva o estado da lanterna e desliga
         if (flashlight != null)
         {
             flashlightWasOn = flashlight.activeSelf;
             flashlight.SetActive(false);
         }
 
-        // Liga a luz da TV
-        if (tvLight != null)
-        {
-            tvLight.SetActive(true);
-        }
-
-        // Desliga o outline da TV
-        Outline outline = GetComponentInChildren<Outline>();
+        Outline outline = GetComponentInChildren<Outline>(true);
 
         if (outline != null)
         {
@@ -119,7 +119,9 @@ public class TVInteraction : MonoBehaviour
     public void ExitTV()
     {
         if (!watchingTV || transitioning)
+        {
             return;
+        }
 
         transitioning = true;
 
@@ -128,6 +130,30 @@ public class TVInteraction : MonoBehaviour
 
     private IEnumerator MoveCameraToTV()
     {
+        if (playerCamera == null)
+        {
+            Debug.LogError(
+                "TVInteraction: Player Camera não foi configurada!"
+            );
+
+            transitioning = false;
+            watchingTV = false;
+
+            yield break;
+        }
+
+        if (cameraPoint == null)
+        {
+            Debug.LogError(
+                "TVInteraction: Camera Point não foi configurado!"
+            );
+
+            transitioning = false;
+            watchingTV = false;
+
+            yield break;
+        }
+
         yield return MoveCamera(
             cameraPoint.position,
             cameraPoint.rotation
@@ -138,39 +164,33 @@ public class TVInteraction : MonoBehaviour
 
     private IEnumerator ReturnToPlayer()
     {
-        // Volta a câmera para a posição original
-        yield return MoveCamera(
-            originalPos,
-            originalRot
-        );
+        if (playerCamera != null)
+        {
+            yield return MoveCamera(
+                originalPos,
+                originalRot
+            );
+        }
 
-        // Devolve o controle ao player
-        playerController.playerCanMove = true;
-        playerController.cameraCanMove = true;
+        if (playerController != null)
+        {
+            playerController.playerCanMove = true;
+            playerController.cameraCanMove = true;
+        }
 
-        // Mantém o mouse travado
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        // Mostra novamente o item da mão
         if (handItem != null)
         {
             handItem.SetActive(true);
         }
 
-        // Restaura a lanterna ao estado anterior
         if (flashlight != null)
         {
             flashlight.SetActive(flashlightWasOn);
         }
 
-        // Desliga a luz da TV
-        if (tvLight != null)
-        {
-            tvLight.SetActive(false);
-        }
-
-        // Agora realmente saiu da TV
         watchingTV = false;
         transitioning = false;
     }
@@ -180,6 +200,11 @@ public class TVInteraction : MonoBehaviour
         Quaternion targetRot
     )
     {
+        if (playerCamera == null)
+        {
+            yield break;
+        }
+
         float t = 0f;
 
         Vector3 startPos = playerCamera.position;
@@ -204,20 +229,26 @@ public class TVInteraction : MonoBehaviour
             yield return null;
         }
 
-        // Garante que termine exatamente no ponto
         playerCamera.position = targetPos;
         playerCamera.rotation = targetRot;
     }
 
-    // Chamado pelo VHSPlayer quando a fita é inserida
     public void SetTVAvailable(bool available)
     {
         tvAvailable = available;
 
-        Debug.Log(
-            available
-                ? "TV agora está disponível."
-                : "TV agora está bloqueada."
-        );
+        if (available)
+        {
+            Debug.Log("TV agora está disponível.");
+        }
+        else
+        {
+            Debug.Log("TV agora está bloqueada.");
+        }
+    }
+
+    public bool IsTVAvailable()
+    {
+        return tvAvailable;
     }
 }
