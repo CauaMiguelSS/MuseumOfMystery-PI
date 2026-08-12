@@ -52,14 +52,18 @@ public class EnemyAI : MonoBehaviour
         if (footstepAudio)
         {
             footstepAudio.loop = true;
+            footstepAudio.playOnAwake = false;
+            footstepAudio.spatialBlend = 1f;
+            footstepAudio.minDistance = 1f;
+            footstepAudio.maxDistance = maxStepDistance;
             footstepAudio.volume = minVolume;
-            footstepAudio.Play();
         }
     }
 
     void Update()
     {
         HandleStartDelay();
+
         if (!aiActive || jumpscareTriggered) return;
 
         UpdateFootsteps();
@@ -67,10 +71,21 @@ public class EnemyAI : MonoBehaviour
 
         switch (state)
         {
-            case State.Patrol: Patrol(); break;
-            case State.Chase: Chase(); break;
-            case State.Investigate: Investigate(); break;
-            case State.Search: Search(); break;
+            case State.Patrol:
+                Patrol();
+                break;
+
+            case State.Chase:
+                Chase();
+                break;
+
+            case State.Investigate:
+                Investigate();
+                break;
+
+            case State.Search:
+                Search();
+                break;
         }
     }
 
@@ -90,10 +105,36 @@ public class EnemyAI : MonoBehaviour
 
     void UpdateFootsteps()
     {
-        if (!footstepAudio || !player) return;
+        if (!footstepAudio || !agent || !player) return;
 
         float dist = Vector3.Distance(transform.position, player.position);
-        float t = Mathf.Clamp01(1 - (dist / maxStepDistance));
+
+        // Se estiver longe demais, não toca os passos
+        if (dist > maxStepDistance)
+        {
+            if (footstepAudio.isPlaying)
+                footstepAudio.Stop();
+
+            return;
+        }
+
+        // Verifica se o inimigo está realmente andando
+        bool isWalking = agent.velocity.magnitude > 0.1f && !agent.isStopped;
+
+        if (isWalking)
+        {
+            if (!footstepAudio.isPlaying)
+                footstepAudio.Play();
+        }
+        else
+        {
+            if (footstepAudio.isPlaying)
+                footstepAudio.Stop();
+        }
+
+        // Diminui o volume conforme o inimigo fica mais longe
+        float t = Mathf.Clamp01(1f - (dist / maxStepDistance));
+
         footstepAudio.volume = Mathf.Lerp(minVolume, maxVolume, t);
     }
 
@@ -104,7 +145,9 @@ public class EnemyAI : MonoBehaviour
         float dist = Vector3.Distance(transform.position, player.position);
 
         if (dist > viewDistance) return;
-        if (Vector3.Angle(transform.forward, dir) > viewAngle / 2f) return;
+
+        if (Vector3.Angle(transform.forward, dir) > viewAngle / 2f)
+            return;
 
         if (Physics.Raycast(eye, dir, out RaycastHit hit, viewDistance, visionMask))
         {
@@ -146,8 +189,12 @@ public class EnemyAI : MonoBehaviour
             if (waitTimer >= waitTime)
             {
                 waitTimer = 0;
+
                 patrolIndex = Random.Range(0, patrolPoints.Length);
-                agent.SetDestination(patrolPoints[patrolIndex].position);
+
+                agent.SetDestination(
+                    patrolPoints[patrolIndex].position
+                );
             }
         }
     }
@@ -156,7 +203,10 @@ public class EnemyAI : MonoBehaviour
     {
         agent.speed = chaseSpeed;
 
-        float dist = Vector3.Distance(transform.position, player.position);
+        float dist = Vector3.Distance(
+            transform.position,
+            player.position
+        );
 
         if (dist <= stopDistance)
         {
@@ -169,8 +219,12 @@ public class EnemyAI : MonoBehaviour
                 agent.ResetPath();
                 agent.enabled = false;
 
+                if (footstepAudio && footstepAudio.isPlaying)
+                    footstepAudio.Stop();
+
                 jumpscareManager.TriggerJumpscare();
             }
+
             return;
         }
 
@@ -188,6 +242,7 @@ public class EnemyAI : MonoBehaviour
         agent.speed = patrolSpeed;
 
         Vector3 target = heardNoise ? heardPos : lastSeenPos;
+
         agent.SetDestination(target);
 
         if (agent.remainingDistance < 0.4f)
@@ -206,12 +261,21 @@ public class EnemyAI : MonoBehaviour
         if (searchTimer >= searchDuration)
         {
             state = State.Patrol;
-            agent.SetDestination(patrolPoints[patrolIndex].position);
+
+            if (patrolPoints.Length > 0)
+            {
+                agent.SetDestination(
+                    patrolPoints[patrolIndex].position
+                );
+            }
         }
     }
 
     public void FreezeEnemy()
     {
+        if (footstepAudio && footstepAudio.isPlaying)
+            footstepAudio.Stop();
+
         agent.isStopped = true;
         agent.ResetPath();
         agent.enabled = false;
