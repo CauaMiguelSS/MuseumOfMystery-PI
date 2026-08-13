@@ -7,6 +7,26 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Lions
+    second: {fileID: 2100000, guid: e34eb49049013a342a87b0992406f0ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RM
+    second: {fileID: 2100000, guid: fd4c803127bf77349ae99904cbb9ac15, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sc
+    second: {fileID: 2100000, guid: 7d69d26ae717ccc47aeb6c2111db652d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sidewalk
+    second: {fileID: 2100000, guid: 7c2c34eef54d26e4ba3232a5710ed4bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Win_1
     second: {fileID: 2100000, guid: 4153dca861568824b873e83edbf9c07e, type: 2}
   materials:
