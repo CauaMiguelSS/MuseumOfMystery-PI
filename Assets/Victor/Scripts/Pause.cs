@@ -7,7 +7,13 @@ public class Pause : MonoBehaviour
 
     bool paused;
 
-    void Start() => pausePanel.SetActive(false);
+    void Start()
+    {
+        pausePanel.SetActive(false);
+
+        // Garante que o áudio comece funcionando
+        AudioListener.pause = false;
+    }
 
     void Update()
     {
@@ -17,9 +23,16 @@ public class Pause : MonoBehaviour
 
             pausePanel.SetActive(paused);
 
+            // Pausa/despausa o jogo
             Time.timeScale = paused ? 0 : 1;
 
-            Cursor.lockState = paused ? CursorLockMode.None : CursorLockMode.Locked;
+            // Pausa/despausa TODOS os sons do jogo
+            AudioListener.pause = paused;
+
+            Cursor.lockState = paused
+                ? CursorLockMode.None
+                : CursorLockMode.Locked;
+
             Cursor.visible = paused;
 
             playerCamera.enabled = !paused;

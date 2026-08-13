@@ -7,6 +7,10 @@ public class PlayerPickup : MonoBehaviour
     [SerializeField] private Transform holdPoint;
     [SerializeField] private Camera playerCamera;
 
+    [Header("Pickup Sound")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip pickupSound;
+
     private ItemPickup heldItem;
 
     private void Update()
@@ -86,6 +90,12 @@ public class PlayerPickup : MonoBehaviour
 
             if (heldItem.outline != null)
                 heldItem.outline.enabled = false;
+
+            // Toca o som de coleta
+            if (audioSource != null && pickupSound != null)
+            {
+                audioSource.PlayOneShot(pickupSound);
+            }
 
             Debug.Log("Pegou: " + heldItem.itemID);
         }

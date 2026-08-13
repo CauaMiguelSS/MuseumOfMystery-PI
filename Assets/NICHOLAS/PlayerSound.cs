@@ -6,10 +6,10 @@ public class PlayerSound : MonoBehaviour
 
     public AudioClip movementSound;
     public AudioClip fSound;
+    public AudioClip shiftSound;
 
     void Update()
     {
-        // Som ao andar com WASD ou setas
         bool moving =
             Input.GetKey(KeyCode.W) ||
             Input.GetKey(KeyCode.A) ||
@@ -20,28 +20,49 @@ public class PlayerSound : MonoBehaviour
             Input.GetKey(KeyCode.LeftArrow) ||
             Input.GetKey(KeyCode.RightArrow);
 
-        if (moving)
+        bool shift =
+            Input.GetKey(KeyCode.LeftShift) ||
+            Input.GetKey(KeyCode.RightShift);
+
+        // SHIFT + movimento
+        if (shift && moving)
         {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.clip = movementSound;
-                audioSource.loop = true;
-                audioSource.Play();
-            }
+            PlayLoop(shiftSound);
         }
+        // Movimento normal
+        else if (moving)
+        {
+            PlayLoop(movementSound);
+        }
+        // Parado
         else
         {
-            if (audioSource.clip == movementSound && audioSource.isPlaying)
+            if (audioSource.isPlaying)
             {
                 audioSource.Stop();
             }
+
+            audioSource.clip = null;
         }
 
-        // Som diferente ao apertar F
+        // Som do F
         if (Input.GetKeyDown(KeyCode.F))
         {
-            audioSource.loop = false;
             audioSource.PlayOneShot(fSound);
+        }
+    }
+
+    void PlayLoop(AudioClip sound)
+    {
+        if (sound == null) return;
+
+        if (audioSource.clip != sound || !audioSource.isPlaying)
+        {
+            audioSource.Stop();
+
+            audioSource.clip = sound;
+            audioSource.loop = true;
+            audioSource.Play();
         }
     }
 }
