@@ -3,10 +3,13 @@ using UnityEngine;
 public class PlayerSound : MonoBehaviour
 {
     public AudioSource audioSource;
+
     public AudioClip movementSound;
+    public AudioClip fSound;
 
     void Update()
     {
+        // Som ao andar com WASD ou setas
         bool moving =
             Input.GetKey(KeyCode.W) ||
             Input.GetKey(KeyCode.A) ||
@@ -17,14 +20,28 @@ public class PlayerSound : MonoBehaviour
             Input.GetKey(KeyCode.LeftArrow) ||
             Input.GetKey(KeyCode.RightArrow);
 
-        if (moving && !audioSource.isPlaying)
+        if (moving)
         {
-            audioSource.Play();
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = movementSound;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            if (audioSource.clip == movementSound && audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
         }
 
-        if (!moving && audioSource.isPlaying)
+        // Som diferente ao apertar F
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            audioSource.Stop();
+            audioSource.loop = false;
+            audioSource.PlayOneShot(fSound);
         }
     }
 }

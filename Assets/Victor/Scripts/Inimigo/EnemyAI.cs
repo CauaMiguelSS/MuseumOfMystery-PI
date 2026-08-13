@@ -31,8 +31,8 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Footsteps")]
     public float maxStepDistance = 20f;
-    public float minVolume = 0.05f;
-    public float maxVolume = 0.8f;
+    public float minVolume = 0f;
+    public float maxVolume = 1f;
 
     [Header("Timers")]
     public float waitTime = 2f;
@@ -56,7 +56,7 @@ public class EnemyAI : MonoBehaviour
             footstepAudio.spatialBlend = 1f;
             footstepAudio.minDistance = 1f;
             footstepAudio.maxDistance = maxStepDistance;
-            footstepAudio.volume = minVolume;
+            footstepAudio.volume = 0f;
         }
     }
 
@@ -64,7 +64,8 @@ public class EnemyAI : MonoBehaviour
     {
         HandleStartDelay();
 
-        if (!aiActive || jumpscareTriggered) return;
+        if (!aiActive || jumpscareTriggered)
+            return;
 
         UpdateFootsteps();
         DetectPlayer();
@@ -91,7 +92,8 @@ public class EnemyAI : MonoBehaviour
 
     void HandleStartDelay()
     {
-        if (aiActive) return;
+        if (aiActive)
+            return;
 
         startTimer += Time.deltaTime;
         agent.isStopped = true;
@@ -103,14 +105,22 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    // =========================
+    // PASSOS DO INIMIGO
+    // =========================
+
     void UpdateFootsteps()
     {
-        if (!footstepAudio || !agent || !player) return;
+        if (!footstepAudio || !agent || !player)
+            return;
 
-        float dist = Vector3.Distance(transform.position, player.position);
+        float distance = Vector3.Distance(
+            transform.position,
+            player.position
+        );
 
-        // Se estiver longe demais, não toca os passos
-        if (dist > maxStepDistance)
+        // Se estiver além da distância máxima, não ouvimos nada
+        if (distance > maxStepDistance)
         {
             if (footstepAudio.isPlaying)
                 footstepAudio.Stop();
@@ -118,41 +128,74 @@ public class EnemyAI : MonoBehaviour
             return;
         }
 
-        // Verifica se o inimigo está realmente andando
-        bool isWalking = agent.velocity.magnitude > 0.1f && !agent.isStopped;
+        // Verifica se o inimigo está andando
+        bool isWalking =
+            agent.velocity.magnitude > 0.1f &&
+            !agent.isStopped;
 
         if (isWalking)
         {
             if (!footstepAudio.isPlaying)
+            {
                 footstepAudio.Play();
+            }
         }
         else
         {
             if (footstepAudio.isPlaying)
+            {
                 footstepAudio.Stop();
+            }
         }
 
-        // Diminui o volume conforme o inimigo fica mais longe
-        float t = Mathf.Clamp01(1f - (dist / maxStepDistance));
+        // Quanto mais perto, maior o volume
+        float distancePercent =
+            1f - Mathf.Clamp01(distance / maxStepDistance);
 
-        footstepAudio.volume = Mathf.Lerp(minVolume, maxVolume, t);
+        footstepAudio.volume = Mathf.Lerp(
+            minVolume,
+            maxVolume,
+            distancePercent
+        );
     }
+
+    // =========================
+    // VISÃO
+    // =========================
 
     void DetectPlayer()
     {
         Vector3 eye = transform.position + Vector3.up * 1.6f;
-        Vector3 dir = (player.position - eye).normalized;
-        float dist = Vector3.Distance(transform.position, player.position);
 
-        if (dist > viewDistance) return;
+        Vector3 dir =
+            (player.position - eye).normalized;
 
-        if (Vector3.Angle(transform.forward, dir) > viewAngle / 2f)
+        float dist =
+            Vector3.Distance(
+                transform.position,
+                player.position
+            );
+
+        if (dist > viewDistance)
             return;
 
-        if (Physics.Raycast(eye, dir, out RaycastHit hit, viewDistance, visionMask))
+        if (Vector3.Angle(transform.forward, dir) >
+            viewAngle / 2f)
+            return;
+
+        if (Physics.Raycast(
+            eye,
+            dir,
+            out RaycastHit hit,
+            viewDistance,
+            visionMask))
         {
             if (hit.collider.CompareTag("Player") &&
-                !Physics.Raycast(eye, dir, dist, obstacleMask))
+                !Physics.Raycast(
+                    eye,
+                    dir,
+                    dist,
+                    obstacleMask))
             {
                 lastSeenPos = player.position;
                 state = State.Chase;
@@ -160,9 +203,15 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    // =========================
+    // OUVIR BARULHO
+    // =========================
+
     public void HearNoise(Vector3 pos)
     {
-        if (Vector3.Distance(transform.position, pos) <= hearingRange)
+        if (Vector3.Distance(
+            transform.position,
+            pos) <= hearingRange)
         {
             heardNoise = true;
             heardPos = pos;
@@ -170,11 +219,16 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    // =========================
+    // PATRULHA
+    // =========================
+
     void Patrol()
     {
         agent.speed = patrolSpeed;
 
-        if (patrolPoints.Length == 0) return;
+        if (patrolPoints.Length == 0)
+            return;
 
         if (heardNoise)
         {
@@ -190,7 +244,11 @@ public class EnemyAI : MonoBehaviour
             {
                 waitTimer = 0;
 
-                patrolIndex = Random.Range(0, patrolPoints.Length);
+                patrolIndex =
+                    Random.Range(
+                        0,
+                        patrolPoints.Length
+                    );
 
                 agent.SetDestination(
                     patrolPoints[patrolIndex].position
@@ -199,14 +257,19 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    // =========================
+    // PERSEGUIÇÃO
+    // =========================
+
     void Chase()
     {
         agent.speed = chaseSpeed;
 
-        float dist = Vector3.Distance(
-            transform.position,
-            player.position
-        );
+        float dist =
+            Vector3.Distance(
+                transform.position,
+                player.position
+            );
 
         if (dist <= stopDistance)
         {
@@ -219,8 +282,11 @@ public class EnemyAI : MonoBehaviour
                 agent.ResetPath();
                 agent.enabled = false;
 
-                if (footstepAudio && footstepAudio.isPlaying)
+                if (footstepAudio &&
+                    footstepAudio.isPlaying)
+                {
                     footstepAudio.Stop();
+                }
 
                 jumpscareManager.TriggerJumpscare();
             }
@@ -237,11 +303,16 @@ public class EnemyAI : MonoBehaviour
             state = State.Investigate;
     }
 
+    // =========================
+    // INVESTIGAÇÃO
+    // =========================
+
     void Investigate()
     {
         agent.speed = patrolSpeed;
 
-        Vector3 target = heardNoise ? heardPos : lastSeenPos;
+        Vector3 target =
+            heardNoise ? heardPos : lastSeenPos;
 
         agent.SetDestination(target);
 
@@ -252,6 +323,10 @@ public class EnemyAI : MonoBehaviour
             state = State.Search;
         }
     }
+
+    // =========================
+    // PROCURA
+    // =========================
 
     void Search()
     {
@@ -271,10 +346,17 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    // =========================
+    // CONGELAR INIMIGO
+    // =========================
+
     public void FreezeEnemy()
     {
-        if (footstepAudio && footstepAudio.isPlaying)
+        if (footstepAudio &&
+            footstepAudio.isPlaying)
+        {
             footstepAudio.Stop();
+        }
 
         agent.isStopped = true;
         agent.ResetPath();
