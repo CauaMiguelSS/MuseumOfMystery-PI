@@ -14,6 +14,7 @@ public class PaintingInteraction : MonoBehaviour
     [Header("Painel")]
     [SerializeField] private GameObject panel;
     [SerializeField] private TMP_InputField inputField;
+    [SerializeField] private GameObject interactionText;
 
     [Header("Vidro")]
     [SerializeField] private Transform glass;
@@ -24,9 +25,17 @@ public class PaintingInteraction : MonoBehaviour
     private bool panelOpen;
     private bool answered;
 
+    // Informa se o ESC foi usado para fechar o painel neste frame
+    public bool EscUsedToClosePanel { get; private set; }
+
+    public bool IsPanelOpen => panelOpen;
+
     private void Start()
     {
         panel.SetActive(false);
+
+        if (interactionText != null)
+            interactionText.SetActive(false);
 
         if (glass != null)
             glassStartPosition = glass.position;
@@ -34,16 +43,30 @@ public class PaintingInteraction : MonoBehaviour
 
     private void Update()
     {
+        // Reseta a informação a cada frame
+        EscUsedToClosePanel = false;
+
+        // ========================================
+        // PAINEL ABERTO
+        // ========================================
+
         if (panelOpen)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                EscUsedToClosePanel = true;
                 ClosePanel();
+            }
 
             return;
         }
 
         if (answered)
             return;
+
+        // ========================================
+        // RAYCAST
+        // ========================================
 
         Ray ray = new Ray(
             playerCamera.transform.position,
@@ -55,7 +78,9 @@ public class PaintingInteraction : MonoBehaviour
             if (hit.transform == transform)
             {
                 if (Input.GetKeyDown(KeyCode.E))
+                {
                     OpenPanel();
+                }
             }
         }
     }
@@ -64,6 +89,9 @@ public class PaintingInteraction : MonoBehaviour
     {
         panel.SetActive(true);
         panelOpen = true;
+
+        if (interactionText != null)
+            interactionText.SetActive(false);
 
         playerController.playerCanMove = false;
         playerController.cameraCanMove = false;
@@ -105,6 +133,9 @@ public class PaintingInteraction : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if (interactionText != null)
+            interactionText.SetActive(false);
     }
 
     private IEnumerator OpenGlass()

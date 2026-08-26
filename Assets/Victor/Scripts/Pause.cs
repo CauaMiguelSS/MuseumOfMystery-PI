@@ -5,28 +5,42 @@ public class Pause : MonoBehaviour
     public GameObject pausePanel;
     public MonoBehaviour playerCamera;
 
-    bool paused;
+    [Header("Painel do Quadro")]
+    public PaintingInteraction paintingInteraction;
+
+    private bool paused;
 
     void Start()
     {
         pausePanel.SetActive(false);
 
-        // Garante que o áudio comece funcionando
+        Time.timeScale = 1f;
         AudioListener.pause = false;
     }
 
     void Update()
     {
+        // ========================================
+        // ESC USADO PARA FECHAR O PAINEL
+        // ========================================
+
+        if (paintingInteraction != null &&
+            paintingInteraction.EscUsedToClosePanel)
+        {
+            return;
+        }
+
+        // ========================================
+        // PAUSE NORMAL
+        // ========================================
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             paused = !paused;
 
             pausePanel.SetActive(paused);
 
-            // Pausa/despausa o jogo
-            Time.timeScale = paused ? 0 : 1;
-
-            // Pausa/despausa TODOS os sons do jogo
+            Time.timeScale = paused ? 0f : 1f;
             AudioListener.pause = paused;
 
             Cursor.lockState = paused
@@ -35,7 +49,8 @@ public class Pause : MonoBehaviour
 
             Cursor.visible = paused;
 
-            playerCamera.enabled = !paused;
+            if (playerCamera != null)
+                playerCamera.enabled = !paused;
         }
     }
 }

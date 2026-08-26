@@ -167,6 +167,12 @@ public class FirstPersonController : MonoBehaviour
         change.y = 0;
 
         rb.AddForce(change, ForceMode.VelocityChange);
+
+        // Mantém o jogador mais "grudado" ao chão
+        if (isGrounded)
+        {
+            rb.AddForce(Vector3.down * 5f, ForceMode.Force);
+        }
     }
 
     private void Jump()

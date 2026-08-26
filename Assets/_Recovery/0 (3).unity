@@ -28273,7 +28273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &706836962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115026,7 +115026,6 @@ MonoBehaviour:
   playerController: {fileID: 7458359270854433086}
   panel: {fileID: 748530225}
   inputField: {fileID: 456762075}
-  interactionText: {fileID: 2010542665}
   glass: {fileID: 3931421566967015343}
   openHeight: 1
   openSpeed: 2
@@ -118685,10 +118684,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a89cbd89701cc824abd2a988586a18c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OutlineDetector
-  distance: 6
+  distance: 8
   interactionText: {fileID: 2010542665}
   playerCamera: {fileID: 7458359272182920096}
-  paintingInteraction: {fileID: 6703380674838175363}
 --- !u!114 &7458359272182920105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118720,7 +118718,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Pause
   pausePanel: {fileID: 1817500718}
   playerCamera: {fileID: 7458359270854433086}
-  paintingInteraction: {fileID: 6703380674838175363}
 --- !u!222 &7458359272236732321
 CanvasRenderer:
   m_ObjectHideFlags: 0
