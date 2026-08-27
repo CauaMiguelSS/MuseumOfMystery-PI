@@ -11,21 +11,15 @@ public class VictoryInteraction : MonoBehaviour
     [SerializeField] private CanvasGroup victoryPanel;
     [SerializeField] private float fadeDuration = 1f;
 
+    [Header("Controle da Câmera")]
+    [SerializeField] private MonoBehaviour cameraScript;
+
     private bool venceu = false;
 
     private void Update()
     {
-        // Depois da vitória, mantém o jogo congelado
-        // e o cursor liberado.
         if (venceu)
-        {
-            Time.timeScale = 0f;
-
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-
             return;
-        }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -53,10 +47,14 @@ public class VictoryInteraction : MonoBehaviour
     {
         venceu = true;
 
-        // Congela imediatamente
+        // Congela o jogo
         Time.timeScale = 0f;
 
-        // Libera o cursor
+        // Para a câmera
+        if (cameraScript != null)
+            cameraScript.enabled = false;
+
+        // Libera o mouse
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -75,18 +73,9 @@ public class VictoryInteraction : MonoBehaviour
 
             victoryPanel.alpha = Mathf.Clamp01(tempo / fadeDuration);
 
-            // Garante que o cursor continue liberado
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-
             yield return null;
         }
 
         victoryPanel.alpha = 1f;
-
-        // Garante novamente
-        Time.timeScale = 0f;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
     }
 }

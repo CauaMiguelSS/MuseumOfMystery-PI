@@ -126460,6 +126460,7 @@ MonoBehaviour:
   distancia: 5
   victoryPanel: {fileID: 1805557384}
   fadeDuration: 2
+  cameraScript: {fileID: 7458359270854433086}
 --- !u!23 &8661311460102111763
 MeshRenderer:
   m_ObjectHideFlags: 0
