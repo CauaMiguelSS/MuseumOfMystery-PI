@@ -974,6 +974,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 966665580514431520, guid: 815fb4c3296aa4846aa0b92c95f63687, type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 966665580514431520, guid: 815fb4c3296aa4846aa0b92c95f63687, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 5
       objectReference: {fileID: 0}
@@ -987,7 +991,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8233540065013258315, guid: 815fb4c3296aa4846aa0b92c95f63687, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.61
+      value: 6.95
       objectReference: {fileID: 0}
     - target: {fileID: 8233540065013258315, guid: 815fb4c3296aa4846aa0b92c95f63687, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9354,6 +9358,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Buttons
   nomeDaCena: "Cau\xE3MiguelSS"
+  fadeImage: {fileID: 0}
+  fadeDuration: 1
+  backgroundMusic: {fileID: 0}
+  audioFadeDuration: 1
 --- !u!114 &1991753162
 MonoBehaviour:
   m_ObjectHideFlags: 0
