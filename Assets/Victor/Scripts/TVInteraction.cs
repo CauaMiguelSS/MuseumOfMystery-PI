@@ -9,16 +9,11 @@ public class TVInteraction : MonoBehaviour
     [SerializeField] private FirstPersonController playerController;
     [SerializeField] private Rigidbody playerRb;
 
-    [Header("TV UI")]
-    [Tooltip("Texto que aparece quando o player pode interagir com a TV.")]
+    [Header("UI")]
     [SerializeField] private GameObject interactionText;
 
-    [Header("Player Hand")]
-    [Tooltip("Objeto do item que fica na mão do player.")]
+    [Header("Player")]
     [SerializeField] private GameObject handItem;
-
-    [Header("Flashlight")]
-    [Tooltip("Objeto da lanterna. Pode ser a luz ou o GameObject inteiro.")]
     [SerializeField] private GameObject flashlight;
 
     [Header("Settings")]
@@ -29,39 +24,32 @@ public class TVInteraction : MonoBehaviour
 
     private bool watchingTV;
     private bool transitioning;
-
-    private bool tvAvailable = false;
-
+    private bool tvAvailable;
     private bool flashlightWasOn;
+
+    public bool IsTVOpen => watchingTV;
+    public bool EscUsedToExitTV { get; private set; }
 
     private void Update()
     {
-        if (watchingTV &&
-            !transitioning &&
-            Input.GetKeyDown(KeyCode.Escape))
+        EscUsedToExitTV = false;
+
+        if (!watchingTV) return;
+
+        interactionText?.SetActive(false);
+
+        if (!transitioning && Input.GetKeyDown(KeyCode.Escape))
         {
+            EscUsedToExitTV = true;
             ExitTV();
         }
     }
 
     public void EnterTV()
     {
-        if (!tvAvailable)
-        {
-            Debug.Log(
-                "A TV ainda não está disponível. Insira uma fita VHS."
-            );
+        if (!tvAvailable || watchingTV || transitioning) return;
 
-            return;
-        }
-
-        if (watchingTV || transitioning)
-        {
-            return;
-        }
-
-        watchingTV = true;
-        transitioning = true;
+        watchingTV = transitioning = true;
 
         if (playerCamera != null)
         {
@@ -69,16 +57,12 @@ public class TVInteraction : MonoBehaviour
             originalRot = playerCamera.rotation;
         }
 
+        interactionText?.SetActive(false);
+
         if (playerController != null)
         {
             playerController.playerCanMove = false;
             playerController.cameraCanMove = false;
-        }
-        else
-        {
-            Debug.LogWarning(
-                "TVInteraction: PlayerController não foi configurado."
-            );
         }
 
         if (playerRb != null)
@@ -90,15 +74,7 @@ public class TVInteraction : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        if (interactionText != null)
-        {
-            interactionText.SetActive(false);
-        }
-
-        if (handItem != null)
-        {
-            handItem.SetActive(false);
-        }
+        handItem?.SetActive(false);
 
         if (flashlight != null)
         {
@@ -107,148 +83,68 @@ public class TVInteraction : MonoBehaviour
         }
 
         Outline outline = GetComponentInChildren<Outline>(true);
-
         if (outline != null)
-        {
             outline.enabled = false;
-        }
 
-        StartCoroutine(MoveCameraToTV());
+        StartCoroutine(MoveCamera(cameraPoint.position, cameraPoint.rotation, true));
     }
 
     public void ExitTV()
     {
-        if (!watchingTV || transitioning)
-        {
-            return;
-        }
+        if (!watchingTV || transitioning) return;
 
         transitioning = true;
+        interactionText?.SetActive(false);
 
-        StartCoroutine(ReturnToPlayer());
+        StartCoroutine(MoveCamera(originalPos, originalRot, false));
     }
 
-    private IEnumerator MoveCameraToTV()
+    private IEnumerator MoveCamera(Vector3 targetPos, Quaternion targetRot, bool entering)
     {
-        if (playerCamera == null)
+        if (playerCamera == null || (entering && cameraPoint == null))
         {
-            Debug.LogError(
-                "TVInteraction: Player Camera não foi configurada!"
-            );
-
-            transitioning = false;
-            watchingTV = false;
-
+            watchingTV = transitioning = false;
             yield break;
         }
-
-        if (cameraPoint == null)
-        {
-            Debug.LogError(
-                "TVInteraction: Camera Point não foi configurado!"
-            );
-
-            transitioning = false;
-            watchingTV = false;
-
-            yield break;
-        }
-
-        yield return MoveCamera(
-            cameraPoint.position,
-            cameraPoint.rotation
-        );
-
-        transitioning = false;
-    }
-
-    private IEnumerator ReturnToPlayer()
-    {
-        if (playerCamera != null)
-        {
-            yield return MoveCamera(
-                originalPos,
-                originalRot
-            );
-        }
-
-        if (playerController != null)
-        {
-            playerController.playerCanMove = true;
-            playerController.cameraCanMove = true;
-        }
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        if (handItem != null)
-        {
-            handItem.SetActive(true);
-        }
-
-        if (flashlight != null)
-        {
-            flashlight.SetActive(flashlightWasOn);
-        }
-
-        watchingTV = false;
-        transitioning = false;
-    }
-
-    private IEnumerator MoveCamera(
-        Vector3 targetPos,
-        Quaternion targetRot
-    )
-    {
-        if (playerCamera == null)
-        {
-            yield break;
-        }
-
-        float t = 0f;
 
         Vector3 startPos = playerCamera.position;
         Quaternion startRot = playerCamera.rotation;
+        float t = 0f;
 
         while (t < 1f)
         {
             t += Time.deltaTime * transitionSpeed;
 
-            playerCamera.position = Vector3.Lerp(
-                startPos,
-                targetPos,
-                t
-            );
-
-            playerCamera.rotation = Quaternion.Slerp(
-                startRot,
-                targetRot,
-                t
-            );
+            playerCamera.position = Vector3.Lerp(startPos, targetPos, t);
+            playerCamera.rotation = Quaternion.Slerp(startRot, targetRot, t);
 
             yield return null;
         }
 
         playerCamera.position = targetPos;
         playerCamera.rotation = targetRot;
+
+        if (!entering)
+        {
+            playerController.playerCanMove = true;
+            playerController.cameraCanMove = true;
+
+            handItem?.SetActive(true);
+
+            if (flashlight != null)
+                flashlight.SetActive(flashlightWasOn);
+
+            watchingTV = false;
+        }
+
+        transitioning = false;
     }
 
     public void SetTVAvailable(bool available)
     {
         tvAvailable = available;
-
-        if (available)
-        {
-            Debug.Log("TV agora está disponível.");
-        }
-        else
-        {
-            Debug.Log("TV agora está bloqueada.");
-        }
+        Debug.Log(available ? "TV agora está disponível." : "TV agora está bloqueada.");
     }
 
-    public bool IsTVAvailable()
-    {
-        return tvAvailable;
-    }
+    public bool IsTVAvailable() => tvAvailable;
 }

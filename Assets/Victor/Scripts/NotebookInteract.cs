@@ -2,17 +2,20 @@ using UnityEngine;
 
 public class NotebookInteract : MonoBehaviour
 {
+    [Header("References")]
     public Camera playerCamera;
     public GameObject painelNotebook;
     public GameObject interactionText;
-
     public FirstPersonController playerController;
 
+    [Header("Settings")]
     public float distanciaInteracao = 3f;
 
-    private bool aberto = false;
+    public bool IsNotebookOpen => aberto;
 
-    void Start()
+    private bool aberto;
+
+    private void Start()
     {
         painelNotebook.SetActive(false);
 
@@ -20,9 +23,10 @@ public class NotebookInteract : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void Update()
+    private void Update()
     {
-        if (aberto) return;
+        if (aberto)
+            return;
 
         if (Physics.Raycast(
             playerCamera.transform.position,
@@ -30,7 +34,8 @@ public class NotebookInteract : MonoBehaviour
             out RaycastHit hit,
             distanciaInteracao))
         {
-            if (hit.transform == transform && Input.GetKeyDown(KeyCode.E))
+            if (hit.transform == transform &&
+                Input.GetKeyDown(KeyCode.E))
             {
                 AbrirNotebook();
             }
@@ -40,16 +45,12 @@ public class NotebookInteract : MonoBehaviour
     public void AbrirNotebook()
     {
         aberto = true;
-
         painelNotebook.SetActive(true);
 
-        if (interactionText)
-            interactionText.SetActive(false);
+        interactionText?.SetActive(false);
 
-        // Desativa o controle do jogador
         playerController.enabled = false;
 
-        // Libera o mouse para clicar no notebook
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -57,16 +58,12 @@ public class NotebookInteract : MonoBehaviour
     public void FecharNotebook()
     {
         aberto = false;
-
         painelNotebook.SetActive(false);
 
-        // Reativa o controle do jogador
         playerController.enabled = true;
 
-        // Garante que o jogo não fique pausado
         Time.timeScale = 1f;
 
-        // Volta a prender o mouse
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

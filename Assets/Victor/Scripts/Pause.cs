@@ -2,15 +2,22 @@ using UnityEngine;
 
 public class Pause : MonoBehaviour
 {
+    [Header("Pause")]
     public GameObject pausePanel;
     public MonoBehaviour playerCamera;
 
     [Header("Painel do Quadro")]
     public PaintingInteraction paintingInteraction;
 
+    [Header("Projetor / TV")]
+    public TVInteraction tvInteraction;
+
+    [Header("Notebook")]
+    public NotebookInteract notebookInteract;
+
     private bool paused;
 
-    void Start()
+    private void Start()
     {
         pausePanel.SetActive(false);
 
@@ -18,39 +25,37 @@ public class Pause : MonoBehaviour
         AudioListener.pause = false;
     }
 
-    void Update()
+    private void Update()
     {
-        // ========================================
-        // ESC USADO PARA FECHAR O PAINEL
-        // ========================================
-
         if (paintingInteraction != null &&
             paintingInteraction.EscUsedToClosePanel)
-        {
             return;
-        }
 
-        // ========================================
-        // PAUSE NORMAL
-        // ========================================
+        if (tvInteraction != null &&
+            tvInteraction.EscUsedToExitTV)
+            return;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            paused = !paused;
+        if (notebookInteract != null &&
+            notebookInteract.IsNotebookOpen)
+            return;
 
-            pausePanel.SetActive(paused);
+        if (!Input.GetKeyDown(KeyCode.Escape))
+            return;
 
-            Time.timeScale = paused ? 0f : 1f;
-            AudioListener.pause = paused;
+        paused = !paused;
 
-            Cursor.lockState = paused
-                ? CursorLockMode.None
-                : CursorLockMode.Locked;
+        pausePanel.SetActive(paused);
 
-            Cursor.visible = paused;
+        Time.timeScale = paused ? 0f : 1f;
+        AudioListener.pause = paused;
 
-            if (playerCamera != null)
-                playerCamera.enabled = !paused;
-        }
+        Cursor.lockState = paused
+            ? CursorLockMode.None
+            : CursorLockMode.Locked;
+
+        Cursor.visible = paused;
+
+        if (playerCamera != null)
+            playerCamera.enabled = !paused;
     }
 }

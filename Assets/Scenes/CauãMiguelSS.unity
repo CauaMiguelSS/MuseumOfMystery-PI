@@ -21144,7 +21144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f58710f19776ab4ebc116d8493fb90f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TV
-  tvInteraction: {fileID: 0}
+  tvInteraction: {fileID: 919132147570664592}
 --- !u!64 &511989254
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -93339,7 +93339,7 @@ GameObject:
   - component: {fileID: 7257359543698497606}
   - component: {fileID: 7257359543698497605}
   m_Layer: 0
-  m_Name: papier
+  m_Name: Nota
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120036,6 +120036,8 @@ MonoBehaviour:
   interactionText: {fileID: 2010542665}
   playerCamera: {fileID: 7458359272182920096}
   paintingInteraction: {fileID: 6703380674838175363}
+  tvInteraction: {fileID: 919132147570664592}
+  notebookInteract: {fileID: 7257359543698497605}
 --- !u!114 &7458359272182920105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120068,6 +120070,8 @@ MonoBehaviour:
   pausePanel: {fileID: 1817500718}
   playerCamera: {fileID: 7458359270854433086}
   paintingInteraction: {fileID: 6703380674838175363}
+  tvInteraction: {fileID: 919132147570664592}
+  notebookInteract: {fileID: 7257359543698497605}
 --- !u!222 &7458359272236732321
 CanvasRenderer:
   m_ObjectHideFlags: 0

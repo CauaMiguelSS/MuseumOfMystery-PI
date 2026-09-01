@@ -2,74 +2,50 @@ using UnityEngine;
 
 public class OutlineDetector : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private float distance = 3f;
     [SerializeField] private GameObject interactionText;
     [SerializeField] private Camera playerCamera;
 
-    [Header("Painel do Quadro")]
+    [Header("Interações")]
     [SerializeField] private PaintingInteraction paintingInteraction;
+    [SerializeField] private TVInteraction tvInteraction;
+    [SerializeField] private NotebookInteract notebookInteract;
 
     private Outline currentOutline;
     private RaycastHit currentHit;
-    private bool hasHit;
 
-    void Start()
+    private void Start()
     {
-        if (interactionText != null)
-            interactionText.SetActive(false);
+        interactionText?.SetActive(false);
     }
 
-    void Update()
+    private void Update()
     {
-        // ========================================
-        // PAINEL DO QUADRO ABERTO
-        // ========================================
-
-        if (paintingInteraction != null && paintingInteraction.IsPanelOpen)
+        if (IsBlocked())
         {
             ClearInteraction();
             return;
         }
 
-        // ========================================
-        // RAYCAST
-        // ========================================
-
-        Ray ray = new Ray(
+        if (!Physics.Raycast(
             playerCamera.transform.position,
-            playerCamera.transform.forward
-        );
-
-        hasHit = Physics.Raycast(ray, out currentHit, distance);
-
-        if (!hasHit)
+            playerCamera.transform.forward,
+            out currentHit,
+            distance))
         {
             ClearInteraction();
             return;
         }
-
-        // ========================================
-        // PROCURA OUTLINE
-        // ========================================
 
         Outline outline =
             currentHit.collider.GetComponentInParent<Outline>();
-
-        // ========================================
-        // ITEM SENDO SEGURADO
-        // ========================================
 
         ItemPickup item =
             currentHit.collider.GetComponentInParent<ItemPickup>();
 
         if (item != null && item.isHeld)
-        {
             outline = null;
-        }
-
-        // ========================================
-        // ATUALIZA OUTLINE
-        // ========================================
 
         if (outline != currentOutline)
         {
@@ -82,20 +58,17 @@ public class OutlineDetector : MonoBehaviour
                 currentOutline.enabled = true;
         }
 
-        // ========================================
-        // TEXTO
-        // ========================================
-
-        if (interactionText != null)
-        {
-            interactionText.SetActive(currentOutline != null);
-        }
-
-        // ========================================
-        // INTERAÇÃO
-        // ========================================
+        interactionText?.SetActive(currentOutline != null);
 
         HandleInteraction();
+    }
+
+    private bool IsBlocked()
+    {
+        return
+            (tvInteraction != null && tvInteraction.IsTVOpen) ||
+            (paintingInteraction != null && paintingInteraction.IsPanelOpen) ||
+            (notebookInteract != null && notebookInteract.IsNotebookOpen);
     }
 
     private void ClearInteraction()
@@ -106,8 +79,7 @@ public class OutlineDetector : MonoBehaviour
             currentOutline = null;
         }
 
-        if (interactionText != null)
-            interactionText.SetActive(false);
+        interactionText?.SetActive(false);
     }
 
     private void HandleInteraction()
@@ -115,25 +87,15 @@ public class OutlineDetector : MonoBehaviour
         if (!Input.GetKeyDown(KeyCode.E))
             return;
 
-        if (!hasHit)
-            return;
-
-        // ========================================
-        // TV
-        // ========================================
-
         TVInteraction tv =
             currentHit.collider.GetComponentInParent<TVInteraction>();
 
         if (tv != null)
         {
             tv.EnterTV();
+            ClearInteraction();
             return;
         }
-
-        // ========================================
-        // CADEADO
-        // ========================================
 
         DoorLock lockObject =
             currentHit.collider.GetComponentInParent<DoorLock>();
@@ -144,24 +106,14 @@ public class OutlineDetector : MonoBehaviour
                 GetComponent<PlayerPickup>();
 
             if (player != null)
-            {
                 lockObject.TryUnlock(player);
-            }
 
             return;
         }
-
-        // ========================================
-        // NOTA
-        // ========================================
 
         InteractableNote note =
             currentHit.collider.GetComponentInParent<InteractableNote>();
 
-        if (note != null)
-        {
-            note.Interact();
-            return;
-        }
+        note?.Interact();
     }
 }
