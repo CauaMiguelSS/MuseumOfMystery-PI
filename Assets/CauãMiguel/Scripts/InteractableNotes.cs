@@ -3,13 +3,14 @@ using TMPro;
 
 public class InteractableNote : MonoBehaviour
 {
+    [Header("References")]
     public GameObject notePanel;
     public TextMeshProUGUI noteTextUI;
+    public FirstPersonController playerController;
 
+    [Header("Nota")]
     [TextArea]
     public string noteText;
-
-    public FirstPersonController playerController;
 
     public void Interact()
     {
@@ -25,19 +26,17 @@ public class InteractableNote : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    void Update()
+    public void FecharNota()
     {
-        if (notePanel.activeSelf && Input.GetKeyDown(KeyCode.Escape))
-        {
-            notePanel.SetActive(false);
+        notePanel.SetActive(false);
 
-            playerController.cameraCanMove = true;
-            playerController.playerCanMove = true;
+        playerController.cameraCanMove = true;
+        playerController.playerCanMove = true;
 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+        Time.timeScale = 1f;
 
-            Time.timeScale = 1f;
-        }
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
+
