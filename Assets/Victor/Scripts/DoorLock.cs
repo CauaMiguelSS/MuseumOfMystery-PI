@@ -1,15 +1,26 @@
 using UnityEngine;
-
+        
 public class DoorLock : MonoBehaviour
-{
+{       
+    [Header("Save")]
+    [SerializeField] private string lockID;
+        
     [SerializeField] private string requiredItemID;
     [SerializeField] private Animator doorAnimator;
-
+        
     [Header("Caixa de Vidro")]
     [SerializeField] private GlassBox glassBox;
-
+        
+    void Start()
+    {   
+        if (SaveSystem.Instance != null && SaveSystem.Instance.CadeadoJaAberto(lockID))
+        {
+            AplicarEstadoDestrancado();
+        }
+    }   
+        
     public void TryUnlock(PlayerPickup player)
-    {
+    {   
         ItemPickup heldItem = player.GetHeldItem();
 
         if (heldItem == null)
@@ -20,18 +31,18 @@ public class DoorLock : MonoBehaviour
 
         Debug.Log("Cadeado correto destrancado: " + gameObject.name);
 
-        // Para portas normais:
-        // se houver Animator, toca a animação.
+        if (SaveSystem.Instance != null)
+        {
+            SaveSystem.Instance.AbrirCadeado(lockID);
+        }
+
         if (doorAnimator != null)
         {
             doorAnimator.SetTrigger("Open");
         }
 
-        // Remove a chave
         Destroy(heldItem.gameObject);
 
-        // Para a caixa da Mona Lisa:
-        // avisa que um cadeado foi destrancado.
         if (glassBox != null)
         {
             Debug.Log("Avisando GlassBox que o cadeado foi destrancado.");
@@ -44,5 +55,16 @@ public class DoorLock : MonoBehaviour
 
         // Remove o cadeado
         Destroy(gameObject);
-    }
-}
+    }   
+        
+    void AplicarEstadoDestrancado()
+    {   
+        
+        if (glassBox != null)
+        {
+            glassBox.LockUnlocked();
+        }
+        
+        Destroy(gameObject);
+    }   
+}       
