@@ -15,15 +15,15 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 1
-  m_FogColor: {r: 0.08316586, g: 0.07489321, b: 0.16037738, a: 1}
+  m_FogColor: {r: 0.0626039, g: 0.054147325, b: 0.14716971, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.013
+  m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 1200
   m_AmbientSkyColor: {r: 0.0058739753, g: 0.0058739753, b: 0.11320752, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0.3
+  m_AmbientIntensity: 0.8
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 9af23ba5fa5364ff598888460e0e2759, type: 2}
@@ -203,8 +203,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
-  m_fontSizeBase: 35
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2414,7 +2414,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Volte em breve para mais atualiza\xE7\xF5es!"
+  m_text: "v\xEDdeo usado no puzzle da fita vhs:\n- Leonardo da Vinci e a Dama com
+    Arminho | canal: L\xE1 Vem a Professora"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 45ca2e1225725ac4a81c865c408b93a4, type: 2}
   m_sharedMaterial: {fileID: -7181550369130723100, guid: 45ca2e1225725ac4a81c865c408b93a4, type: 2}
@@ -2448,7 +2449,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 8
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2510,8 +2511,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000011444, y: 0}
-  m_SizeDelta: {x: 824.618, y: 48.7505}
+  m_AnchoredPosition: {x: 0.0000019073, y: -0.0000038147}
+  m_SizeDelta: {x: 839.7678, y: 354.2886}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &411413661 stripped
 Transform:
@@ -2555,8 +2556,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 444, y: -239}
-  m_SizeDelta: {x: 38.0426, y: 35.0788}
+  m_AnchoredPosition: {x: 444, y: -237.13785}
+  m_SizeDelta: {x: 38.0426, y: 38.8031}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &421533093
 MonoBehaviour:
@@ -3876,7 +3877,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -208.15, y: 185.3}
+  m_AnchoredPosition: {x: -200, y: 185}
   m_SizeDelta: {x: 257.2776, y: 49.6185}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &571902437
@@ -4240,8 +4241,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
-  m_fontSizeBase: 35
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4457,8 +4458,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -242.3, y: -167.41}
-  m_SizeDelta: {x: 158.34, y: 54}
+  m_AnchoredPosition: {x: -243, y: -175.3}
+  m_SizeDelta: {x: 196.7205, y: 54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &628549095
 MonoBehaviour:
@@ -5237,7 +5238,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000076294, y: -31}
+  m_AnchoredPosition: {x: 0.0000076294, y: -11}
   m_SizeDelta: {x: 607.7084, y: 360.7989}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &774338231
@@ -6500,8 +6501,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -242.3, y: 19.913}
-  m_SizeDelta: {x: 215.31, y: 54}
+  m_AnchoredPosition: {x: -243, y: 36}
+  m_SizeDelta: {x: 277.7208, y: 54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1083539718
 MonoBehaviour:
@@ -6761,8 +6762,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -242.3, y: -43.733}
-  m_SizeDelta: {x: 205.992, y: 54}
+  m_AnchoredPosition: {x: -243, y: -33.39999}
+  m_SizeDelta: {x: 262.2954, y: 54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &1101309541
 AudioSource:
@@ -7196,7 +7197,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.800003, y: 0}
+  m_AnchoredPosition: {x: -1.7999878, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1165377470
@@ -7246,8 +7247,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
-  m_fontSizeBase: 35
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8119,8 +8120,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -242.3, y: -103.14}
-  m_SizeDelta: {x: 175.3758, y: 54}
+  m_AnchoredPosition: {x: -243, y: -103.79999}
+  m_SizeDelta: {x: 229.0438, y: 54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1302449889
 MonoBehaviour:
@@ -8261,6 +8262,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1101309539}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1302449890
 MonoBehaviour:
@@ -9613,8 +9626,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
-  m_fontSizeBase: 35
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -10833,6 +10846,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1101309539}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1683989075
 MonoBehaviour:

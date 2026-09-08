@@ -25,7 +25,6 @@ public class PaintingInteraction : MonoBehaviour
     private bool panelOpen;
     private bool answered;
 
-    // Informa se o ESC foi usado para fechar o painel neste frame
     public bool EscUsedToClosePanel { get; private set; }
 
     public bool IsPanelOpen => panelOpen;
@@ -43,13 +42,6 @@ public class PaintingInteraction : MonoBehaviour
 
     private void Update()
     {
-        // Reseta a informação a cada frame
-        EscUsedToClosePanel = false;
-
-        // ========================================
-        // PAINEL ABERTO
-        // ========================================
-
         if (panelOpen)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -63,10 +55,6 @@ public class PaintingInteraction : MonoBehaviour
 
         if (answered)
             return;
-
-        // ========================================
-        // RAYCAST
-        // ========================================
 
         Ray ray = new Ray(
             playerCamera.transform.position,
@@ -108,7 +96,7 @@ public class PaintingInteraction : MonoBehaviour
     {
         string answer = inputField.text.Trim();
 
-        if (answer.ToLower() == "virgem do fuso")
+        if (answer.ToLower() == "dama com arminho")
         {
             answered = true;
 

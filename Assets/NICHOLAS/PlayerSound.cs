@@ -5,7 +5,7 @@ public class PlayerSound : MonoBehaviour
     public AudioSource audioSource;
 
     public AudioClip movementSound;
-    public AudioClip fSound;
+    
     public AudioClip shiftSound;
 
     void Update()
@@ -43,12 +43,6 @@ public class PlayerSound : MonoBehaviour
             }
 
             audioSource.clip = null;
-        }
-
-        // Som do F
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            audioSource.PlayOneShot(fSound);
         }
     }
 
