@@ -20,12 +20,10 @@ public class DoorLock : MonoBehaviour
 
     void Start()
     {
-        /*
         if (SaveSystem.Instance != null && SaveSystem.Instance.CadeadoJaAberto(lockID))
         {
             AplicarEstadoDestrancado();
         }
-        */
     }
 
     public void TryUnlock(PlayerPickup player)
@@ -52,12 +50,10 @@ public class DoorLock : MonoBehaviour
         // Toca o som de destrancar
         TocarSomDestrancar();
 
-        /*
         if (SaveSystem.Instance != null)
         {
             SaveSystem.Instance.AbrirCadeado(lockID);
         }
-        */
 
         if (doorAnimator != null)
         {
@@ -95,8 +91,6 @@ public class DoorLock : MonoBehaviour
             unlockSound.Play();
         }
     }
-
-    /*
     void AplicarEstadoDestrancado()
     {
         if (glassBox != null)
@@ -106,5 +100,4 @@ public class DoorLock : MonoBehaviour
 
         Destroy(gameObject);
     }
-    */
 }

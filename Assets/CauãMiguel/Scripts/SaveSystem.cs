@@ -36,7 +36,7 @@ public class SaveSystem : MonoBehaviour
         }
         else
         {
-            dados = new DadosSalvos(); // primeira vez jogando
+            dados = new DadosSalvos();
         }
     }
 
@@ -79,4 +79,20 @@ public class SaveSystem : MonoBehaviour
 
         textoSalvo.gameObject.SetActive(false);
     }
+
+    public void ApagarSave()
+    {
+        if (File.Exists(caminho))
+        {
+            File.Delete(caminho);
+        }
+
+        dados = new DadosSalvos();
+    }
+
+    public bool ExisteSave()
+    {
+        return File.Exists(caminho);
+    }
+
 }
