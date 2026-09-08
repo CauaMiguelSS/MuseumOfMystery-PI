@@ -13634,7 +13634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 264997aa933ad974997a7c9e000bcf81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveSystem
-  textoSalvo: {fileID: 0}
+  textoSalvo: {fileID: 230406320}
   tempoVisivel: 2
 --- !u!4 &294911696
 Transform:
@@ -47064,7 +47064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4259a6b830a3f468f77c98c97e0141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorLock
-  lockID: 
+  lockID: 2
   requiredItemID: Chave2
   doorAnimator: {fileID: 0}
   glassBox: {fileID: 834614821}
@@ -91121,7 +91121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4259a6b830a3f468f77c98c97e0141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorLock
-  lockID: 
+  lockID: 3
   requiredItemID: Chave3
   doorAnimator: {fileID: 0}
   glassBox: {fileID: 834614821}
@@ -106931,7 +106931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4259a6b830a3f468f77c98c97e0141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorLock
-  lockID: 
+  lockID: 1
   requiredItemID: Chave1
   doorAnimator: {fileID: 0}
   glassBox: {fileID: 834614821}
