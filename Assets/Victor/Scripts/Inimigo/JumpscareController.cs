@@ -22,53 +22,46 @@ public class JumpscareController : MonoBehaviour
     public float cameraSnapSpeed = 10f;
 
     bool triggered;
-    bool lockCamera;
-
     Transform lookTarget;
 
     void Start()
     {
-        if (deathScreen) deathScreen.SetActive(false);
+        if (deathScreen)
+            deathScreen.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (triggered) return;
-
-        if (other.CompareTag("Player"))
-        {
+        if (!triggered && other.CompareTag("Player"))
             TriggerJumpscare();
-        }
     }
 
     void LateUpdate()
     {
-        if (lockCamera && lookTarget)
-        {
-            Vector3 dir = (lookTarget.position - playerCamera.position).normalized;
+        if (!lookTarget) return;
 
-            Quaternion targetRot = Quaternion.LookRotation(dir);
-
-            playerCamera.rotation = Quaternion.Slerp(
-                playerCamera.rotation,
-                targetRot,
-                Time.deltaTime * cameraSnapSpeed
-            );
-        }
+        Vector3 direction = lookTarget.position - playerCamera.position;
+        playerCamera.rotation = Quaternion.Slerp(
+            playerCamera.rotation,
+            Quaternion.LookRotation(direction),
+            Time.deltaTime * cameraSnapSpeed
+        );
     }
 
     public void TriggerJumpscare()
     {
+        if (triggered) return;
+
         triggered = true;
-        lockCamera = true;
 
         LockPlayer();
         FreezeEnemy();
-        PositionEnemyInFront();
+        PositionEnemy();
 
         lookTarget = headTarget;
 
-        if (sound) sound.Play();
+        if (sound)
+            sound.Play();
 
         Invoke(nameof(ShowDeathScreen), deathScreenDelay);
     }
@@ -82,41 +75,37 @@ public class JumpscareController : MonoBehaviour
             playerRb.isKinematic = true;
         }
 
-        foreach (var s in playerScripts)
-        {
-            if (s) s.enabled = false;
-        }
+        foreach (var script in playerScripts)
+            if (script) script.enabled = false;
     }
 
     void FreezeEnemy()
     {
-        if (enemyAI) enemyAI.enabled = false;
+        if (enemyAI)
+            enemyAI.enabled = false;
 
         enemy.SendMessage("FreezeEnemy", SendMessageOptions.DontRequireReceiver);
     }
 
-    void PositionEnemyInFront()
+    void PositionEnemy()
     {
-        Vector3 forward = playerCamera.forward;
+        Vector3 position = playerCamera.position +
+                           playerCamera.forward * distanceFromCamera;
 
-        Vector3 pos = playerCamera.position + forward * distanceFromCamera;
+        position.y = enemy.transform.position.y;
+        enemy.transform.position = position;
 
-        pos.y = enemy.transform.position.y;
+        Vector3 direction = playerCamera.position - enemy.transform.position;
+        direction.y = 0f;
 
-        enemy.transform.position = pos;
-
-        Vector3 dir = playerCamera.position - enemy.transform.position;
-        dir.y = 0f;
-
-        if (dir != Vector3.zero)
-        {
-            enemy.transform.rotation = Quaternion.LookRotation(dir);
-        }
+        if (direction != Vector3.zero)
+            enemy.transform.rotation = Quaternion.LookRotation(direction);
     }
 
     void ShowDeathScreen()
     {
-        if (deathScreen) deathScreen.SetActive(true);
+        if (deathScreen)
+            deathScreen.SetActive(true);
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
