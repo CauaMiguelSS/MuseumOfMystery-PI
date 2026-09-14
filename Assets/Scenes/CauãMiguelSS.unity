@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.20260769, g: 0.22626677, b: 0.2735849, a: 1}
   m_AmbientEquatorColor: {r: 0.099857576, g: 0.10786754, b: 0.11320752, a: 1}
   m_AmbientGroundColor: {r: 0, g: 0, b: 0, a: 1}
-  m_AmbientIntensity: 1.25
+  m_AmbientIntensity: 6.56
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 51b74d7bad397457d883c5940f7664d8, type: 2}
@@ -110831,7 +110831,7 @@ PrefabInstance:
     - target: {fileID: 8609284833921059878, guid: a8f7c23089cc8d848b8b8a6f2f635890, type: 3}
       propertyPath: jumpscareManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4409763708250351124}
     - target: {fileID: 8609284833921059878, guid: a8f7c23089cc8d848b8b8a6f2f635890, type: 3}
       propertyPath: 'patrolPoints.Array.data[0]'
       value: 
