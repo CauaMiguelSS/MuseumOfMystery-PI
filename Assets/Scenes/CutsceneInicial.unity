@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.08235294, g: 0.07450981, b: 0.16078432, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.025
+  m_FogDensity: 0.015
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.0004934259, g: 0.00022249961, b: 0.009433985, a: 1}
@@ -7664,9 +7664,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Em uma noite de inverno, uma antiga descoberta chama sua aten\xE7\xE3o.\n\nUm
     projeto inacabado de Leonardo da Vinci, perdido por s\xE9culos, estaria escondido
-    em algum lugar de um museu de hist\xF3ria.\n\nPara encontr\xE1-lo, voc\xEA precisar\xE1
-    seguir as pistas deixadas pelo passado.\n\nE voc\xEA ter\xE1 que fazer isso sem
-    ser descoberto."
+    em algum lugar de um museu de hist\xF3ria rec\xE9m-aberto.\n\nPara encontr\xE1-lo,
+    voc\xEA precisar\xE1 seguir as pistas deixadas pelo passado.\n\nE voc\xEA ter\xE1
+    que fazer isso sem ser descoberto."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 45ca2e1225725ac4a81c865c408b93a4, type: 2}
   m_sharedMaterial: {fileID: -7181550369130723100, guid: 45ca2e1225725ac4a81c865c408b93a4, type: 2}
