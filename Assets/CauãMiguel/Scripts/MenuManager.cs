@@ -10,23 +10,34 @@ public class MenuManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private Button botaoContinue;
 
-    void Start()
+
+    private void Start()
     {
-        // Desabilita o Continue se não existir save
-        if (botaoContinue != null)
-        {
-            botaoContinue.interactable = SaveSystem.Instance.ExisteSave();
-        }
+        AtualizarBotaoContinue();
+    }
+
+
+    private void AtualizarBotaoContinue()
+    {
+        if (botaoContinue == null)
+            return;
+
+        botaoContinue.interactable = SaveSystem.Instance.ExisteSave();
     }
 
     public void OnClickNewGame()
     {
+        Debug.Log("Começando novo jogo...");
+
         SaveSystem.Instance.ApagarSave();
+
         SceneManager.LoadScene(nomeCenaJogo);
     }
 
     public void OnClickContinue()
     {
-        SceneManager.LoadScene(nomeCenaJogo);
+        Debug.Log("Continuando jogo...");
+
+        SaveSystem.Instance.PrepararContinue(nomeCenaJogo);
     }
 }
