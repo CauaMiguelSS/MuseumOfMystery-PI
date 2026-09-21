@@ -25,8 +25,6 @@ public class PaintingInteraction : MonoBehaviour
     private bool panelOpen;
     private bool answered;
 
-    public bool EscUsedToClosePanel { get; private set; }
-
     public bool IsPanelOpen => panelOpen;
 
     private void Start()
@@ -46,7 +44,6 @@ public class PaintingInteraction : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                EscUsedToClosePanel = true;
                 ClosePanel();
             }
 

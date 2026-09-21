@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Pause : MonoBehaviour
@@ -23,12 +24,15 @@ public class Pause : MonoBehaviour
 
         Time.timeScale = 1f;
         AudioListener.pause = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
     {
         if (paintingInteraction != null &&
-            paintingInteraction.EscUsedToClosePanel)
+            paintingInteraction.IsPanelOpen)
             return;
 
         if (tvInteraction != null &&

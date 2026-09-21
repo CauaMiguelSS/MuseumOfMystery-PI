@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.20260769, g: 0.22626677, b: 0.2735849, a: 1}
   m_AmbientEquatorColor: {r: 0.099857576, g: 0.10786754, b: 0.11320752, a: 1}
   m_AmbientGroundColor: {r: 0, g: 0, b: 0, a: 1}
-  m_AmbientIntensity: 6.56
+  m_AmbientIntensity: 0.5
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 51b74d7bad397457d883c5940f7664d8, type: 2}
@@ -97554,11 +97554,11 @@ PrefabInstance:
     - target: {fileID: -6367757144390602447, guid: 7eced3626c430e34a9fe326cec371bad, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -1444460858095362738, guid: 2f5bccf11716aae4ca1605c0c5451947, type: 3}
+      objectReference: {fileID: 2100000, guid: 0fe299dfb31db424789300308741c66d, type: 2}
     - target: {fileID: -6367757144390602447, guid: 7eced3626c430e34a9fe326cec371bad, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: -1444460858095362738, guid: 2f5bccf11716aae4ca1605c0c5451947, type: 3}
+      objectReference: {fileID: 2100000, guid: 0fe299dfb31db424789300308741c66d, type: 2}
     - target: {fileID: -5881569114414685570, guid: 7eced3626c430e34a9fe326cec371bad, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -97582,11 +97582,11 @@ PrefabInstance:
     - target: {fileID: 1026016819102832811, guid: 7eced3626c430e34a9fe326cec371bad, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -1444460858095362738, guid: 2f5bccf11716aae4ca1605c0c5451947, type: 3}
+      objectReference: {fileID: 2100000, guid: 0fe299dfb31db424789300308741c66d, type: 2}
     - target: {fileID: 1026016819102832811, guid: 7eced3626c430e34a9fe326cec371bad, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: -1444460858095362738, guid: 2f5bccf11716aae4ca1605c0c5451947, type: 3}
+      objectReference: {fileID: 2100000, guid: 0fe299dfb31db424789300308741c66d, type: 2}
     - target: {fileID: 1752539989582359667, guid: 7eced3626c430e34a9fe326cec371bad, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
