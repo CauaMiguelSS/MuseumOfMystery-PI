@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.20260769, g: 0.22626677, b: 0.2735849, a: 1}
   m_AmbientEquatorColor: {r: 0.099857576, g: 0.10786754, b: 0.11320752, a: 1}
   m_AmbientGroundColor: {r: 0, g: 0, b: 0, a: 1}
-  m_AmbientIntensity: 3.19
+  m_AmbientIntensity: 4
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 51b74d7bad397457d883c5940f7664d8, type: 2}
@@ -120265,6 +120265,10 @@ PrefabInstance:
       propertyPath: paintingInteraction
       value: 
       objectReference: {fileID: 6703380674838175363}
+    - target: {fileID: 5208506530433137550, guid: a05b89ee2bc0f4d4ab93661f19b3bfdd, type: 3}
+      propertyPath: m_Antialiasing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5261091185770409130, guid: a05b89ee2bc0f4d4ab93661f19b3bfdd, type: 3}
       propertyPath: audioSource
       value: 
@@ -120311,6 +120315,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534640286754558323, guid: a05b89ee2bc0f4d4ab93661f19b3bfdd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314245006598022898, guid: a05b89ee2bc0f4d4ab93661f19b3bfdd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314245006598022898, guid: a05b89ee2bc0f4d4ab93661f19b3bfdd, type: 3}
+      propertyPath: antialiasingMode
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
