@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 public class Pause : MonoBehaviour
@@ -31,6 +30,9 @@ public class Pause : MonoBehaviour
 
     private void Update()
     {
+        if (InteractableNote.IsAnyNoteOpen)
+            return;
+
         if (paintingInteraction != null &&
             paintingInteraction.IsPanelOpen)
             return;

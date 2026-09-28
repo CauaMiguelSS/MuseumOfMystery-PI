@@ -12,10 +12,14 @@ public class InteractableNote : MonoBehaviour
     [TextArea]
     public string noteText;
 
+    public static bool IsAnyNoteOpen { get; private set; }
+
     public void Interact()
     {
         notePanel.SetActive(true);
         noteTextUI.text = noteText;
+
+        IsAnyNoteOpen = true;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -30,6 +34,8 @@ public class InteractableNote : MonoBehaviour
     {
         notePanel.SetActive(false);
 
+        IsAnyNoteOpen = false;
+
         playerController.cameraCanMove = true;
         playerController.playerCanMove = true;
 
@@ -39,4 +45,3 @@ public class InteractableNote : MonoBehaviour
         Cursor.visible = false;
     }
 }
-
