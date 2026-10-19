@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using TMPro;
 
 public class InteractableNote : MonoBehaviour
@@ -7,10 +8,15 @@ public class InteractableNote : MonoBehaviour
     public GameObject notePanel;
     public TextMeshProUGUI noteTextUI;
     public FirstPersonController playerController;
+    public DialogueManager dialogueManager;
 
     [Header("Nota")]
     [TextArea]
     public string noteText;
+
+    [Header("Dialogo apos fechar")]
+    [TextArea(2, 4)]
+    public string[] dialogueAfterClose;
 
     public static bool IsAnyNoteOpen { get; private set; }
 
@@ -33,7 +39,6 @@ public class InteractableNote : MonoBehaviour
     public void FecharNota()
     {
         notePanel.SetActive(false);
-
         IsAnyNoteOpen = false;
 
         playerController.cameraCanMove = true;
@@ -43,5 +48,10 @@ public class InteractableNote : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if (dialogueManager != null)
+        {
+            dialogueManager.IniciarDialogo(dialogueAfterClose);
+        }
     }
 }

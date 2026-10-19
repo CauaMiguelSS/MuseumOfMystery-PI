@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
@@ -11,7 +12,17 @@ public class ItemPickup : MonoBehaviour
     [Header("ID do Item")]
     public string itemID;
 
-    void Awake()
+    [Header("Dialogos")]
+    [TextArea(2, 4)]
+    public string[] dialogueOnPickup;
+
+    [TextArea(2, 4)]
+    public string[] dialogueOnDrop;
+
+    [TextArea(2, 4)]
+    public string[] dialogueOnPlace;
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();

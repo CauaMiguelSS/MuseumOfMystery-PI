@@ -3459,6 +3459,9 @@ MonoBehaviour:
   outline: {fileID: 0}
   isHeld: 1
   itemID: GrindStone
+  dialogueOnPickup: []
+  dialogueOnDrop: []
+  dialogueOnPlace: []
 --- !u!54 &64125534
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4478,6 +4481,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 83319478}
   m_Mesh: {fileID: 8691780276856062721, guid: 1c79fd71b00204b46a22618a96d49463, type: 3}
+--- !u!1 &86011018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 86011020}
+  - component: {fileID: 86011019}
+  m_Layer: 0
+  m_Name: DialogueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &86011019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86011018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2467d9f107141743bdd27db7c8c2f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
+  dialoguePanel: {fileID: 632506097}
+  dialogueText: {fileID: 1891318329}
+  playerController: {fileID: 7458359270854433086}
+  tempoPorFala: 3
+--- !u!4 &86011020
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86011018}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 66.53578, y: 10.53414, z: 18.73097}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &87134872
 GameObject:
   m_ObjectHideFlags: 0
@@ -17403,6 +17454,9 @@ MonoBehaviour:
   outline: {fileID: 0}
   isHeld: 0
   itemID: Chave3
+  dialogueOnPickup: []
+  dialogueOnDrop: []
+  dialogueOnPlace: []
 --- !u!114 &299260122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22726,6 +22780,7 @@ MonoBehaviour:
   notePanel: {fileID: 4377567096887797189}
   noteTextUI: {fileID: 2623171069731581451}
   playerController: {fileID: 7458359270854433086}
+  dialogueManager: {fileID: 0}
   noteText: "A Besta Gigante de Leonardo da Vinci foi um projeto criado por volta
     de 1488, inspirado nas armas de cerco utilizadas durante o Renascimento. Seu
     objetivo era aumentar o alcance e a for\xE7a dos disparos, utilizando uma grande
@@ -22734,6 +22789,7 @@ MonoBehaviour:
     tenha sido constru\xEDda por Da Vinci, a besta demonstra sua habilidade em combinar
     engenharia, mec\xE2nica e inova\xE7\xE3o, tornando-se um dos projetos mais conhecidos
     de seus estudos militares."
+  dialogueAfterClose: []
 --- !u!1 &399923676
 GameObject:
   m_ObjectHideFlags: 0
@@ -36017,6 +36073,9 @@ MonoBehaviour:
   outline: {fileID: 0}
   isHeld: 1
   itemID: Metralhadora
+  dialogueOnPickup: []
+  dialogueOnDrop: []
+  dialogueOnPlace: []
 --- !u!54 &606351459
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -52820,6 +52879,7 @@ MonoBehaviour:
   notePanel: {fileID: 4377567096887797189}
   noteTextUI: {fileID: 2623171069731581451}
   playerController: {fileID: 7458359270854433086}
+  dialogueManager: {fileID: 0}
   noteText: "O Tanque de Leonardo da Vinci foi um projeto militar criado por Leonardo
     da Vinci por volta de 1487, durante o Renascimento. Seu objetivo era construir
     um ve\xEDculo blindado capaz de transportar soldados e atacar os inimigos, sendo
@@ -52827,6 +52887,7 @@ MonoBehaviour:
     constru\xEDdo em sua \xE9poca, o projeto \xE9 considerado um exemplo importante
     da criatividade e do pensamento de Da Vinci, antecipando conceitos que s\xE9culos
     depois seriam utilizados no desenvolvimento dos tanques de guerra modernos."
+  dialogueAfterClose: []
 --- !u!114 &882229376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53601,6 +53662,7 @@ MonoBehaviour:
   notePanel: {fileID: 4377567096887797189}
   noteTextUI: {fileID: 2623171069731581451}
   playerController: {fileID: 7458359270854433086}
+  dialogueManager: {fileID: 0}
   noteText: "O canh\xE3o de Leonardo da Vinci foi desenvolvido durante o Renascimento
     como uma proposta para melhorar as armas de fogo utilizadas em guerras. Da Vinci
     estudou mecanismos que permitiam aumentar a velocidade de recarga e a efici\xEAncia
@@ -53608,6 +53670,7 @@ MonoBehaviour:
     combate. Seus projetos demonstram seu interesse em aplicar princ\xEDpios de engenharia
     e mec\xE2nica \xE0 tecnologia militar, contribuindo para o desenvolvimento de
     ideias que influenciaram a evolu\xE7\xE3o das armas de artilharia."
+  dialogueAfterClose: []
 --- !u!1 &894493860
 GameObject:
   m_ObjectHideFlags: 0
@@ -65938,6 +66001,9 @@ MonoBehaviour:
   outline: {fileID: 0}
   isHeld: 0
   itemID: SafeRoomKey
+  dialogueOnPickup: []
+  dialogueOnDrop: []
+  dialogueOnPlace: []
 --- !u!114 &1097682700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97997,6 +98063,9 @@ MonoBehaviour:
   outline: {fileID: 0}
   isHeld: 1
   itemID: DaVinci
+  dialogueOnPickup: []
+  dialogueOnDrop: []
+  dialogueOnPlace: []
 --- !u!65 &1631790258
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -103164,6 +103233,9 @@ MonoBehaviour:
   outline: {fileID: 0}
   isHeld: 1
   itemID: MaquinaVoadora
+  dialogueOnPickup: []
+  dialogueOnDrop: []
+  dialogueOnPlace: []
 --- !u!114 &1706353542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104599,10 +104671,12 @@ MonoBehaviour:
   notePanel: {fileID: 4377567096887797189}
   noteTextUI: {fileID: 2623171069731581451}
   playerController: {fileID: 7458359270854433086}
+  dialogueManager: {fileID: 0}
   noteText: "A Mona Lisa \xE9 uma das obras mais famosas de Leonardo da Vinci, pintada
     no in\xEDcio do s\xE9culo XVI. Conhecida pelo seu sorriso enigm\xE1tico e pelo
     uso do sfumato, a pintura demonstra a habilidade de Leonardo em representar detalhes,
     luz e express\xF5es humanas de forma realista."
+  dialogueAfterClose: []
 --- !u!1 &1727824311
 GameObject:
   m_ObjectHideFlags: 0
@@ -141246,6 +141320,9 @@ MonoBehaviour:
   outline: {fileID: 0}
   isHeld: 0
   itemID: VHS
+  dialogueOnPickup: []
+  dialogueOnDrop: []
+  dialogueOnPlace: []
 --- !u!114 &3058483567577701485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149156,6 +149233,9 @@ MonoBehaviour:
   outline: {fileID: 0}
   isHeld: 0
   itemID: Chave1
+  dialogueOnPickup: []
+  dialogueOnDrop: []
+  dialogueOnPlace: []
 --- !u!114 &5202577229847806202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156099,6 +156179,9 @@ MonoBehaviour:
   outline: {fileID: 0}
   isHeld: 0
   itemID: Chave2
+  dialogueOnPickup: []
+  dialogueOnDrop: []
+  dialogueOnPlace: []
 --- !u!114 &7084631775454450832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163839,11 +163922,13 @@ MonoBehaviour:
   notePanel: {fileID: 4377567096887797189}
   noteTextUI: {fileID: 2623171069731581451}
   playerController: {fileID: 7458359270854433086}
+  dialogueManager: {fileID: 0}
   noteText: "Leonardo da Vinci dedicou parte de seus estudos \xE0 observa\xE7\xE3o
     de f\xF3sseis e forma\xE7\xF5es rochosas, buscando compreender como os restos
     de seres vivos poderiam estar presentes no interior das montanhas. Suas observa\xE7\xF5es
     ajudaram a questionar algumas ideias de sua \xE9poca sobre a origem dos f\xF3sseis
     e demonstraram seu interesse pela natureza e pela hist\xF3ria da Terra."
+  dialogueAfterClose: []
 --- !u!23 &8956557416810948413
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -164868,3 +164953,4 @@ SceneRoots:
   - {fileID: 1852929183948892017}
   - {fileID: 3046972470374260623}
   - {fileID: 625140295}
+  - {fileID: 86011020}

@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class PlayerPickup : MonoBehaviour
@@ -7,6 +8,9 @@ public class PlayerPickup : MonoBehaviour
     [SerializeField] private Transform holdPoint;
     [SerializeField] private Camera playerCamera;
 
+    [Header("Dialogo")]
+    [SerializeField] private DialogueManager dialogueManager;
+
     [Header("Pickup Sound")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip pickupSound;
@@ -15,90 +19,67 @@ public class PlayerPickup : MonoBehaviour
 
     private void Update()
     {
+        if (DialogueManager.IsPlaying || InteractableNote.IsAnyNoteOpen)
+            return;
+
         if (Input.GetKeyDown(KeyCode.E))
         {
-            // Se já estiver segurando algo,
-            // tenta colocar no VHS Player.
             if (heldItem != null)
             {
                 if (TryInsertVHS())
                     return;
 
-                // Se não for VHS, tenta colocar no expositor.
                 if (TryPlaceOnExpositor())
                     return;
             }
 
-            // Se não estiver segurando nada,
-            // tenta pegar.
             if (heldItem == null)
-            {
                 TryPickup();
-            }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && heldItem != null)
         {
-            if (heldItem != null)
-            {
-                Drop();
-            }
+            Drop();
         }
     }
 
     private void TryPickup()
     {
-        if (playerCamera == null)
-        {
-            Debug.LogError("PlayerPickup: A câmera não foi configurada!");
+        if (playerCamera == null || holdPoint == null)
             return;
-        }
 
         Ray ray = new Ray(
             playerCamera.transform.position,
             playerCamera.transform.forward
         );
 
-        if (Physics.Raycast(ray, out RaycastHit hit, distance))
-        {
-            Debug.Log("Raycast acertou: " + hit.collider.name);
+        if (!Physics.Raycast(ray, out RaycastHit hit, distance))
+            return;
 
-            ItemPickup item = hit.collider.GetComponent<ItemPickup>();
+        ItemPickup item = hit.collider.GetComponent<ItemPickup>();
 
-            if (item == null)
-            {
-                Debug.Log("O objeto acertado não possui ItemPickup.");
-                return;
-            }
+        if (item == null)
+            return;
 
-            if (holdPoint == null)
-            {
-                Debug.LogError("PlayerPickup: Hold Point não foi configurado!");
-                return;
-            }
+        heldItem = item;
+        heldItem.isHeld = true;
 
-            heldItem = item;
-            heldItem.isHeld = true;
+        heldItem.transform.SetParent(holdPoint);
+        heldItem.transform.localPosition = Vector3.zero;
+        heldItem.transform.localRotation = Quaternion.identity;
 
-            heldItem.transform.SetParent(holdPoint);
+        heldItem.rb.isKinematic = true;
+        heldItem.col.enabled = false;
 
-            heldItem.transform.localPosition = Vector3.zero;
-            heldItem.transform.localRotation = Quaternion.identity;
+        if (heldItem.outline != null)
+            heldItem.outline.enabled = false;
 
-            heldItem.rb.isKinematic = true;
-            heldItem.col.enabled = false;
+        if (audioSource != null && pickupSound != null)
+            audioSource.PlayOneShot(pickupSound);
 
-            if (heldItem.outline != null)
-                heldItem.outline.enabled = false;
+        IniciarDialogo(heldItem.dialogueOnPickup);
 
-            // Toca o som de coleta
-            if (audioSource != null && pickupSound != null)
-            {
-                audioSource.PlayOneShot(pickupSound);
-            }
-
-            Debug.Log("Pegou: " + heldItem.itemID);
-        }
+        Debug.Log("Pegou: " + heldItem.itemID);
     }
 
     private bool TryInsertVHS()
@@ -111,22 +92,26 @@ public class PlayerPickup : MonoBehaviour
             playerCamera.transform.forward
         );
 
-        if (Physics.Raycast(ray, out RaycastHit hit, distance))
+        if (!Physics.Raycast(ray, out RaycastHit hit, distance))
+            return false;
+
+        VHSPlayer vhsPlayer = hit.collider.GetComponent<VHSPlayer>();
+
+        if (vhsPlayer == null)
+            return false;
+
+        ItemPickup item = heldItem;
+        string[] falas = item.dialogueOnPlace;
+
+        if (vhsPlayer.TryInsertVHS(item))
         {
-            VHSPlayer vhsPlayer = hit.collider.GetComponent<VHSPlayer>();
+            item.isHeld = false;
+            heldItem = null;
 
-            if (vhsPlayer == null)
-                return false;
+            IniciarDialogo(falas);
 
-            if (vhsPlayer.TryInsertVHS(heldItem))
-            {
-                heldItem.isHeld = false;
-                heldItem = null;
-
-                Debug.Log("VHS colocado no aparelho.");
-
-                return true;
-            }
+            Debug.Log("VHS colocado no aparelho.");
+            return true;
         }
 
         return false;
@@ -142,38 +127,50 @@ public class PlayerPickup : MonoBehaviour
             playerCamera.transform.forward
         );
 
-        if (Physics.Raycast(ray, out RaycastHit hit, distance))
+        if (!Physics.Raycast(ray, out RaycastHit hit, distance))
+            return false;
+
+        Expositor expositor = hit.collider.GetComponent<Expositor>();
+
+        if (expositor == null)
+            return false;
+
+        ItemPickup item = heldItem;
+        string[] falas = item.dialogueOnPlace;
+
+        expositor.TentarColocar(item);
+
+        if (!item.isHeld)
         {
-            Expositor expositor = hit.collider.GetComponent<Expositor>();
-
-            if (expositor == null)
-                return false;
-
-            expositor.TentarColocar(heldItem);
-
-            if (!heldItem.isHeld)
-            {
-                heldItem = null;
-            }
-
-            return true;
+            heldItem = null;
+            IniciarDialogo(falas);
         }
 
-        return false;
+        return true;
     }
 
     private void Drop()
     {
-        heldItem.transform.SetParent(null);
+        ItemPickup item = heldItem;
+        string[] falas = item.dialogueOnDrop;
 
-        heldItem.isHeld = false;
+        item.transform.SetParent(null);
+        item.isHeld = false;
 
-        heldItem.rb.isKinematic = false;
-        heldItem.col.enabled = true;
+        item.rb.isKinematic = false;
+        item.col.enabled = true;
 
         heldItem = null;
 
+        IniciarDialogo(falas);
+
         Debug.Log("Item largado.");
+    }
+
+    private void IniciarDialogo(string[] falas)
+    {
+        if (dialogueManager != null)
+            dialogueManager.IniciarDialogo(falas);
     }
 
     public ItemPickup GetHeldItem()
