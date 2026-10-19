@@ -18,14 +18,6 @@ public class DoorLock : MonoBehaviour
     [Header("Som de Destrancar")]
     [SerializeField] private AudioSource unlockSound;
 
-    void Start()
-    {
-        if (SaveSystem.Instance != null && SaveSystem.Instance.CadeadoJaAberto(lockID))
-        {
-            AplicarEstadoDestrancado();
-        }
-    }
-
     public void TryUnlock(PlayerPickup player)
     {
         ItemPickup heldItem = player.GetHeldItem();
@@ -49,11 +41,6 @@ public class DoorLock : MonoBehaviour
 
         // Toca o som de destrancar
         TocarSomDestrancar();
-
-        if (SaveSystem.Instance != null)
-        {
-            SaveSystem.Instance.AbrirCadeado(lockID);
-        }
 
         if (doorAnimator != null)
         {
