@@ -19,6 +19,7 @@ public class InteractableNote : MonoBehaviour
     public string[] dialogueAfterClose;
 
     public static bool IsAnyNoteOpen { get; private set; }
+    public static InteractableNote NotaAtual { get; private set; }
 
     public void Interact()
     {
@@ -34,6 +35,8 @@ public class InteractableNote : MonoBehaviour
         playerController.playerCanMove = false;
 
         Time.timeScale = 0f;
+
+        NotaAtual = this;
     }
 
     public void FecharNota()
@@ -49,9 +52,19 @@ public class InteractableNote : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        if (dialogueManager != null)
+        if (dialogueManager != null && dialogueAfterClose != null)
         {
-            dialogueManager.IniciarDialogo(dialogueAfterClose);
+            string[] falas = (string[])dialogueAfterClose.Clone();
+            dialogueManager.IniciarDialogo(falas);
         }
+        else
+        {
+            Debug.LogWarning(
+                "DialogueManager ou falas nao configurados em: "
+                + gameObject.name
+            );
+        }
+
+        NotaAtual = null;
     }
 }

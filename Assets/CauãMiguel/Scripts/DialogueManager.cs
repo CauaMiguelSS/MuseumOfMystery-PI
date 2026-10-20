@@ -8,7 +8,6 @@ public class DialogueManager : MonoBehaviour
     [Header("Referencias")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
-    [SerializeField] private FirstPersonController playerController;
 
     [Header("Configuracoes")]
     [SerializeField] private float tempoPorFala = 3f;
@@ -16,8 +15,6 @@ public class DialogueManager : MonoBehaviour
     public static bool IsPlaying { get; private set; }
 
     private Coroutine dialogueCoroutine;
-    private bool cameraCanMove;
-    private bool playerCanMove;
 
     private void Awake()
     {
@@ -35,16 +32,6 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator ExecutarDialogo(string[] falas)
     {
         IsPlaying = true;
-
-        if (playerController != null)
-        {
-            cameraCanMove = playerController.cameraCanMove;
-            playerCanMove = playerController.playerCanMove;
-
-            playerController.cameraCanMove = false;
-            playerController.playerCanMove = false;
-        }
-
         dialoguePanel.SetActive(true);
 
         foreach (string fala in falas)
@@ -59,14 +46,7 @@ public class DialogueManager : MonoBehaviour
 
         dialoguePanel.SetActive(false);
 
-        if (playerController != null)
-        {
-            playerController.cameraCanMove = cameraCanMove;
-            playerController.playerCanMove = playerCanMove;
-        }
-
         IsPlaying = false;
         dialogueCoroutine = null;
     }
 }
-

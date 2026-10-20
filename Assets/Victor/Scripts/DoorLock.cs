@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class DoorLock : MonoBehaviour
@@ -5,86 +6,85 @@ public class DoorLock : MonoBehaviour
     [Header("Save")]
     [SerializeField] private string lockID;
 
-    [Header("Item Necessário")]
+    [Header("Item Necessario")]
     [SerializeField] private string requiredItemID;
     [SerializeField] private Animator doorAnimator;
 
     [Header("Caixa de Vidro")]
     [SerializeField] private GlassBox glassBox;
 
-    [Header("Som do Cadeado")]
+    [Header("Sons")]
     [SerializeField] private AudioSource lockSound;
-
-    [Header("Som de Destrancar")]
     [SerializeField] private AudioSource unlockSound;
+
+    [Header("Dialogo")]
+    [SerializeField] private DialogueManager dialogueManager;
+
+    [TextArea(2, 4)]
+    [SerializeField]
+    private string[] dialogueOnUnlock =
+    {
+        "Leonardo: Muito bem... voce encontrou a chave.",
+        "Leonardo: Mas este e apenas o primeiro segredo deste museu."
+    };
 
     public void TryUnlock(PlayerPickup player)
     {
         ItemPickup heldItem = player.GetHeldItem();
 
-        // Não está segurando nada
         if (heldItem == null)
         {
             TocarSomCadeado();
             return;
         }
 
-        // Está segurando a chave errada
         if (heldItem.itemID != requiredItemID)
         {
             TocarSomCadeado();
             return;
         }
 
-        // Chave correta
         Debug.Log("Cadeado correto destrancado: " + gameObject.name);
 
-        // Toca o som de destrancar
         TocarSomDestrancar();
 
         if (doorAnimator != null)
-        {
             doorAnimator.SetTrigger("Open");
+
+        // Inicia o dialogo ao destrancar.
+        if (dialogueManager != null)
+        {
+            dialogueManager.IniciarDialogo(dialogueOnUnlock);
+        }
+        else
+        {
+            Debug.LogError(
+                "DialogueManager nao configurado no cadeado: "
+                + gameObject.name
+            );
         }
 
         Destroy(heldItem.gameObject);
 
         if (glassBox != null)
-        {
-            Debug.Log("Avisando GlassBox que o cadeado foi destrancado.");
             glassBox.LockUnlocked();
-        }
         else
-        {
-            Debug.LogWarning("GlassBox NÃO está configurado no cadeado: " + gameObject.name);
-        }
+            Debug.LogWarning(
+                "GlassBox nao esta configurado: " + gameObject.name
+            );
 
-        // Remove o cadeado
         Destroy(gameObject);
     }
 
-    void TocarSomCadeado()
+    private void TocarSomCadeado()
     {
         if (lockSound != null)
-        {
             lockSound.Play();
-        }
     }
 
-    void TocarSomDestrancar()
+    private void TocarSomDestrancar()
     {
         if (unlockSound != null)
-        {
             unlockSound.Play();
-        }
-    }
-    void AplicarEstadoDestrancado()
-    {
-        if (glassBox != null)
-        {
-            glassBox.LockUnlocked();
-        }
-
-        Destroy(gameObject);
     }
 }
