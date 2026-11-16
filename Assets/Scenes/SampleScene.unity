@@ -158,6 +158,9 @@ MonoBehaviour:
   outline: {fileID: 0}
   isHeld: 1
   itemID: paraquedas
+  dialogueOnPickup: []
+  dialogueOnDrop: []
+  dialogueOnPlace: []
 --- !u!54 &7978392
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -295,6 +298,133 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!1 &37262689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 37262694}
+  - component: {fileID: 37262693}
+  - component: {fileID: 37262692}
+  - component: {fileID: 37262691}
+  - component: {fileID: 37262690}
+  m_Layer: 0
+  m_Name: Cube (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &37262690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37262689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b862b79c456b106468b03cd0419b0378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
+  dialogueManager: {fileID: 0}
+  falas:
+  - eu odeio voce
+  - vai tomar no teu cu
+--- !u!65 &37262691
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37262689}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1.1875411}
+  m_Center: {x: 0, y: 0, z: -0.09377059}
+--- !u!23 &37262692
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37262689}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials: []
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &37262693
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37262689}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &37262694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37262689}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.7, y: 0.6, z: 37.36}
+  m_LocalScale: {x: 1.8835, y: 1, z: 10.215}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &164124229
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,6 +1061,9 @@ MonoBehaviour:
   distance: 3
   holdPoint: {fileID: 1039296483}
   playerCamera: {fileID: 584528896}
+  dialogueManager: {fileID: 0}
+  audioSource: {fileID: 0}
+  pickupSound: {fileID: 0}
 --- !u!114 &653750315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,6 +1079,9 @@ MonoBehaviour:
   distance: 3
   interactionText: {fileID: 0}
   playerCamera: {fileID: 584528896}
+  paintingInteraction: {fileID: 0}
+  tvInteraction: {fileID: 0}
+  notebookInteract: {fileID: 0}
 --- !u!1 &714209657
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,6 +1121,9 @@ MonoBehaviour:
   outline: {fileID: 0}
   isHeld: 1
   itemID: mona lisa
+  dialogueOnPickup: []
+  dialogueOnDrop: []
+  dialogueOnPlace: []
 --- !u!54 &714209659
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1192,6 +1331,9 @@ MonoBehaviour:
   outline: {fileID: 0}
   isHeld: 1
   itemID: pensador
+  dialogueOnPickup: []
+  dialogueOnDrop: []
+  dialogueOnPlace: []
 --- !u!54 &811342539
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1564,6 +1706,9 @@ MonoBehaviour:
   outline: {fileID: 0}
   isHeld: 1
   itemID: maquina voadora
+  dialogueOnPickup: []
+  dialogueOnDrop: []
+  dialogueOnPlace: []
 --- !u!54 &1129773050
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2388,3 +2533,4 @@ SceneRoots:
   - {fileID: 1532225250}
   - {fileID: 1359277690}
   - {fileID: 328863449}
+  - {fileID: 37262694}

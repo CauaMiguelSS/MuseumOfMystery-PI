@@ -21,6 +21,36 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
     }
 
+    public void IniciarDialogo(string[] falas, System.Action aoTerminar)
+    {
+        if (IsPlaying || falas == null || falas.Length == 0)
+            return;
+
+        StartCoroutine(ExecutarDialogoComCallback(falas, aoTerminar));
+    }
+
+    private IEnumerator ExecutarDialogoComCallback(
+        string[] falas,
+        System.Action aoTerminar)
+    {
+        IsPlaying = true;
+        dialoguePanel.SetActive(true);
+
+        foreach (string fala in falas)
+        {
+            if (string.IsNullOrWhiteSpace(fala))
+                continue;
+
+            dialogueText.text = fala;
+            yield return new WaitForSecondsRealtime(tempoPorFala);
+        }
+
+        dialoguePanel.SetActive(false);
+        IsPlaying = false;
+
+        aoTerminar?.Invoke();
+    }
+
     public void IniciarDialogo(string[] falas)
     {
         if (IsPlaying || falas == null || falas.Length == 0)
