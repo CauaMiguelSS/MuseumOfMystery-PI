@@ -258,7 +258,7 @@ Transform:
   m_GameObject: {fileID: 133504307}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: -0.5, z: -0.53000057}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.55, y: 0.12, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -350,6 +350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 142000581}
+  - component: {fileID: 142000582}
   m_Layer: 0
   m_Name: cano (1)
   m_TagString: Untagged
@@ -366,13 +367,28 @@ Transform:
   m_GameObject: {fileID: 142000580}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1, z: -0.6}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: -0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 133504308}
+  - {fileID: 991468057}
+  - {fileID: 1752516294}
   m_Father: {fileID: 1038528773}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &142000582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142000580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c31732f2c4a70b42a58bbecbaffb41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GirarCano
+  velocidadeRotacao: 300
 --- !u!1 &156488468
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,6 +788,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 391298021}
+  - component: {fileID: 391298022}
   m_Layer: 0
   m_Name: CanoCurvo
   m_TagString: Untagged
@@ -794,8 +811,28 @@ Transform:
   m_Children:
   - {fileID: 1168400665}
   - {fileID: 1281263364}
+  - {fileID: 2082456630}
+  - {fileID: 1090837399}
   m_Father: {fileID: 1038528773}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &391298022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391298020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c31732f2c4a70b42a58bbecbaffb41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GirarCano
+  velocidadeRotacao: 300
+--- !u!1 &517322721 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 771e5d252b4bbee44a1d67c28e7c1e46, type: 3}
+  m_PrefabInstance: {fileID: 331138588}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &612168784
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,7 +861,7 @@ Transform:
   m_GameObject: {fileID: 612168784}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: -0.53000057}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.55, y: 0.12, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1027,6 +1064,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 765821585}
+  - component: {fileID: 765821586}
   m_Layer: 0
   m_Name: CanoCurvo (3)
   m_TagString: Untagged
@@ -1049,7 +1087,53 @@ Transform:
   m_Children:
   - {fileID: 1849177460}
   - {fileID: 271164843}
+  - {fileID: 875875544}
+  - {fileID: 971571801}
   m_Father: {fileID: 1038528773}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &765821586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765821584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c31732f2c4a70b42a58bbecbaffb41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GirarCano
+  velocidadeRotacao: 300
+--- !u!1 &875875543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 875875544}
+  m_Layer: 0
+  m_Name: Conexao1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &875875544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875875543}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.3, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 765821585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &915926172
 GameObject:
@@ -1060,6 +1144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 915926173}
+  - component: {fileID: 915926174}
   m_Layer: 0
   m_Name: cano (3)
   m_TagString: Untagged
@@ -1082,6 +1167,81 @@ Transform:
   m_Children:
   - {fileID: 1833072034}
   m_Father: {fileID: 1038528773}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &915926174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915926172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c31732f2c4a70b42a58bbecbaffb41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GirarCano
+  velocidadeRotacao: 300
+--- !u!1 &971571800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 971571801}
+  m_Layer: 0
+  m_Name: Conexao2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &971571801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971571800}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 765821585}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &991468056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 991468057}
+  m_Layer: 0
+  m_Name: Conexao1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &991468057
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991468056}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.275, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 142000581}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1038528769
 GameObject:
@@ -1202,6 +1362,37 @@ Transform:
   - {fileID: 915926173}
   - {fileID: 2033695587}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1090837398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1090837399}
+  m_Layer: 0
+  m_Name: Conexao2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1090837399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090837398}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 391298021}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1125356800
 GameObject:
@@ -1672,6 +1863,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1586599599}
+  - component: {fileID: 1586599600}
   m_Layer: 0
   m_Name: cano (2)
   m_TagString: Untagged
@@ -1688,13 +1880,26 @@ Transform:
   m_GameObject: {fileID: 1586599598}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: -0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 612168785}
   m_Father: {fileID: 1038528773}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1586599600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586599598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c31732f2c4a70b42a58bbecbaffb41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GirarCano
+  velocidadeRotacao: 300
 --- !u!1 &1599078287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1806,6 +2011,51 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599078287}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1602771572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1602771573}
+  - component: {fileID: 1602771574}
+  m_Layer: 0
+  m_Name: PuzzleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1602771573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602771572}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.53211, y: 1.88796, z: 2.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1602771574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602771572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ebbf21dd0890a45b47507b1cd6cc14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PuzzleManager
+  pilar: {fileID: 517322721}
 --- !u!1 &1669376362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1815,6 +2065,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1669376363}
+  - component: {fileID: 1669376364}
   m_Layer: 0
   m_Name: CanoCurvo (1)
   m_TagString: Untagged
@@ -1839,6 +2090,19 @@ Transform:
   - {fileID: 1908635445}
   m_Father: {fileID: 1038528773}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1669376364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669376362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c31732f2c4a70b42a58bbecbaffb41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GirarCano
+  velocidadeRotacao: 300
 --- !u!1 &1672663723
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,6 +2253,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+--- !u!1 &1752516293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1752516294}
+  m_Layer: 0
+  m_Name: Conexao2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1752516294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752516293}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.275, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 142000581}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1783867554
 GameObject:
   m_ObjectHideFlags: 0
@@ -2357,6 +2652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1895025337}
+  - component: {fileID: 1895025338}
   m_Layer: 0
   m_Name: CanoCurvo (2)
   m_TagString: Untagged
@@ -2381,6 +2677,19 @@ Transform:
   - {fileID: 34999955}
   m_Father: {fileID: 1038528773}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1895025338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895025336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c31732f2c4a70b42a58bbecbaffb41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GirarCano
+  velocidadeRotacao: 300
 --- !u!1 &1908635444
 GameObject:
   m_ObjectHideFlags: 0
@@ -2612,6 +2921,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2004931334}
+  - component: {fileID: 2004931335}
   m_Layer: 0
   m_Name: cano
   m_TagString: Untagged
@@ -2636,6 +2946,19 @@ Transform:
   - {fileID: 697573420}
   m_Father: {fileID: 1038528773}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2004931335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004931333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c31732f2c4a70b42a58bbecbaffb41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GirarCano
+  velocidadeRotacao: 300
 --- !u!1 &2033695586
 GameObject:
   m_ObjectHideFlags: 0
@@ -2645,6 +2968,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2033695587}
+  - component: {fileID: 2033695588}
   m_Layer: 0
   m_Name: cano (4)
   m_TagString: Untagged
@@ -2668,6 +2992,50 @@ Transform:
   - {fileID: 156488469}
   m_Father: {fileID: 1038528773}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2033695588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033695586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c31732f2c4a70b42a58bbecbaffb41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GirarCano
+  velocidadeRotacao: 300
+--- !u!1 &2082456629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2082456630}
+  m_Layer: 0
+  m_Name: Conexao1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2082456630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082456629}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.3, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 391298021}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2679,3 +3047,4 @@ SceneRoots:
   - {fileID: 331138588}
   - {fileID: 1972358030}
   - {fileID: 1038528773}
+  - {fileID: 1602771573}
