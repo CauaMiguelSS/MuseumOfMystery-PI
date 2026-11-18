@@ -1,3 +1,4 @@
+
 using System.Collections;
 using UnityEngine;
 
@@ -15,6 +16,12 @@ public class TVInteraction : MonoBehaviour
     [Header("Player")]
     [SerializeField] private GameObject handItem;
     [SerializeField] private GameObject flashlight;
+
+    [Header("Dialogo ao sair da TV")]
+    [SerializeField] private DialogueManager dialogueManager;
+
+    [TextArea(2, 4)]
+    [SerializeField] private string[] dialogueOnExit;
 
     [Header("Settings")]
     [SerializeField] private float transitionSpeed = 2f;
@@ -83,10 +90,15 @@ public class TVInteraction : MonoBehaviour
         }
 
         Outline outline = GetComponentInChildren<Outline>(true);
+
         if (outline != null)
             outline.enabled = false;
 
-        StartCoroutine(MoveCamera(cameraPoint.position, cameraPoint.rotation, true));
+        StartCoroutine(MoveCamera(
+            cameraPoint.position,
+            cameraPoint.rotation,
+            true
+        ));
     }
 
     public void ExitTV()
@@ -96,10 +108,17 @@ public class TVInteraction : MonoBehaviour
         transitioning = true;
         interactionText?.SetActive(false);
 
-        StartCoroutine(MoveCamera(originalPos, originalRot, false));
+        StartCoroutine(MoveCamera(
+            originalPos,
+            originalRot,
+            false
+        ));
     }
 
-    private IEnumerator MoveCamera(Vector3 targetPos, Quaternion targetRot, bool entering)
+    private IEnumerator MoveCamera(
+        Vector3 targetPos,
+        Quaternion targetRot,
+        bool entering)
     {
         if (playerCamera == null || (entering && cameraPoint == null))
         {
@@ -135,6 +154,18 @@ public class TVInteraction : MonoBehaviour
                 flashlight.SetActive(flashlightWasOn);
 
             watchingTV = false;
+
+            // Dialogo automatico ao sair da TV
+            if (dialogueManager != null)
+            {
+                dialogueManager.IniciarDialogo(dialogueOnExit);
+            }
+            else
+            {
+                Debug.LogWarning(
+                    "DialogueManager nao configurado na TV!"
+                );
+            }
         }
 
         transitioning = false;
@@ -143,7 +174,12 @@ public class TVInteraction : MonoBehaviour
     public void SetTVAvailable(bool available)
     {
         tvAvailable = available;
-        Debug.Log(available ? "TV agora está disponível." : "TV agora está bloqueada.");
+
+        Debug.Log(
+            available
+            ? "TV agora está disponível."
+            : "TV agora está bloqueada."
+        );
     }
 
     public bool IsTVAvailable() => tvAvailable;
