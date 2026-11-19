@@ -49659,6 +49659,8 @@ MonoBehaviour:
   painelNotebook: {fileID: 632600345}
   interactionText: {fileID: 2010542665}
   playerController: {fileID: 2105921568610537950}
+  dialogueManager: {fileID: 86011019}
+  dialogueOnClose: []
   distanciaInteracao: 4
 --- !u!114 &694726011
 MonoBehaviour:
@@ -50029,6 +50031,8 @@ MonoBehaviour:
   painelNotebook: {fileID: 1750509554}
   interactionText: {fileID: 2010542665}
   playerController: {fileID: 2105921568610537950}
+  dialogueManager: {fileID: 86011019}
+  dialogueOnClose: []
   distanciaInteracao: 4
 --- !u!114 &700645905
 MonoBehaviour:
@@ -61503,8 +61507,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856301645}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0.0677}
+  m_LocalRotation: {x: -0.0000000018626454, y: -0, z: -0.0000000018626454, w: 1}
+  m_LocalPosition: {x: -0.00000007926548, y: 0.00000025107812, z: 0.06769913}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71893,7 +71897,7 @@ MonoBehaviour:
   glassBox: {fileID: 834614821}
   lockSound: {fileID: 0}
   unlockSound: {fileID: 0}
-  dialogueManager: {fileID: 0}
+  dialogueManager: {fileID: 86011019}
   dialogueOnUnlock:
   - "Quese l\xE1"
 --- !u!114 &997720718
@@ -76164,8 +76168,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.2796, y: 9.038648, z: 13.44482}
-  m_Center: {x: 16.7012, y: -4.915648, z: -4.450579}
+  m_Size: {x: 1.2796019, y: 9.038648, z: 13.488489}
+  m_Center: {x: 16.7012, y: -4.915648, z: -4.4724135}
 --- !u!4 &1063944205
 Transform:
   m_ObjectHideFlags: 0
@@ -88254,6 +88258,8 @@ MonoBehaviour:
   painelNotebook: {fileID: 382959354}
   interactionText: {fileID: 2010542665}
   playerController: {fileID: 2105921568610537950}
+  dialogueManager: {fileID: 86011019}
+  dialogueOnClose: []
   distanciaInteracao: 4
 --- !u!114 &1221720946
 MonoBehaviour:
@@ -99143,6 +99149,8 @@ MonoBehaviour:
   painelNotebook: {fileID: 563735837}
   interactionText: {fileID: 2010542665}
   playerController: {fileID: 2105921568610537950}
+  dialogueManager: {fileID: 0}
+  dialogueOnClose: []
   distanciaInteracao: 6
 --- !u!114 &1411304385
 MonoBehaviour:
@@ -107228,8 +107236,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.2282656, y: 9.038648, z: 13.44482}
-  m_Center: {x: 16.668447, y: -4.915648, z: -4.450579}
+  m_Size: {x: 2.9384878, y: 9.038648, z: 13.44482}
+  m_Center: {x: 16.672523, y: -4.915648, z: -4.450579}
 --- !u!1 &1509331224
 GameObject:
   m_ObjectHideFlags: 0
@@ -136654,6 +136662,10 @@ MonoBehaviour:
   painelNotebook: {fileID: 136908788}
   interactionText: {fileID: 2010542665}
   playerController: {fileID: 2105921568610537950}
+  dialogueManager: {fileID: 86011019}
+  dialogueOnClose:
+  - "Um \xF3timo desafio, vamos ver se voc\xEA conhece meus projetos."
+  - Aquelas notas nos pilares devem te ajudar.
   distanciaInteracao: 9
 --- !u!114 &1874066615
 MonoBehaviour:
@@ -136759,7 +136771,7 @@ Transform:
   m_GameObject: {fileID: 1874066613}
   serializedVersion: 2
   m_LocalRotation: {x: 0.032137137, y: 0.7093641, z: 0.046369158, w: -0.7025807}
-  m_LocalPosition: {x: 2.471, y: 0.4746399, z: -5.193}
+  m_LocalPosition: {x: 2.203, y: 0.4746399, z: -5.193}
   m_LocalScale: {x: 2.6054316, y: 2.6054313, z: 2.605431}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -144181,6 +144193,8 @@ MonoBehaviour:
   painelNotebook: {fileID: 543699814}
   interactionText: {fileID: 2010542665}
   playerController: {fileID: 2105921568610537950}
+  dialogueManager: {fileID: 86011019}
+  dialogueOnClose: []
   distanciaInteracao: 4
 --- !u!114 &1982962617
 MonoBehaviour:
@@ -165370,7 +165384,7 @@ MonoBehaviour:
   glassBox: {fileID: 834614821}
   lockSound: {fileID: 0}
   unlockSound: {fileID: 0}
-  dialogueManager: {fileID: 0}
+  dialogueManager: {fileID: 86011019}
   dialogueOnUnlock:
   - Muito bem
 --- !u!1 &1981189084114594900
@@ -187983,6 +187997,8 @@ MonoBehaviour:
   painelNotebook: {fileID: 1564444660}
   interactionText: {fileID: 2010542665}
   playerController: {fileID: 2105921568610537950}
+  dialogueManager: {fileID: 86011019}
+  dialogueOnClose: []
   distanciaInteracao: 4
 --- !u!114 &7257359543698497606
 MonoBehaviour:
@@ -195532,6 +195548,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2661314468757612692, guid: a5cd6826ac3e8d04b8af28530d4190ca, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -43.58076
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661314468757612692, guid: a5cd6826ac3e8d04b8af28530d4190ca, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.596153
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661314468757612692, guid: a5cd6826ac3e8d04b8af28530d4190ca, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -33.131847
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661314468757612692, guid: a5cd6826ac3e8d04b8af28530d4190ca, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.34618863
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661314468757612692, guid: a5cd6826ac3e8d04b8af28530d4190ca, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.51983684
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661314468757612692, guid: a5cd6826ac3e8d04b8af28530d4190ca, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.24240392
+      objectReference: {fileID: 0}
     - target: {fileID: 5307410302514615602, guid: a5cd6826ac3e8d04b8af28530d4190ca, type: 3}
       propertyPath: m_Name
       value: Inimigo
