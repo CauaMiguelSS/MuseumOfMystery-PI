@@ -3,49 +3,64 @@ using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour
 {
-    [Header("Pilar")]
     public GameObject pilar;
-
-    [Header("Os 5 canos do caminho")]
     public GirarCano[] canos;
-
-    [Header("Rotação correta de cada cano (Z)")]
     public float[] rotacoesCorretas;
-
-    [Header("Margem de erro")]
     public float tolerancia = 2f;
 
-    private bool resolvido = false;
+    private bool puzzleResolvido = false;
 
     void Update()
     {
-        if (resolvido) return;
+        if (puzzleResolvido)
+            return;
 
         if (canos == null || rotacoesCorretas == null)
             return;
 
-        if (canos.Length != 5 || rotacoesCorretas.Length != 5)
+        if (canos.Length != rotacoesCorretas.Length)
             return;
 
-        for (int i = 0; i < 5; i++)
-        {
-            if (canos[i] == null) return;
+        bool todosCorretos = true;
 
-            float rotacaoAtual = canos[i].transform.localEulerAngles.z;
+        for (int i = 0; i < canos.Length; i++)
+        {
+            if (canos[i] == null)
+            {
+                todosCorretos = false;
+                break;
+            }
+
+            float anguloAtual =
+                canos[i].transform.localEulerAngles.z;
 
             float diferenca = Mathf.Abs(
-                Mathf.DeltaAngle(rotacaoAtual, rotacoesCorretas[i])
+                Mathf.DeltaAngle(anguloAtual, rotacoesCorretas[i])
             );
 
+            // O elemento 2 é o cano em formato de X.
+            // Ele continua correto mesmo girando 90 graus.
+            if (i == 2)
+            {
+                float resto = diferenca % 90f;
+                diferenca = Mathf.Min(resto, 90f - resto);
+            }
+
             if (diferenca > tolerancia)
-                return;
+            {
+                todosCorretos = false;
+                break;
+            }
         }
 
-        resolvido = true;
+        if (todosCorretos)
+        {
+            puzzleResolvido = true;
 
-        if (pilar != null)
-            Destroy(pilar);
+            if (pilar != null)
+                pilar.SetActive(false);
 
-        Debug.Log("PUZZLE RESOLVIDO!");
+            Debug.Log("PUZZLE RESOLVIDO!");
+        }
     }
 }
