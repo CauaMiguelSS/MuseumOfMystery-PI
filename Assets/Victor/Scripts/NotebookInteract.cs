@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class NotebookInteract : MonoBehaviour
@@ -7,6 +8,11 @@ public class NotebookInteract : MonoBehaviour
     public GameObject painelNotebook;
     public GameObject interactionText;
     public FirstPersonController playerController;
+    public DialogueManager dialogueManager;
+
+    [Header("Dialogo ao fechar")]
+    [TextArea(2, 4)]
+    public string[] dialogueOnClose;
 
     [Header("Settings")]
     public float distanciaInteracao = 3f;
@@ -17,7 +23,8 @@ public class NotebookInteract : MonoBehaviour
 
     private void Start()
     {
-        painelNotebook.SetActive(false);
+        if (painelNotebook != null)
+            painelNotebook.SetActive(false);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -28,28 +35,54 @@ public class NotebookInteract : MonoBehaviour
         if (aberto)
             return;
 
+        if (playerCamera == null)
+            return;
+
+        if (DialogueManager.IsPlaying)
+        {
+            interactionText?.SetActive(false);
+            return;
+        }
+
         if (Physics.Raycast(
             playerCamera.transform.position,
             playerCamera.transform.forward,
             out RaycastHit hit,
             distanciaInteracao))
         {
-            if (hit.transform == transform &&
-                Input.GetKeyDown(KeyCode.E))
+            NotebookInteract notebook =
+                hit.collider.GetComponentInParent<NotebookInteract>();
+
+            if (notebook == this)
             {
-                AbrirNotebook();
+                interactionText?.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    AbrirNotebook();
+                }
+
+                return;
             }
         }
+
+        interactionText?.SetActive(false);
     }
 
     public void AbrirNotebook()
     {
+        if (aberto)
+            return;
+
         aberto = true;
-        painelNotebook.SetActive(true);
+
+        if (painelNotebook != null)
+            painelNotebook.SetActive(true);
 
         interactionText?.SetActive(false);
 
-        playerController.enabled = false;
+        if (playerController != null)
+            playerController.enabled = false;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -57,14 +90,30 @@ public class NotebookInteract : MonoBehaviour
 
     public void FecharNotebook()
     {
+        if (!aberto)
+            return;
+
         aberto = false;
-        painelNotebook.SetActive(false);
 
-        playerController.enabled = true;
+        if (painelNotebook != null)
+            painelNotebook.SetActive(false);
 
-        Time.timeScale = 1f;
+        if (playerController != null)
+            playerController.enabled = true;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if (dialogueManager != null)
+        {
+            dialogueManager.IniciarDialogo(dialogueOnClose);
+        }
+        else
+        {
+            Debug.LogWarning(
+                "DialogueManager nao configurado no notebook: "
+                + gameObject.name
+            );
+        }
     }
 }
