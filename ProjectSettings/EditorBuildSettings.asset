@@ -15,5 +15,7 @@ EditorBuildSettings:
     path: "Assets/Scenes/Cau\xE3MiguelSS.unity"
     guid: c84246bfe626b354bb2c594e96838eb2
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 5b9cf3da73baa1b479d51e36c8e555e9, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.localization.settings: {fileID: 11400000, guid: 3b5203f767839364aa6e20b68eb3080b, type: 2}
   m_UseUCBPForAssetBundles: 0
