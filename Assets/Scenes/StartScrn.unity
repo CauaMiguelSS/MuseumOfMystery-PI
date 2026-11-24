@@ -2741,8 +2741,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "v\xEDdeo usado no puzzle da fita vhs:\n- Leonardo da Vinci e a Dama com
-    Arminho | canal: L\xE1 Vem a Professora"
+  m_text: "Assets\n-vhs: - Leonardo da Vinci e a Dama com Arminho | canal:L\xE1 Vem
+    a Professora\n-Hintze Hall 3D Model - by artfletch\n-Key by Gektark\n-PSX Shader
+    Kit - by Unity Assets Store\n-Modular Railing 01 3D model - by Console Art Cybernetic\n-Room_99MB
+    3D Model - by Mehdi Shahsavan\n-Da Vinci's - Flying Machine 3D Model - by vanessalani\n-Personal
+    Mona Lisa 3D Model - by Thomas Flynn\n-Ribauldequin (Da Vinci) 3D Model - by
+    Taylor\n-Da Vinci's Cannon 3D Model - by Dominik Bia\u0142y\n-Da Vinci Bust at
+    Powerscourt Gardens 3D Model - by jovrnalism\r\n-Gothic Window 3D Model - by
+    M\xE1rio Mendes\n-Waiting Chair 3D Model - by creative_beast\n-VHS 3D Model -
+    by Terizmeh\n-TV , Old TV , Retro TV 3D Model - by Denys Hroshko\n-Boxes 3D Model
+    - by Hamidreza Oloumi\n\nAgradecimentos Especiais \n- Unity Assets Store\n- Sketch
+    Fab\n- Mixamo\n- Free Sound\n- Itch Io"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 45ca2e1225725ac4a81c865c408b93a4, type: 2}
   m_sharedMaterial: {fileID: -7181550369130723100, guid: 45ca2e1225725ac4a81c865c408b93a4, type: 2}
@@ -2769,8 +2778,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2838,8 +2847,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000019073, y: -0.0000038147}
-  m_SizeDelta: {x: 839.7678, y: 354.2886}
+  m_AnchoredPosition: {x: 54.113, y: -27.635}
+  m_SizeDelta: {x: 886.809, y: 479.64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &411413661 stripped
 Transform:
@@ -3674,7 +3683,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -444, y: -239}
+  m_AnchoredPosition: {x: -443, y: -202}
   m_SizeDelta: {x: 38.0426, y: 35.0788}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &516581429
@@ -4313,6 +4322,7 @@ GameObject:
   - component: {fileID: 571902436}
   - component: {fileID: 571902438}
   - component: {fileID: 571902437}
+  - component: {fileID: 571902439}
   m_Layer: 5
   m_Name: Titulo1
   m_TagString: Untagged
@@ -4439,6 +4449,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 571902435}
   m_CullTransparentMesh: 1
+--- !u!114 &571902439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571902435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2311ff52b8637ab44a945f3b1553985e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TextAnimation
+  objeto: {fileID: 571902436}
+  escalaMinima: 1
+  escalaMaxima: 1.05
+  velocidadeEscala: 1
+  distanciaMovimento: -1
+  velocidadeMovimento: 2
+  anguloRotacao: 1
+  velocidadeRotacao: 0.05
 --- !u!1 &577908129
 GameObject:
   m_ObjectHideFlags: 0
@@ -9707,6 +9737,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1500165971}
   - component: {fileID: 1500165972}
+  - component: {fileID: 1500165973}
   m_Layer: 5
   m_Name: Btns
   m_TagString: Untagged
@@ -9762,6 +9793,26 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1500165973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500165970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2311ff52b8637ab44a945f3b1553985e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TextAnimation
+  objeto: {fileID: 1500165971}
+  escalaMinima: 1
+  escalaMaxima: 1.05
+  velocidadeEscala: 1
+  distanciaMovimento: 1
+  velocidadeMovimento: -2
+  anguloRotacao: 0
+  velocidadeRotacao: 0.05
 --- !u!1 &1528939379
 GameObject:
   m_ObjectHideFlags: 0
