@@ -18,6 +18,16 @@ public class OutlineDetector : MonoBehaviour
     private void Start()
     {
         interactionText?.SetActive(false);
+
+        ItemPickup[] items = FindObjectsByType<ItemPickup>(
+            FindObjectsSortMode.None
+        );
+
+        foreach (ItemPickup item in items)
+        {
+            if (item.outline != null)
+                item.outline.enabled = false;
+        }
     }
 
     private void Update()
@@ -38,11 +48,11 @@ public class OutlineDetector : MonoBehaviour
             return;
         }
 
-        Outline outline =
-            currentHit.collider.GetComponentInParent<Outline>();
-
         ItemPickup item =
             currentHit.collider.GetComponentInParent<ItemPickup>();
+
+        Outline outline =
+            currentHit.collider.GetComponentInParent<Outline>();
 
         if (item != null && item.isHeld)
             outline = null;

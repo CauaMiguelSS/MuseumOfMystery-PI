@@ -56,7 +56,7 @@ public class PlayerPickup : MonoBehaviour
         if (!Physics.Raycast(ray, out RaycastHit hit, distance))
             return;
 
-        ItemPickup item = hit.collider.GetComponent<ItemPickup>();
+        ItemPickup item = hit.collider.GetComponentInParent<ItemPickup>();
 
         if (item == null)
             return;

@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
@@ -26,6 +25,16 @@ public class ItemPickup : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
-        outline = GetComponentInParent<Outline>();
+
+        if (col == null)
+            col = GetComponentInChildren<Collider>();
+
+        outline = GetComponent<Outline>();
+
+        if (outline == null)
+            outline = GetComponentInChildren<Outline>();
+
+        if (outline == null)
+            outline = GetComponentInParent<Outline>();
     }
 }
