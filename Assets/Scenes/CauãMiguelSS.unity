@@ -3949,10 +3949,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
   dialogueManager: {fileID: 86011019}
   falas:
-  - "Olha ela a\xED..."
-  - "Vamos r\xE1pido..."
-  - "O que? Cadeados? S\xE9rio?"
-  - "Droga, vamos s\xF3 achar as chaves de uma vez. Qaunto mais r\xE1pido melhor"
+  - "da Vinci: A\xED est\xE1 o quadro, nosso principal objetivo..."
+  - 'da Vinci: O que!?'
+  - "da Vinci: Tr\xEAs cadeados?? Isso nos atrasar\xE1 um pouco."
+  - "da Vinci: Bom, n\xE3o temos tempo a perder, vamos procurar essas chaves."
 --- !u!65 &77693434
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10317,117 +10317,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160004401}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &160005623
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 160005624}
-  - component: {fileID: 160005627}
-  - component: {fileID: 160005626}
-  - component: {fileID: 160005625}
-  m_Layer: 0
-  m_Name: MetalPoles
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &160005624
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 160005623}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -43.829, y: -0.561, z: 2.259}
-  m_LocalScale: {x: 1.7513, y: 1.7513, z: 1.7513}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 775772266}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &160005625
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 160005623}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5654776, y: 0.8506542, z: 1.6361351}
-  m_Center: {x: 0.032473654, y: 0.3367062, z: 0.81866944}
---- !u!23 &160005626
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 160005623}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: -332390482882793317, guid: e35e9f84f19157c439661331f09c07a0, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &160005627
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 160005623}
-  m_Mesh: {fileID: 1359411072726348031, guid: e35e9f84f19157c439661331f09c07a0, type: 3}
 --- !u!1 &161324829
 GameObject:
   m_ObjectHideFlags: 0
@@ -12634,7 +12523,7 @@ Transform:
   m_GameObject: {fileID: 196748327}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.262, y: 9.155, z: -20.256}
+  m_LocalPosition: {x: 95.79, y: 9.155, z: -0.17}
   m_LocalScale: {x: 4.8095, y: 4.8095, z: 13.960536}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12654,9 +12543,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
   dialogueManager: {fileID: 86011019}
   falas:
-  - "Olha tem uma chave l\xE1 dentro..."
-  - "Como vamos abrir aquilo? Talvez se usarmos da sua tecnonogia avan\xE7ada"
-  - "Ou ent\xE3o, vamos ler aquela nota na parede"
+  - "da Vinci: Aqui tem uma chave, ser\xE1 que \xE9 uma das tr\xEAs da Mona Lisa?"
+  - 'da Vinci: Parece ser um mecanismo um pouco complexo...'
+  - 'da Vinci: Talvez devessemos ler aquela nota para entender um pouco mais?'
 --- !u!65 &196748330
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12676,8 +12565,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.4245436, y: 1.8681097, z: 3.7925072}
-  m_Center: {x: 0.09443507, y: 0.43405485, z: 1.4319249}
+  m_Size: {x: 2.4245436, y: 1.5901698, z: 1.3693565}
+  m_Center: {x: 0.09443507, y: 0.573025, z: 1.7993788}
 --- !u!23 &196748331
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -52246,39 +52135,6 @@ Transform:
   - {fileID: 1765640549}
   m_Father: {fileID: 1341294715}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &775772265
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 775772266}
-  m_Layer: 0
-  m_Name: Barreira (63)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &775772266
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 775772265}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.67151177, z: -0, w: 0.740994}
-  m_LocalPosition: {x: 63.7, y: 10.33, z: 63.72}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 160005624}
-  - {fileID: 1906917522}
-  m_Father: {fileID: 1096661797}
-  m_LocalEulerAnglesHint: {x: 0, y: -84.368, z: 0}
 --- !u!1 &776748971
 GameObject:
   m_ObjectHideFlags: 0
@@ -67053,7 +66909,7 @@ MonoBehaviour:
   lockSound: {fileID: 0}
   unlockSound: {fileID: 0}
   dialogueOnUnlock:
-  - "Estou impressionado, quase l\xE1!"
+  - "da Vinci: Estou impressionado, voc\xEA est\xE1 indo bem!"
 --- !u!114 &997720718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74056,7 +73912,6 @@ Transform:
   - {fileID: 1993186475}
   - {fileID: 1040462960}
   - {fileID: 1394289752}
-  - {fileID: 775772266}
   - {fileID: 530104961}
   - {fileID: 307922596}
   - {fileID: 1584286897}
@@ -92177,6 +92032,136 @@ Transform:
   - {fileID: 1504784463}
   m_Father: {fileID: 1096661797}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1394701072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1394701073}
+  - component: {fileID: 1394701077}
+  - component: {fileID: 1394701076}
+  - component: {fileID: 1394701075}
+  - component: {fileID: 1394701074}
+  m_Layer: 0
+  m_Name: DialogueTrigger (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1394701073
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394701072}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 95.79, y: 0.07, z: -0.17}
+  m_LocalScale: {x: 4.8095, y: 4.8095, z: 13.960536}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2017247779}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1394701074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394701072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b862b79c456b106468b03cd0419b0378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
+  dialogueManager: {fileID: 86011019}
+  falas:
+  - 'da Vinci: Uma sala com projetor?'
+  - "da Vinci: T\xEAm um aparelho de VHS naquela mesa..."
+  - 'da Vinci: Devemos procurar alguma fita VHS para conseguir uma das chaves?'
+  - "da Vinci: Bom, n\xE3o podemos perder tempo, vamos explorar esse lugar!"
+--- !u!65 &1394701075
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394701072}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.4245436, y: 1.5901698, z: 1.3693565}
+  m_Center: {x: 0.09443507, y: 0.573025, z: 1.7993788}
+--- !u!23 &1394701076
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394701072}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1394701077
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394701072}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1394726220
 GameObject:
   m_ObjectHideFlags: 0
@@ -99724,7 +99709,7 @@ Transform:
   m_GameObject: {fileID: 1487927192}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 90.666, y: 9.155, z: -21.21}
+  m_LocalPosition: {x: 90.666, y: 11.25, z: -21.21}
   m_LocalScale: {x: 4.8095, y: 4.8095, z: 13.960536}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -99744,9 +99729,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
   dialogueManager: {fileID: 86011019}
   falas:
-  - "Olha tem uma chave l\xE1 dentro..."
-  - "Como vamos abrir aquilo? Talvez se usarmos da sua tecnonogia avan\xE7ada"
-  - "Ou ent\xE3o, vamos ler aquela nota na parede"
+  - 'da Vinci: Vejo uma chave embaixo daquele vidro.'
+  - "da Vinci: Como n\xF3s devemos abrir aquilo? Tem algum tipo de mecanismo?"
+  - "da Vinci: Talvez devessemos ler aquela nota, \xE9 poss\xEDvel que tenha algo
+    importante!"
 --- !u!65 &1487927195
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -130107,95 +130093,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.5123901, y: 9.038648, z: 3.2713737}
   m_Center: {x: 16.546368, y: -4.915648, z: -8.473402}
---- !u!1 &1906917521
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1906917522}
-  - component: {fileID: 1906917524}
-  - component: {fileID: 1906917523}
-  m_Layer: 0
-  m_Name: Rope
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1906917522
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1906917521}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -43.828, y: -0.555, z: 2.252}
-  m_LocalScale: {x: 1.7513, y: 1.7513, z: 1.7513}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 775772266}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &1906917523
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1906917521}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 1357283412405693010, guid: e35e9f84f19157c439661331f09c07a0, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1906917524
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1906917521}
-  m_Mesh: {fileID: 3840146784067909648, guid: e35e9f84f19157c439661331f09c07a0, type: 3}
 --- !u!1 &1907005325
 GameObject:
   m_ObjectHideFlags: 0
@@ -134615,8 +134512,8 @@ MonoBehaviour:
   lockSound: {fileID: 0}
   unlockSound: {fileID: 0}
   dialogueOnUnlock:
-  - "\xD3timo!"
-  - Falta pouco agora.
+  - "da Vinci: \xD3timo!"
+  - 'da Vinci: Falta pouco agora.'
 --- !u!114 &1979011577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137921,6 +137818,7 @@ Transform:
   - {fileID: 261183566}
   - {fileID: 77693432}
   - {fileID: 196748328}
+  - {fileID: 1394701073}
   - {fileID: 1487927193}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -168133,7 +168031,7 @@ MonoBehaviour:
   lockSound: {fileID: 0}
   unlockSound: {fileID: 0}
   dialogueOnUnlock:
-  - "Muito bem, voc\xEA est\xE1 quase l\xE1."
+  - "da Vinci: Muito bem, voc\xEA est\xE1 quase l\xE1."
 --- !u!1 &1981189084114594900
 GameObject:
   m_ObjectHideFlags: 0
@@ -209241,9 +209139,9 @@ MonoBehaviour:
   lockSound: {fileID: 771895433}
   unlockSound: {fileID: 1428070203}
   dialogueOnUnlock:
-  - "Ent\xE3o voc\xEA encontrou a chave da sala segura?"
-  - "Esse \xE9 o lugar mais seguro daqui, aproveite para descansar..."
-  - Mas ainda temos muito trabalho pela frente.
+  - "da Vinci: Ent\xE3o voc\xEA encontrou a chave da sala segura?"
+  - "da Vinci: Esse \xE9 o lugar mais seguro daqui, aproveite para descansar..."
+  - 'da Vinci: Mas ainda temos muito trabalho pela frente.'
 --- !u!1 &7697902679880595244
 GameObject:
   m_ObjectHideFlags: 0
