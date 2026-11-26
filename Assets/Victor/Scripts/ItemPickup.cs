@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
@@ -23,16 +24,23 @@ public class ItemPickup : MonoBehaviour
 
     private void Awake()
     {
+        // Rigidbody
         rb = GetComponent<Rigidbody>();
+
+        if (rb == null)
+            rb = GetComponentInChildren<Rigidbody>(true);
+
+        // Collider
         col = GetComponent<Collider>();
 
         if (col == null)
-            col = GetComponentInChildren<Collider>();
+            col = GetComponentInChildren<Collider>(true);
 
+        // Outline
         outline = GetComponent<Outline>();
 
         if (outline == null)
-            outline = GetComponentInChildren<Outline>();
+            outline = GetComponentInChildren<Outline>(true);
 
         if (outline == null)
             outline = GetComponentInParent<Outline>();

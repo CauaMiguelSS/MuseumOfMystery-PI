@@ -95,21 +95,47 @@ public class DoorLock : MonoBehaviour
 
         ItemPickup item = player.GetHeldItem();
 
-        if (item == null || item.itemID != requiredItemID)
+        if (item == null)
         {
+            Debug.Log("ERRO: Nenhum item está sendo segurado.");
+            return;
+        }
+
+        Debug.Log("Item encontrado: " + item.itemID);
+        Debug.Log("Item necessário: " + requiredItemID);
+
+        if (item.itemID != requiredItemID)
+        {
+            Debug.Log("ERRO: ID incorreto!");
             lockSound?.Play();
             return;
         }
 
+        Debug.Log("CHAVE CORRETA! Desbloqueando...");
+
         isUnlocked = true;
 
-        HideInteraction();
         unlockSound?.Play();
 
         if (lockType == LockType.NormalDoor)
-            doorAnimator?.SetTrigger("Open");
+        {
+            if (doorAnimator != null)
+            {
+                doorAnimator.SetTrigger("Open");
+                Debug.Log("Trigger Open enviado!");
+            }
+            else
+            {
+                Debug.LogError("DoorAnimator não foi atribuído!");
+            }
+        }
         else if (lockType == LockType.GlassBox)
-            glassBox?.LockUnlocked();
+        {
+            if (glassBox != null)
+                glassBox.LockUnlocked();
+            else
+                Debug.LogError("GlassBox não foi atribuído!");
+        }
 
         if (dialogueManager != null)
             dialogueManager.IniciarDialogo(dialogueOnUnlock);
